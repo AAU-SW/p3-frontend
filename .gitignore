@@ -7,4 +7,5 @@ count.txt
 .env
 .nitro
 .tanstack
-.idea
+*.idea
+
