@@ -2,6 +2,12 @@ Welcome to your new TanStack app!
 
 # Getting Started
 
+To clone the repository:
+
+```bash
+git clone https://github.com/AAU-SW/p3-frontend.git
+```
+
 To run this application (This requires [pnpm](https://pnpm.io/) to be installed):
 
 ```bash
