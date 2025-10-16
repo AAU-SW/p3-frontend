@@ -7,3 +7,6 @@ count.txt
 .env
 .nitro
 .tanstack
+
+*storybook.log
+storybook-static
