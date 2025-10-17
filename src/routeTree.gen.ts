@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UsersIndexRouteImport } from './routes/users/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as CalendarIndexRouteImport } from './routes/calendar/index'
+import { Route as AssetsIndexRouteImport } from './routes/assets/index'
+import { Route as CasesIdIndexRouteImport } from './routes/cases/$id/index'
+import { Route as AssetsIdIndexRouteImport } from './routes/assets/$id/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UsersIndexRoute = UsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarIndexRoute = CalendarIndexRouteImport.update({
+  id: '/calendar/',
+  path: '/calendar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssetsIndexRoute = AssetsIndexRouteImport.update({
+  id: '/assets/',
+  path: '/assets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesIdIndexRoute = CasesIdIndexRouteImport.update({
+  id: '/cases/$id/',
+  path: '/cases/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssetsIdIndexRoute = AssetsIdIndexRouteImport.update({
+  id: '/assets/$id/',
+  path: '/assets/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assets': typeof AssetsIndexRoute
+  '/calendar': typeof CalendarIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/users': typeof UsersIndexRoute
+  '/assets/$id': typeof AssetsIdIndexRoute
+  '/cases/$id': typeof CasesIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assets': typeof AssetsIndexRoute
+  '/calendar': typeof CalendarIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/users': typeof UsersIndexRoute
+  '/assets/$id': typeof AssetsIdIndexRoute
+  '/cases/$id': typeof CasesIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assets/': typeof AssetsIndexRoute
+  '/calendar/': typeof CalendarIndexRoute
+  '/login/': typeof LoginIndexRoute
+  '/users/': typeof UsersIndexRoute
+  '/assets/$id/': typeof AssetsIdIndexRoute
+  '/cases/$id/': typeof CasesIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/assets'
+    | '/calendar'
+    | '/login'
+    | '/users'
+    | '/assets/$id'
+    | '/cases/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/assets'
+    | '/calendar'
+    | '/login'
+    | '/users'
+    | '/assets/$id'
+    | '/cases/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/assets/'
+    | '/calendar/'
+    | '/login/'
+    | '/users/'
+    | '/assets/$id/'
+    | '/cases/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssetsIndexRoute: typeof AssetsIndexRoute
+  CalendarIndexRoute: typeof CalendarIndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
+  UsersIndexRoute: typeof UsersIndexRoute
+  AssetsIdIndexRoute: typeof AssetsIdIndexRoute
+  CasesIdIndexRoute: typeof CasesIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/users/': {
+      id: '/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar/': {
+      id: '/calendar/'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assets/': {
+      id: '/assets/'
+      path: '/assets'
+      fullPath: '/assets'
+      preLoaderRoute: typeof AssetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases/$id/': {
+      id: '/cases/$id/'
+      path: '/cases/$id'
+      fullPath: '/cases/$id'
+      preLoaderRoute: typeof CasesIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assets/$id/': {
+      id: '/assets/$id/'
+      path: '/assets/$id'
+      fullPath: '/assets/$id'
+      preLoaderRoute: typeof AssetsIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssetsIndexRoute: AssetsIndexRoute,
+  CalendarIndexRoute: CalendarIndexRoute,
+  LoginIndexRoute: LoginIndexRoute,
+  UsersIndexRoute: UsersIndexRoute,
+  AssetsIdIndexRoute: AssetsIdIndexRoute,
+  CasesIdIndexRoute: CasesIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
