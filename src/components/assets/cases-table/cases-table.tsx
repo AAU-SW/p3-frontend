@@ -1,4 +1,4 @@
-import {useColumns} from "@/components/assets/hooks/use-columns.tsx";
+import {useColumns} from "@/components/assets/cases-table/hooks/use-columns.tsx";
 import {DataTable} from "@/components/ui/data-table/data-table.tsx";
 import type {FC} from "react";
 
@@ -11,6 +11,6 @@ export const CasesTable: FC<CasesTableProps> = ({data}) => {
     const columns = useColumns();
 
     return (
-        <DataTable columns={columns} data={data}/>
+        <DataTable columns={columns} data={data} withSearchBar={true}/>
     );
 }

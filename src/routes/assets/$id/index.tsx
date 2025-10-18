@@ -1,5 +1,6 @@
 import {AssetsBaseData} from "@/components/assets/assets-basedata.tsx";
-import {CasesTable} from "@/components/assets/cases-table.tsx";
+import {AssetsBreadCrumbs} from "@/components/assets/assets-breadcrumbs.tsx";
+import {CasesTable} from "@/components/assets/cases-table/cases-table.tsx";
 import {DetailHeader} from "@/components/assets/detail-header.tsx";
 import {createFileRoute} from '@tanstack/react-router'
 
@@ -27,27 +28,35 @@ function RouteComponent() {
             assignedTo: "Ryan Jespersen",
             status: "Active",
             customer: "Sporingsgruppen",
+            createdAt: "25/10/2025"
         },
         {
             name: "Udskiftning af sommerdæk",
-            assignedTo: "Ryan Jespersen",
+            assignedTo: "Peter Jespersen",
             status: "Closed",
             customer: "Sporingsgruppen",
+            createdAt: "25/10/2023"
         }
     ]
 
     return (
         <div className="flex flex-col">
-            <DetailHeader title={assetData.name}/>
-            <div className="grid grid-cols-3 p-4 gap-2">
-                <div className="grid col-span-2">
-                    <CasesTable data={caseData}/>
-                </div>
+            <AssetsBreadCrumbs assetTitle={assetData.name}/>
 
-                <div className="grid col-span-1">
-                    <AssetsBaseData data={assetData}/>
+            <div className="container mx-auto">
+                <DetailHeader title={assetData.name}/>
+
+
+                <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4">
+                    <div className="col-span-2">
+                        <CasesTable data={caseData}/>
+                    </div>
+                    <div className="col-span-1 flex justify-end">
+                        <AssetsBaseData data={assetData}/>
+                    </div>
                 </div>
             </div>
         </div>
+
     );
 }

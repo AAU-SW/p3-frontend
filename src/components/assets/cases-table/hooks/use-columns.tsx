@@ -9,6 +9,7 @@ export type Case = {
     assignedTo: string;
     status: "Active" | "Closed";
     customer: string;
+    createdAt: string;
 };
 
 export const useColumns = () => {
@@ -16,6 +17,20 @@ export const useColumns = () => {
         {
             accessorKey: "name",
             header: "Title",
+            cell: ({row}) => {
+                const caseItem = row.original;
+
+                return (
+                    <div className="flex flex-col">
+                        <span className="font-semibold text-gray-900">
+                            {caseItem.name}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                            Created: {caseItem.createdAt}
+                        </span>
+                    </div>
+                );
+            },
         },
         {
             accessorKey: "assignedTo",
