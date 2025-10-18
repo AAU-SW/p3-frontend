@@ -53,7 +53,7 @@ export function DataTable<TData, TValue>({columns, data, withSearchBar}: DataTab
                 </div>
             ) : null}
 
-            <div className="overflow-hidden rounded-md border">
+            <div className="overflow-hidden rounded-xl border">
                 <Table>
                     <TableHeader className="bg-gray-100">
                         {table.getHeaderGroups().map((headerGroup) => (
