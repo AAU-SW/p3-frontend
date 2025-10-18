@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator.tsx";
 import type { FC } from "react";
 
 interface AssetsBaseDataProps {
-	data: any;
+	data: Asset;
 }
 
 export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
