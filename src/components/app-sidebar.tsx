@@ -1,12 +1,28 @@
+import {Button} from "@/components/ui/button.tsx";
 import {
     Sidebar,
-    SidebarContent,
+    SidebarContent, SidebarFooter,
     SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
-    SidebarMenu, SidebarMenuButton, SidebarMenuItem,
+    SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar"
-import {BriefcaseIcon, CalendarIcon, HomeIcon, TruckIcon, UserIcon} from "lucide-react";
+import {useRouterState} from "@tanstack/react-router";
+import {
+    BriefcaseIcon,
+    CalendarIcon,
+    HomeIcon, PanelLeftClose,
+    PanelRightClose,
+    TruckIcon,
+    UserIcon
+} from "lucide-react";
 
 export function AppSidebar() {
+    const {
+        open,
+        toggleSidebar,
+    } = useSidebar();
+    const routerState = useRouterState();
+    const currentPath = routerState.location.pathname;
+
 
     const items = [
         {
@@ -34,29 +50,49 @@ export function AppSidebar() {
             url: "/users",
             icon: UserIcon,
         },
-
     ]
     return (
-        <Sidebar>
+        <Sidebar collapsible="icon">
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Application</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon/>
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
+                            {items.map((item) => {
+                                const isActive =
+                                    currentPath === item.url ||
+                                    currentPath.startsWith(`${item.url}/`); // ✅ works for nested routes too
+
+                                return (
+                                    <SidebarMenuItem key={item.title}>
+                                        <SidebarMenuButton asChild isActive={isActive}>
+                                            <a
+                                                href={item.url}
+                                                className={`flex items-center gap-2 transition-colors ${
+                                                    isActive
+                                                        ? "bg-muted text-primary font-medium rounded-md"
+                                                        : "text-muted-foreground hover:text-foreground"
+                                                }`}
+                                            >
+                                                <item.icon className="w-4 h-4"/>
+                                                <span>{item.title}</span>
+                                            </a>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                );
+                            })}
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter className="pb-2 pl-0 pr-[3px]">
+                <div className="flex justify-end">
+                    <Button variant="ghost" onClick={toggleSidebar}>
+                        {open ? <PanelLeftClose/> : <PanelRightClose/>}
+                    </Button>
+                </div>
+            </SidebarFooter>
+
         </Sidebar>
     );
 }
