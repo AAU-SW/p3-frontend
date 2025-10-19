@@ -37,7 +37,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({data}) => {
                 <CardHeader className="gap-0">
                     <CardTitle className="text-2xl flex justify-between">
                         <div className="flex flex-row items-center gap-2">
-                            <span> Stamdata</span>
+                            <span>Base data</span>
                         </div>
                     </CardTitle>
                 </CardHeader>
@@ -61,7 +61,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({data}) => {
                     <div className="grid grid-cols-2 mt-2">
                         <div className="col-span-1 flex flex-col">
 							<span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
-                                created
+                                Created
 							</span>
                             <span className="mb-4 font-medium">{data?.createdAt}</span>
 
