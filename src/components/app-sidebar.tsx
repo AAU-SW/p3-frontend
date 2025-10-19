@@ -61,7 +61,7 @@ export function AppSidebar() {
                             {items.map((item) => {
                                 const isActive =
                                     currentPath === item.url ||
-                                    currentPath.startsWith(`${item.url}/`); // ✅ works for nested routes too
+                                    currentPath.startsWith(`${item.url}/`);
 
                                 return (
                                     <SidebarMenuItem key={item.title}>
