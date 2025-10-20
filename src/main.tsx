@@ -5,13 +5,20 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
+
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
 
 // Create a new router instance
 const router = createRouter({
 	routeTree,
-	context: {},
+	context: {
+		auth: 
+		 {
+			isAuthenticated: false,
+			user: null,
+		},
+	},
 	defaultPreload: "intent",
 	scrollRestoration: true,
 	defaultStructuralSharing: true,
@@ -20,9 +27,9 @@ const router = createRouter({
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
-	interface Register {
-		router: typeof router;
-	}
+  interface Register {
+    router: typeof router;
+  }
 }
 
 // Render the app
@@ -31,7 +38,7 @@ if (rootElement && !rootElement.innerHTML) {
 	const root = ReactDOM.createRoot(rootElement);
 	root.render(
 		<StrictMode>
-			<RouterProvider router={router} />
+			<RouterProvider router={router} context={{router}} />
 		</StrictMode>,
 	);
 }

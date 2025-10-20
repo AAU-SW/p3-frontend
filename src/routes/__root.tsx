@@ -1,14 +1,24 @@
 import {AppSidebar} from "@/components/app-sidebar.tsx";
 import {SidebarProvider} from "@/components/ui/sidebar.tsx";
-import {Outlet, createRootRoute} from "@tanstack/react-router";
+import {Outlet, createRootRoute, redirect} from "@tanstack/react-router";
 import {TanStackRouterDevtoolsPanel} from "@tanstack/react-router-devtools";
 import {TanStackDevtools} from "@tanstack/react-devtools";
 
 export const Route = createRootRoute({
-    component: () => (
+    beforeLoad: ({ location, context }) => {
+        
+        const isAuthenticated = true // replace with your real auth logic
+        if (!isAuthenticated && location.pathname !== '/login') {
+        throw redirect({ to: '/login' });
+    }
+},
+        
+    component: () => {
+        const isAuthenticated = false;// replace with your real auth logic 
+        return(
         <>
             <SidebarProvider>
-                <AppSidebar/>
+                {isAuthenticated && <AppSidebar/> }
                 <Outlet/>
                 <TanStackDevtools
                     config={{
@@ -23,5 +33,5 @@ export const Route = createRootRoute({
                 />
             </SidebarProvider>
         </>
-    ),
+    )},
 });
