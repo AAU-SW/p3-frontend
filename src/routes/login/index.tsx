@@ -19,8 +19,6 @@ function RouteComponent() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		// Handle login logic here
-		console.log("Email:", email);
-		console.log("Password:", password);
 	};
 	return( 
 	<div className="flex w-full">
