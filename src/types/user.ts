@@ -1,7 +1,7 @@
 export type User = {
-	id?: string;
+	id: string;
 	email: string;
 	encryptedPassword: string;
 	name: string;
-	role: string;
+	role: "user" | "admin";
 };
