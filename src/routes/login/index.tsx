@@ -28,8 +28,16 @@ function Login() {
 	
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		login(formData.email, formData.password)		
-	}
+		login(formData.email, formData.password)
+			.then((data) => {
+				console.log("Login successful:", data);
+				// Redirect or update UI after successful login
+			})
+			.catch((error) => {
+				console.error("Login failed:", error);
+				// Show error message to user
+			});
+		}
 	return(
 	<div className="flex w-full">
 		<img className="w-1/2 hidden md:block object-cover" src="/bruger-telefon-i-skoven.jpg" alt="User using phone in forest" />
