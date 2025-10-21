@@ -1,14 +1,14 @@
 "use client";
 
-import { Input } from "@/components/ui/input.tsx";
 import {
 	type ColumnDef,
 	flexRender,
 	getCoreRowModel,
-	useReactTable,
 	getFilteredRowModel,
+	useReactTable,
 } from "@tanstack/react-table";
-
+import { useState } from "react";
+import { Input } from "@/components/ui/input.tsx";
 import {
 	Table,
 	TableBody,
@@ -17,7 +17,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];

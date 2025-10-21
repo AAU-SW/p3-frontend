@@ -1,4 +1,4 @@
-type Case = {
+export type Case = {
 	name: string;
 	assignedTo: string;
 	status: string;

@@ -1,3 +1,13 @@
+import { useRouterState } from "@tanstack/react-router";
+import {
+	BriefcaseIcon,
+	CalendarIcon,
+	HomeIcon,
+	PanelLeftClose,
+	PanelRightClose,
+	TruckIcon,
+	UserIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
 import {
 	Sidebar,
@@ -11,16 +21,6 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { useRouterState } from "@tanstack/react-router";
-import {
-	BriefcaseIcon,
-	CalendarIcon,
-	HomeIcon,
-	PanelLeftClose,
-	PanelRightClose,
-	TruckIcon,
-	UserIcon,
-} from "lucide-react";
 
 export function AppSidebar() {
 	const { open, toggleSidebar } = useSidebar();
