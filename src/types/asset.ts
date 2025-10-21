@@ -1,4 +1,4 @@
-type Asset = {
+export type Asset = {
 	id?: string;
 	name: string;
 	registrationNumber: string;

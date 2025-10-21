@@ -1,9 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { AssetsBaseData } from "@/components/assets/assets-basedata.tsx";
 import { AssetsBreadCrumbs } from "@/components/assets/assets-breadcrumbs.tsx";
 import { CasesTable } from "@/components/assets/cases-table/cases-table.tsx";
 import { DetailHeader } from "@/components/assets/detail-header.tsx";
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import type { Asset } from "@/types/asset";
 
 export const Route = createFileRoute("/assets/$id/")({
 	component: RouteComponent,
@@ -22,8 +23,8 @@ function RouteComponent() {
 				}
 				const data = await res.json();
 				setAssetData(data);
-			} catch (err: any) {
-				console.log(err.message);
+			} catch (err: unknown) {
+				console.error(err);
 			}
 		}
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge.tsx";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
+import { Badge } from "@/components/ui/badge.tsx";
 
 export const useColumns = () => {
 	const columns = useMemo<ColumnDef<Case>[]>(
