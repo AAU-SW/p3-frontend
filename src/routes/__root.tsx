@@ -1,37 +1,39 @@
-import {AppSidebar} from "@/components/app-sidebar.tsx";
-import {SidebarProvider} from "@/components/ui/sidebar.tsx";
-import {Outlet, createRootRoute, redirect} from "@tanstack/react-router";
-import {TanStackRouterDevtoolsPanel} from "@tanstack/react-router-devtools";
-import {TanStackDevtools} from "@tanstack/react-devtools";
+import { Outlet, createRootRoute, redirect } from '@tanstack/react-router';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { TanStackDevtools } from '@tanstack/react-devtools';
+import { SidebarProvider } from '@/components/ui/sidebar.tsx';
+import { AppSidebar } from '@/components/app-sidebar.tsx';
 
 export const Route = createRootRoute({
-    beforeLoad: ({ location, context }) => {
-        
-        const isAuthenticated = true // replace with your real auth logic
-        if (!isAuthenticated && location.pathname !== '/login') {
-        throw redirect({ to: '/login' });
+  beforeLoad: ({ location, context: _context }) => {
+    const isAuthenticated = true; // replace with your real auth logic
+    if (!isAuthenticated && location.pathname !== '/login') {
+      throw redirect({ to: '/login' });
     }
-},
-        
-    component: () => {
-        const isAuthenticated = false;// replace with your real auth logic 
-        return(
-        <>
-            <SidebarProvider>
-                {isAuthenticated && <AppSidebar/> }
-                <Outlet/>
-                <TanStackDevtools
-                    config={{
-                        position: "bottom-right",
-                    }}
-                    plugins={[
-                        {
-                            name: "Tanstack Router",
-                            render: <TanStackRouterDevtoolsPanel/>,
-                        },
-                    ]}
-                />
-            </SidebarProvider>
-        </>
-    )},
+  },
+
+  component: () => {
+    const isAuthenticated = false; // replace with your real auth logic
+    return (
+      <>
+        <SidebarProvider>
+          {isAuthenticated && <AppSidebar />}
+          <Outlet />
+          {import.meta.env.DEV && (
+            <TanStackDevtools
+              config={{
+                position: 'bottom-right',
+              }}
+              plugins={[
+                {
+                  name: 'Tanstack Router',
+                  render: <TanStackRouterDevtoolsPanel />,
+                },
+              ]}
+            />
+          )}
+        </SidebarProvider>
+      </>
+    );
+  },
 });

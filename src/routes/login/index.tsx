@@ -10,7 +10,6 @@ export const Route = createFileRoute("/login/")({
 	component: Login,
 });
 
-
 function Login() {
 	const [formData, setFormData] = useState({
 		email: "",
@@ -25,7 +24,7 @@ function Login() {
 			[name]: value,
 		}));
 	};
-	
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		login(formData.email, formData.password)
@@ -38,6 +37,7 @@ function Login() {
 				// Show error message to user
 			});
 		}
+  
 	return(
 	<div className="flex w-full">
 		<img className="w-1/2 hidden md:block object-cover" src="/bruger-telefon-i-skoven.jpg" alt="User using phone in forest" />
@@ -60,39 +60,64 @@ function Login() {
 					</label>
 					<div className="relative">
 						<Input
-							name="password" 
-							placeholder="Enter Password" 
-							type={eye ? "password" : "text"} 
-							value={formData.password} 
+							name="email"
+							placeholder="Email or phone number"
+							value={formData.email}
 							onChange={handlerChange}
 						/>
 
-						<button 
-							className="absolute right-2 top-1/2 transform -translate-y-1/2" 
-							type="button" onClick={() => setEye(!eye)}>
-							{eye ? <Eye /> : <EyeOff /> }
-						</button>
-					</div>
-					<div>
-					
-					<div className="flex items-center justify-between mt-6 -mb-1 pb-6">
-					  <div className="flex items-center">
-					    <Switch id="remember"/>
-					    <label className="ml-2" htmlFor="remember" >Remember me</label>
-					  </div>
-					  <div>
-					    <a href="/forgot-password" className="text-blue-600 hover:underline">
-					      Forgot password?
-					    </a>
-					  </div>
-					</div>
-					<Button className="w-full mt-6 bg-blue-500 cursor-pointer" type="submit">Sign in</Button>
-					</div>
-					<hr className="my-8" />
-				</form>
-				<Button className=" w-full cursor-pointer"> sign in whit e-mail link </Button>
+						<label className="block mb-2 mt-4 ml-4 text-sm font-medium text-gray-900 dark:text-white">
+							Password
+						</label>
+						<div className="relative">
+							<Input
+								name="password"
+								placeholder="Enter Password"
+								type={eye ? "password" : "text"}
+								value={formData.password}
+								onChange={handlerChange}
+							/>
+
+							<button
+								className="absolute right-2 top-1/2 transform -translate-y-1/2"
+								type="button"
+								onClick={() => setEye(!eye)}
+							>
+								{eye ? <Eye /> : <EyeOff />}
+							</button>
+						</div>
+						<div>
+							<div className="flex items-center justify-between mt-6 -mb-1 pb-6">
+								<div className="flex items-center">
+									<Switch id="remember" />
+									<label className="ml-2" htmlFor="remember">
+										Remember me
+									</label>
+								</div>
+								<div>
+									<a
+										href="/forgot-password"
+										className="text-blue-600 hover:underline"
+									>
+										Forgot password?
+									</a>
+								</div>
+							</div>
+							<Button
+								className="w-full mt-6 bg-blue-500 cursor-pointer"
+								type="submit"
+							>
+								Sign in
+							</Button>
+						</div>
+						<hr className="my-8" />
+					</form>
+					<Button className=" w-full cursor-pointer">
+						{" "}
+						sign in whit e-mail link{" "}
+					</Button>
+				</div>
 			</div>
 		</div>
-	</div>
-	)
+	);
 }
