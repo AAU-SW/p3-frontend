@@ -4,13 +4,14 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { login } from "@/api/auth";
 
 export const Route = createFileRoute("/login/")({
 	component: Login,
 });
 
 
-function Login() {	
+function Login() {
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -27,9 +28,7 @@ function Login() {
 	
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log("formData submitted:", formData);
-		//Ready for submission to backend whit axios
-		//onSubmit?.(formData);		
+		login(formData.email, formData.password)		
 	}
 	return(
 	<div className="flex w-full">
