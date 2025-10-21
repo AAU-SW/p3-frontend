@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AssetsTable } from "@/components/assets/assets-table/assets-table.tsx";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/assets/")({
 	component: RouteComponent,
@@ -24,12 +25,11 @@ function RouteComponent() {
     ]
 	return (
 		<div className="w-full p-4 container mx-auto">
-			<h1 className="text-4xl"> Assets </h1>
+			<div className="flex flex-row justify-between items-center mb-4">
+                <h1 className="text-4xl"> Assets </h1>
+                <Button variant="outline" >Add Asset</Button>
+            </div>
 			<AssetsTable data={data} />
 		</div>
 	);
 }
-
-// læg komponent til her
-// <AssetsTable data={} />
-

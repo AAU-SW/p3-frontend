@@ -13,7 +13,7 @@ export const Route = createRootRoute({
 	},
 
 	component: () => {
-		const isAuthenticated = false; // replace with your real auth logic
+		const isAuthenticated = true; // replace with your real auth logic
 		return (
 			<>
 				<SidebarProvider>
