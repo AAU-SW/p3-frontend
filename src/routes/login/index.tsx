@@ -33,7 +33,7 @@ function Login() {
 	}
 	return(
 	<div className="flex w-full">
-		<img className="w-1/2 hidden md:block " src="/bruger-telefon-i-skoven.jpg" alt="User using phone in forest" />
+		<img className="w-1/2 hidden md:block object-cover" src="/bruger-telefon-i-skoven.jpg" alt="User using phone in forest" />
 		<div className="md:w-1/2 items-center m-auto">
 			<div className="md:w-[350px] p-8 md:p-0 mx-auto">
 				<img src="/Logo_slogan.png" alt="Logo_slogan" />
