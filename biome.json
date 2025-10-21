@@ -12,7 +12,9 @@
 			"**/.vscode/**/*",
 			"**/index.html",
 			"**/vite.config.js",
-			"!**/src/routeTree.gen.ts"
+			"!**/src/routeTree.gen.ts",
+			"!**/*.css",
+			"!**/src/components/ui/*"
 		]
 	},
 	"formatter": {

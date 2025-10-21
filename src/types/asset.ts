@@ -1,4 +1,6 @@
-type Asset = {
+import type { User } from "./user";
+
+export type Asset = {
 	id?: string;
 	name: string;
 	registrationNumber: string;
