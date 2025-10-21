@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge.tsx";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
+import type { Asset } from "@/types/asset.ts";
 
 export const useColumns = () => {
 	const columns = useMemo<ColumnDef<Asset>[]>(
