@@ -1,7 +1,7 @@
-type User = {
-	id?: string;
+export type User = {
+	id: string;
 	email: string;
 	encryptedPassword: string;
 	name: string;
-	role: string;
+	role: "user" | "admin";
 };

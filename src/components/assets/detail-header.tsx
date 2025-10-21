@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button.tsx";
 import type { FC } from "react";
+import { Button } from "@/components/ui/button.tsx";
 
 interface DetailHeaderProps {
 	title: string;
