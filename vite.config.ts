@@ -11,7 +11,6 @@ export default defineConfig({
     viteReact(),
     tailwindcss(),
   ],
-  base: "/p3-frontend/",
   server: {
     proxy: {
       "/api": {
