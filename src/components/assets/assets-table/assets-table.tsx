@@ -13,7 +13,13 @@ export const AssetsTable: FC<AssetsTableProps> = ({data}) => {
     const columns = useColumns();
 
 
-    return <DataTable columns={columns} data={data} withSearchBar={true}
-                      onRowClick={(rowData) => navigate({to: `/assets/${rowData.id}`,})}/>;
+    return (
+        <DataTable
+            columns={columns}
+            data={data}
+            withSearchBar={true}
+            onRowClick={(rowData) => navigate({to: `/assets/${rowData.id}`,})}
+        />
+    );
 };
 

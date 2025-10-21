@@ -16,7 +16,7 @@ function RouteComponent() {
     const [assetData, setAssetData] = useState<Asset>();
 
     useEffect(() => {
-        const fetchAsset = async () => {
+        const fetchOneAsset = async () => {
             try {
                 const response = await getOneAsset(String(assetId.id));
                 setAssetData(response)
@@ -25,7 +25,7 @@ function RouteComponent() {
             }
         };
 
-        fetchAsset();
+        fetchOneAsset();
     }, [assetId]);
 
     // Test case object
