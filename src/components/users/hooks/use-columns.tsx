@@ -20,10 +20,6 @@ export const useColumns = () => {
         header: 'Email',
       },
       {
-        accessorKey: 'encryptedPassword',
-        header: 'Encrypted Password',
-      },
-      {
         accessorKey: 'role',
         header: 'Role',
       },
