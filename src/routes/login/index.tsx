@@ -27,15 +27,9 @@ function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login(formData.email, formData.password)
-      .then((data) => {
-        console.log('Login successful:', data);
-        // Redirect or update UI after successful login
-      })
-      .catch((error) => {
-        console.error('Login failed:', error);
-        // Show error message to user
-      });
+    login(formData.email, formData.password).catch((error) => {
+      console.error('Login failed:', error);
+    });
   };
 
   return (
