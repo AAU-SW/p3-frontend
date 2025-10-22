@@ -1,3 +1,4 @@
+import { getOneAsset } from '@/api/assets.ts';
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { AssetsBaseData } from '@/components/assets/assets-basedata.tsx';
@@ -15,20 +16,16 @@ function RouteComponent() {
   const [assetData, setAssetData] = useState<Asset>();
 
   useEffect(() => {
-    async function fetchAsset() {
+    const fetchOneAsset = async () => {
       try {
-        const res = await fetch(`/api/assets/${assetId.id}`);
-        if (!res.ok) {
-          throw new Error(`Failed to fetch asset: ${res.status}`);
-        }
-        const data = await res.json();
-        setAssetData(data);
-      } catch (err: unknown) {
-        console.error(err);
+        const response = await getOneAsset(String(assetId.id));
+        setAssetData(response);
+      } catch (error) {
+        console.error('Failed to fetch asset:', error);
       }
-    }
+    };
 
-    fetchAsset();
+    fetchOneAsset();
   }, [assetId]);
 
   // Test case object
