@@ -14,10 +14,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 
-interface CreateAssetDialogProps {
-}
-
-export const CreateAssetDialog: FC<CreateAssetDialogProps> = () => {
+export const CreateAssetDialog: FC = () => {
     const [open, setOpen] = useState(false);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -56,7 +53,7 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = () => {
                         </DialogDescription>
                     </DialogHeader>
 
-                    <div className="grid gap-4">
+                    <div className="grid gap-4 pt-4">
                         <div className="grid gap-3">
                             <Label htmlFor="name">Name</Label>
                             <Input id="name" name="name" required/>
@@ -71,13 +68,13 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = () => {
                         </div>
                     </div>
 
-                    <DialogFooter className="sm:justify-start">
+                    <DialogFooter className="sm:justify-start md:justify-between pt-2">
                         <DialogClose asChild>
                             <Button variant="outline" type="button">
                                 Cancel
                             </Button>
                         </DialogClose>
-                        <Button type="submit">Save changes</Button>
+                        <Button type="submit">Create Asset</Button>
                     </DialogFooter>
                 </form>
             </DialogContent>
