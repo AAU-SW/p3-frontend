@@ -71,6 +71,7 @@ export function DataTable<TData, TValue>({
                             header.column.columnDef.header,
                             header.getContext(),
                           )}
+                          hello header
                     </TableHead>
                   );
                 })}
