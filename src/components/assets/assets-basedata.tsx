@@ -63,7 +63,9 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
             <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
               Created
             </span>
-            <span className="mb-4 font-medium">{data?.createdAt}</span>
+            <span className="mb-4 font-medium">
+              {data?.createdAt?.toLocaleDateString()}
+            </span>
 
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Updated by
@@ -76,7 +78,9 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
             <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
               Last updated
             </span>
-            <span className="mb-4 font-medium">{data?.updatedAt}</span>
+            <span className="mb-4 font-medium">
+              {data?.updatedAt?.toLocaleDateString()}
+            </span>
 
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Last invoiced
