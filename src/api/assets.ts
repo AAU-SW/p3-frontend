@@ -1,3 +1,4 @@
+import type { Asset } from '@/types/asset.ts';
 import { api } from './axios';
 
 export async function getAssets() {
@@ -10,8 +11,8 @@ export async function getOneAsset(assetId: string) {
   return res.data;
 }
 
-export async function postOneAsset(assetId: string) {
-  const res = await api.post(`/api/assets/${assetId}`);
+export async function postOneAsset(data: Asset) {
+  const res = await api.post(`/api/assets`, data);
   return res.data;
 }
 
