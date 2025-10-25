@@ -6,10 +6,9 @@ export type Asset = {
   registrationNumber: string;
   status: string;
   description: string;
-  createdAt?: string;
-  updatedAt?: string;
-  deletedAt?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
   lastInvoiced?: string;
   createdBy?: User;
-  updatedBy?: User;
 };
