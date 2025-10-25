@@ -1,14 +1,15 @@
-import type { User } from './user';
+import type {User} from './user';
 
 export type Asset = {
-  id?: string;
-  name: string;
-  registrationNumber: string;
-  status: string;
-  description: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-  lastInvoiced?: string;
-  createdBy?: User;
+    id?: string;
+    name: string;
+    registrationNumber: string;
+    status: string;
+    description: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
+    lastInvoiced?: string;
+    createdBy?: User;
+    updatedBy?: User;
 };
