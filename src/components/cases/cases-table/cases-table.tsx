@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import { useColumns } from '@/components/assets/cases-table/hooks/use-columns.tsx';
 import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import type { Case } from '@/types/case';
+import { useColumns } from '@/components/cases/cases-table/hooks/use-columns.tsx';
 
 interface CasesTableProps {
   data: Case[];
