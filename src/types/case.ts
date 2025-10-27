@@ -4,5 +4,5 @@ export type Case = {
   assignedTo: string;
   status: string;
   customer: string;
-  createdAt: string;
+  createdAt?: string;
 };

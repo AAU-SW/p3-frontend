@@ -11,7 +11,7 @@ export async function getOneAsset(assetId: string) {
   return res.data;
 }
 
-export async function postOneAsset(data: Asset) {
+export async function createAsset(data: Asset) {
   const res = await api.post(`/api/assets`, data);
   return res.data;
 }

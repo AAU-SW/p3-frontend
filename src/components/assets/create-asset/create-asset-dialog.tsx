@@ -1,5 +1,6 @@
+import type { Asset } from '@/types/asset.ts';
 import { useState, type FC, type FormEvent } from 'react';
-import { postOneAsset } from '@/api/assets.ts';
+import { createAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -22,7 +23,7 @@ export const CreateAssetDialog: FC = () => {
     const form = e.currentTarget;
 
     const formData = new FormData(form);
-    const data = {
+    const data: Asset = {
       name: formData.get('name') as string,
       registrationNumber: formData.get('registrationNumber') as string,
       description: formData.get('description') as string,
@@ -30,7 +31,7 @@ export const CreateAssetDialog: FC = () => {
     };
 
     try {
-      await postOneAsset(data);
+      await createAsset(data);
       form.reset();
       setOpen(false);
     } catch (error) {
