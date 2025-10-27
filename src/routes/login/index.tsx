@@ -1,7 +1,7 @@
-import { Input } from '@/components/ui/input';
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/stores/auth';
