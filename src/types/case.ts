@@ -1,4 +1,5 @@
 export type Case = {
+  id?: string;
   name: string;
   assignedTo: string;
   status: string;
