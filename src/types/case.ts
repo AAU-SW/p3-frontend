@@ -8,8 +8,8 @@ export type Case = {
   assignedTo: User;
   status: string;
   customer: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
   createdBy: User;
 };

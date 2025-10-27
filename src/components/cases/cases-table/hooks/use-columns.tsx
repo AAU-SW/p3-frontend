@@ -20,7 +20,7 @@ export const useColumns = () => {
                 {caseItem.title}
               </span>
               <span className="text-sm text-gray-500">
-                Created: {caseItem.createdAt.toLocaleDateString()}
+                Created: {caseItem.createdAt}
               </span>
             </div>
           );
