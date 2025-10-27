@@ -2,7 +2,7 @@ import type { Case } from '@/types/case';
 import { api } from './axios';
 
 export async function getCases() {
-  const res = await api.get(`api/cases/`); 
+  const res = await api.get(`api/cases`); 
   return res.data;
 }
 
