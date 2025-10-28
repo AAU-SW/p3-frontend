@@ -20,3 +20,8 @@ export async function deleteOneCase(caseId: string) {
   const res = await api.delete<Case>(`api/cases/${caseId}`);
   return res.data;
 }
+
+export async function createCase(data: Case) {
+  const res = await api.post(`/api/cases`, data);
+  return res.data;
+}

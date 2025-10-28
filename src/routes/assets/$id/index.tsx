@@ -31,14 +31,14 @@ function RouteComponent() {
   // Test case object
   const caseData = [
     {
-      name: 'Udskiftning af vinterdæk',
+      title: 'Udskiftning af vinterdæk',
       assignedTo: 'Ryan Jespersen',
       status: 'ACTIVE',
       customer: 'Sporingsgruppen',
       createdAt: '25/10/2025',
     },
     {
-      name: 'Udskiftning af sommerdæk',
+      title: 'Udskiftning af sommerdæk',
       assignedTo: 'Peter Jespersen',
       status: 'CLOSED',
       customer: 'Sporingsgruppen',
