@@ -32,5 +32,5 @@ jobs:
           node-version: '22.x'
       - name: Install dependencies
         run: pnpm install
-      - name: Run biome check
-        run: pnpm run format
+      - name: Run prettier check
+        run: pnpm run format:check
