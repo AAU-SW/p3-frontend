@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import type { Asset } from '@/types/asset';
-import {formatDate} from "@/utils/formatDate.ts";
+import { formatDate } from '@/utils/formatDate.ts';
 
 interface AssetsBaseDataProps {
   data: Asset | undefined;
@@ -64,7 +64,9 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
             <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
               Created
             </span>
-            <span className="mb-4 font-medium">{formatDate(data?.createdAt)}</span>
+            <span className="mb-4 font-medium">
+              {formatDate(data?.createdAt)}
+            </span>
 
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Updated by
@@ -77,7 +79,9 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
             <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
               Last updated
             </span>
-            <span className="mb-4 font-medium">{formatDate(data?.updatedAt)}</span>
+            <span className="mb-4 font-medium">
+              {formatDate(data?.updatedAt)}
+            </span>
 
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Last invoiced

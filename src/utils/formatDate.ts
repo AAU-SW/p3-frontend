@@ -1,10 +1,10 @@
 export function formatDate(input: string | undefined): string | undefined {
-    if(input === undefined ) return undefined;
-    const date = new Date(input);
+  if (input === undefined) return undefined;
+  const date = new Date(input);
 
-    if (isNaN(date.getTime())) {
-        throw new Error("Invalid date string");
-    }
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date string');
+  }
 
-    return date.toISOString().split("T")[0];
+  return date.toISOString().split('T')[0];
 }
