@@ -21,7 +21,7 @@ export const Route = createFileRoute('/cases/$id/')({
 });
 
 // Test case object caseData and informationData
-const caseData = [
+/*const caseData = [
   {
     user: 'JA',
     status: 'Active',
@@ -29,6 +29,7 @@ const caseData = [
     asset: 'Pillar Truck',
   },
 ];
+*/
 
 const informationData = [
   {
