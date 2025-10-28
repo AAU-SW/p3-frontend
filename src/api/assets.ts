@@ -1,5 +1,5 @@
 import { api } from './axios';
-import type {Asset} from "@/types/asset.ts";
+import type { Asset } from '@/types/asset.ts';
 
 export async function getAssets() {
   const res = await api.get('/api/assets');
@@ -20,5 +20,3 @@ export async function deleteOneAsset(assetId: string) {
   const res = await api.delete(`/api/assets/${assetId}`);
   return res.data;
 }
-
-
