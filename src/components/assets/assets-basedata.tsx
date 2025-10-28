@@ -8,11 +8,7 @@ import {
 } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import type { Asset } from '@/types/asset';
-<<<<<<< HEAD
 import { formatDate } from '@/utils/formatDate';
-=======
-import { formatDate } from '@/utils/formatDate.ts';
->>>>>>> f86124d357cdb21e5831331098993dfd40334c4d
 
 interface AssetsBaseDataProps {
   data: Asset | undefined;
