@@ -59,19 +59,5 @@
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
     "web-vitals": "^5.1.0"
-  },
-  "version": "1.0.0",
-  "description": "Welcome to your new TanStack app!",
-  "main": "eslint.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AAU-SW/p3-frontend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AAU-SW/p3-frontend/issues"
-  },
-  "homepage": "https://github.com/AAU-SW/p3-frontend#readme"
+  }
 }
