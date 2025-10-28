@@ -7,9 +7,11 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import type { AuthStore } from '@/stores/auth';
 import { SidebarProvider } from '@/components/ui/sidebar.tsx';
+import { Toaster } from "@/components/ui/sonner"
 import { AppSidebar } from '@/components/app-sidebar.tsx';
 import { useAuth } from '@/stores/auth';
 import { Header } from '@/components/header';
+
 
 interface MyRouterContext {
   auth: AuthStore;
@@ -34,6 +36,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             <Header auth={auth.user} />
           </>
         )}
+        <Toaster/> 
         <SidebarProvider>
           <div className="flex w-full h-screen">
             {/* Left sidebar (only when logged in) */}
