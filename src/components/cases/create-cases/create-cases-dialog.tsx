@@ -27,7 +27,7 @@ export const CreateCasesDialog: FC = () => {
 
     const data: Case = {
       title: formData.get('name') as string,
-      status: 'Active',
+      status: 'ACTIVE',
     };
 
     try {
