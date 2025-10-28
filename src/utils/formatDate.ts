@@ -1,15 +1,10 @@
-export function formatDate(input: string | Date): string {
-    let date: Date;
+export function formatDate(input: string | undefined): string | undefined {
+    if(input === undefined ) return undefined;
+    const date = new Date(input);
 
-    if (input instanceof Date) {
-        date = input;
-    } else if (typeof input == "string") {
-        const [day, month, year] = input.split("/");
-        date = new Date (`${year}-${month}-${day}`);
-    } else {
-        throw new Error("Invalid date input"); 
+    if (isNaN(date.getTime())) {
+        throw new Error("Invalid date string");
     }
 
     return date.toISOString().split("T")[0];
 }
-
