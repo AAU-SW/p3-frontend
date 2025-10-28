@@ -1,8 +1,8 @@
 export type Case = {
   id?: string;
-  name: string;
-  assignedTo: string;
+  title: string;
+  assignedTo?: string;
   status: string;
-  customer: string;
-  createdAt: string;
+  customer?: string;
+  createdAt?: string;
 };
