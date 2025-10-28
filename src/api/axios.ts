@@ -20,7 +20,9 @@ api.interceptors.response.use(
       const rt = localStorage.getItem('refreshToken');
       if (rt) {
         try {
-          const { data } = await api.post('/api/auth/refresh', { refreshToken: rt });
+          const { data } = await api.post('/api/auth/refresh', {
+            refreshToken: rt,
+          });
           if (data?.accessToken) {
             localStorage.setItem('accessToken', data.accessToken);
             original.headers = {

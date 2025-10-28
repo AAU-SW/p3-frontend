@@ -1,9 +1,7 @@
 import type { User } from '@/types/user';
 import { create } from 'zustand';
 import { login as apiLogin, logout as apiLogout } from '@/api/auth';
-import {
-  getCurrentUser as apiGetCurrentUser
-} from '@/api/user';
+import { getCurrentUser as apiGetCurrentUser } from '@/api/user';
 
 export type AuthStore = {
   user?: User;
@@ -17,7 +15,7 @@ export const useAuth = create<AuthStore>((set, get) => ({
   getCurrentUser: async () => {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-    
+
     if (!accessToken || !refreshToken) {
       set({ user: undefined });
       return undefined;
