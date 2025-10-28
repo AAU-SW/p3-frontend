@@ -27,7 +27,7 @@ export const CreateAssetDialog: FC = () => {
       name: formData.get('name') as string,
       registrationNumber: formData.get('registrationNumber') as string,
       description: formData.get('description') as string,
-      status: 'Active', // default on creation
+      status: 'ACTIVE', // default on creation
     };
 
     try {

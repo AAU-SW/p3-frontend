@@ -33,14 +33,14 @@ function RouteComponent() {
     {
       title: 'Udskiftning af vinterdæk',
       assignedTo: 'Ryan Jespersen',
-      status: 'Active',
+      status: 'ACTIVE',
       customer: 'Sporingsgruppen',
       createdAt: '25/10/2025',
     },
     {
       title: 'Udskiftning af sommerdæk',
       assignedTo: 'Peter Jespersen',
-      status: 'Closed',
+      status: 'CLOSED',
       customer: 'Sporingsgruppen',
       createdAt: '25/10/2023',
     },
