@@ -9,7 +9,7 @@ export const useColumns = () => {
   const columns = useMemo<ColumnDef<Case>[]>(
     () => [
       {
-        accessorKey: 'name',
+        accessorKey: 'title',
         header: 'Title',
         cell: ({ row }) => {
           const caseItem = row.original;
@@ -17,7 +17,7 @@ export const useColumns = () => {
           return (
             <div className="flex flex-col">
               <span className="font-semibold text-gray-900">
-                {caseItem.name}
+                {caseItem.title}
               </span>
               <span className="text-sm text-gray-500">
                 Created: {caseItem.createdAt}
@@ -34,10 +34,10 @@ export const useColumns = () => {
         accessorKey: 'status',
         header: 'Status',
         cell: ({ row }) => {
-          const status = row.getValue('status') as 'Active' | 'Closed';
+          const status = row.getValue('status') as 'ACTIVE' | 'CLOSED';
 
           const statusColor =
-            status === 'Active'
+            status === 'ACTIVE'
               ? 'bg-green-100 text-green-800 border-green-300'
               : 'bg-red-100 text-red-800 border-red-300';
 
