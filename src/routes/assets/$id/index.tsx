@@ -46,7 +46,6 @@ function RouteComponent() {
     fetchAllCases();
   }, []);
 
-  console.log(casesData);
   return (
     <div className="flex flex-col w-full">
       <AssetsBreadCrumbs assetTitle={assetData?.name ?? ''} />
