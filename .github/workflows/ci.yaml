@@ -21,7 +21,6 @@ jobs:
       - name: Build project
         run: pnpm build
   lint:
-    if: false # Disabled due to Biome issues
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,4 +33,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run biome check
-        run: pnpm check
+        run: pnpm run format
