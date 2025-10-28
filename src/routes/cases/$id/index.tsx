@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Input } from '@/components/ui/input.tsx';
 import {
   Card,
   CardContent,
@@ -15,21 +14,23 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { SquarePen } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { StatusBadge } from '@/components/status-badge';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
 });
 
 // Test case object caseData and informationData
-/*const caseData = [
+const caseData = [
   {
     user: 'JA',
-    status: 'Active',
+    status: 'ACTIVE',
     case: 'install tracker',
     asset: 'Pillar Truck',
   },
 ];
-*/
+
 
 const informationData = [
   {
@@ -43,56 +44,59 @@ const informationData = [
 
 function RouteComponent() {
   return (
-    <div className="w-full bg-[#EEF2FF]">
-      <h1 className="text-4xl mb-4"> Sporingsenheds opsætning </h1>
+    <div className="w-full bg-[#F8FAFC] p-5">
+      <h1 className="text-4xl mb-4"> Tracking device installation </h1>
 
+      <div className="flex justify-between gap-4">
       {/* case tabel*/}
-      <div className="bg-[#FFFFFF] fixed left-10 w-[900px] h-[200px]">
-        <div className="bg-[#01204B] text-white p-4 text-xl"> Arbejdsopgaver</div>
+      <div className="bg-[#FFFFFF] w-2/3">
+        <div className="bg-[#01204B] text-white p-4 text-xl"> Task</div>
         <Table>
-          <TableHeader className="text-3xl mb-4">Tasks</TableHeader>
           <TableHeader>
             <TableRow>
               <TableHead>User</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Case</TableHead>
               <TableHead>Asset</TableHead>
-              <TableHead> </TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell>JA</TableCell>
-              <TableCell>Active</TableCell>
-              <TableCell>Install Tracker</TableCell>
-              <TableCell>Pillar Truck</TableCell>
-              <TableCell> <SquarePen size={16} /></TableCell>
+              <TableCell>
+                <Avatar>
+                  <AvatarFallback>{caseData[0].user}</AvatarFallback>
+                </Avatar>
+                </TableCell>
+              <TableCell><StatusBadge status={caseData[0].status}></StatusBadge></TableCell>
+              <TableCell>{caseData[0].case}</TableCell>
+              <TableCell>{caseData[0].asset}</TableCell>
+              <TableCell><SquarePen size={16} /></TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </div>
 
       {/* basic information box */}
-      <div className="fixed right-10 top-10 w-100">
-        <Card className="w-full">
+
+        <Card className="w-1/3">
           <CardHeader>
             <CardTitle>Basic Information</CardTitle>
           </CardHeader>
           <CardContent>
             <p>Name: </p>
-            <Input value={informationData[0].name} readOnly />
+            <p className="border px-2 py-1 rounded">{informationData[0].name}</p>
             <p>Adress: </p>
-            <Input value={informationData[0].adress} readOnly />
+            <p className="border px-2 py-1 rounded">{informationData[0].adress}</p>
             <p>Case ID: </p>
-            <Input value={informationData[0].caseID} readOnly />
+            <p className="border px-2 py-1 rounded">{informationData[0].caseID}</p>
             <p>Customer: </p>
-            <Input value={informationData[0].Customer} readOnly />
+            <p className="border px-2 py-1 rounded">{informationData[0].Customer}</p>
             <p>Information: </p>
-            <Input value={informationData[0].information} readOnly />
+            <p className="border px-2 py-1 rounded">{informationData[0].information}</p>
           </CardContent>
         </Card>
       </div>
-
     </div>
   );
 }
