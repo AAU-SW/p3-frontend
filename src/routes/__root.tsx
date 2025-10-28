@@ -6,8 +6,10 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { SidebarProvider } from '@/components/ui/sidebar.tsx';
+import { Toaster } from "@/components/ui/sonner"
 import { AppSidebar } from '@/components/app-sidebar.tsx';
 import { useAuth, type AuthStore } from '@/stores/auth';
+
 
 interface MyRouterContext {
   auth: AuthStore;
@@ -27,6 +29,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
     return (
       <>
+        <Toaster/> 
         <SidebarProvider>
           {auth.user && <AppSidebar />}
           <Outlet />
