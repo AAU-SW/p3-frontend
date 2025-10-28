@@ -5,34 +5,37 @@ export const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-let accessToken = localStorage.getItem('accessToken');
-const refreshToken = localStorage.getItem('refreshToken');
-
 api.interceptors.request.use((config) => {
-  if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
+  const token = localStorage.getItem('accessToken');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
 api.interceptors.response.use(
   (res) => res,
   async (err) => {
-    const original = err.config;
-    if (err.response?.status === 401 && !original._retry && refreshToken) {
+    const original = err.config as any;
+    if (err.response?.status === 401 && !original._retry) {
       original._retry = true;
-      try {
-        const res = await axios.post('http://localhost:8080/api/auth/refresh', {
-          refreshToken,
-        });
-        accessToken = res.data.accessToken;
-        if (!accessToken) throw new Error('No access token returned');
-        localStorage.setItem('accessToken', accessToken);
-        original.headers.Authorization = `Bearer ${accessToken}`;
-        return api(original);
-      } catch (e) {
-        localStorage.clear();
-        window.location.href = '/login';
-        console.error(e);
+      const rt = localStorage.getItem('refreshToken');
+      if (rt) {
+        try {
+          const { data } = await api.post('/api/auth/refresh', { refreshToken: rt });
+          if (data?.accessToken) {
+            localStorage.setItem('accessToken', data.accessToken);
+            original.headers = {
+              ...(original.headers ?? {}),
+              Authorization: `Bearer ${data.accessToken}`,
+            };
+            return api(original);
+          }
+        } catch (error) {
+          console.error(error);
+          alert('Session expired, please log in again.');
+        }
       }
+      localStorage.clear();
+      window.location.href = '/login';
     }
     return Promise.reject(err);
   },

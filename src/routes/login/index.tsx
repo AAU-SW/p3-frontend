@@ -1,13 +1,17 @@
 import { Input } from '@/components/ui/input';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
-import { login } from '@/api/auth';
+import { useAuth } from '@/stores/auth';
 
 export const Route = createFileRoute('/login/')({
   component: Login,
+  beforeLoad: async ({ context }) => {
+    const me = await context.auth.getCurrentUser();
+    if (me) throw redirect({ to: '/' });
+  },
 });
 
 function Login() {
@@ -16,8 +20,10 @@ function Login() {
     password: '',
   });
   const [eye, setEye] = useState(true);
+  const navigate = useNavigate();
+  const auth = useAuth();
 
-  const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -25,11 +31,14 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    login(formData.email, formData.password).catch((error) => {
-      console.error('Login failed:', error);
-    });
+    try {
+      await auth.login(formData.email, formData.password);
+      navigate({ to: '/' });
+    } catch (error) {
+      console.error('Login failed', error);
+    }
   };
 
   return (
@@ -50,7 +59,7 @@ function Login() {
               name="email"
               placeholder="Email or phone number"
               value={formData.email}
-              onChange={handlerChange}
+              onChange={handleChange}
             />
 
             <label className="block mb-2 mt-4 ml-4 text-sm font-medium text-gray-900 dark:text-white">
@@ -62,7 +71,7 @@ function Login() {
                 placeholder="Enter Password"
                 type={eye ? 'password' : 'text'}
                 value={formData.password}
-                onChange={handlerChange}
+                onChange={handleChange}
               />
               <button
                 className="absolute right-2 top-1/2 transform -translate-y-1/2"
