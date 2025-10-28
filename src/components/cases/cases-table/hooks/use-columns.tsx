@@ -20,7 +20,7 @@ export const useColumns = () => {
                 {caseItem.title}
               </span>
               <span className="text-sm text-gray-500">
-                Created: {caseItem.createdAt}
+                Created: {caseItem.createdAt} {/*TODO: FormatDate*/}
               </span>
             </div>
           );
@@ -34,6 +34,7 @@ export const useColumns = () => {
         accessorKey: 'status',
         header: 'Status',
         cell: ({ row }) => {
+          // TODO: Use badge component
           const status = row.getValue('status') as 'ACTIVE' | 'CLOSED';
 
           const statusColor =
