@@ -15,9 +15,9 @@ interface AssetsBaseDataProps {
 
 export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
   const statusColor =
-    data?.status === 'active'
+    data?.status === 'ACTIVE'
       ? 'bg-green-100 text-green-800 border-green-300'
-      : data?.status === 'closed'
+      : data?.status === 'CLOSED'
         ? 'bg-red-100 text-red-800 border-red-300'
         : 'bg-gray-100 text-gray-800 border-gray-300';
   return (
