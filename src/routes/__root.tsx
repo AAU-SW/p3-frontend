@@ -29,13 +29,17 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
     return (
       <>
+        {auth.user && (
+          <>
+            <Header auth={auth.user} />
+          </>
+        )}
         <SidebarProvider>
           <div className="flex w-full h-screen">
             {/* Left sidebar (only when logged in) */}
             {auth.user && (
               <>
                 <AppSidebar />
-                <Header auth={auth.user} />
               </>
             )}
 
