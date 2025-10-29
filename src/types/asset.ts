@@ -4,7 +4,7 @@ export type Asset = {
   id?: string;
   name: string;
   registrationNumber: string;
-  status: string;
+  status: 'ACTIVE' | 'CLOSED';
   description: string;
   createdAt?: string;
   updatedAt?: string;
