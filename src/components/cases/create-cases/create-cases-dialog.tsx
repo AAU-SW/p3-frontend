@@ -83,7 +83,7 @@ export const CreateCasesDialog: FC = () => {
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Create Asset</Button>
+            <Button type="submit">Create Case</Button>
           </DialogFooter>
         </form>
       </DialogContent>
