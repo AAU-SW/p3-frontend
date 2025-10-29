@@ -33,7 +33,6 @@ function RouteComponent() {
     <div className="w-full bg-[#F8FAFC] p-5">
       <h1 className="text-4xl mb-4"> Tracking device installation </h1>
       <div className="flex justify-between gap-4">
-
         {/* case table */}
         <div className="w-2/3">
           <div className="bg-[#01204B] text-white p-4 rounded-t-lg mb-2">

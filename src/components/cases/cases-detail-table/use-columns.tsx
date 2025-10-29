@@ -9,7 +9,6 @@ import { StatusBadge } from '@/components/status-badge';
 export const useColumns = () => {
   const columns = useMemo<ColumnDef<Case>[]>(
     () => [
-    
       {
         accessorKey: 'user',
         header: 'User',
@@ -20,17 +19,17 @@ export const useColumns = () => {
               <AvatarFallback>{userInitials}</AvatarFallback>
             </Avatar>
           );
-        }
+        },
       },
       {
         accessorKey: 'status',
-        header: 'Status', 
+        header: 'Status',
         cell: ({ row }) => {
           const status = row.original.status;
           return <StatusBadge status={status} />;
-        }
+        },
       },
-    {
+      {
         accessorKey: 'case',
         header: 'Case',
       },
