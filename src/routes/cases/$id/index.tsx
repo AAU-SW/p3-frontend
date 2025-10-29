@@ -13,7 +13,7 @@ const caseData = [
     status: 'ACTIVE',
     case: 'install tracker',
     asset: 'Pillar Truck',
-    name: 'Install Tracker Case',
+    title: 'Install Tracker Case',
     assignedTo: 'JA',
     customer: 'Pillar Construction',
     createdAt: '2024-06-01',
