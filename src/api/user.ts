@@ -14,3 +14,28 @@ export async function getCurrentUser() {
     }
   }
 }
+
+export async function getUsers() {
+  const res = await api.get(`api/users`);
+  return res.data;
+}
+
+export async function getOneUser(userId: string) {
+  const res = await api.get(`/api/users/${userId}`);
+  return res.data;
+}
+
+export async function createUser(data: User) {
+  const res = await api.post(`/api/users`, data);
+  return res.data;
+}
+
+export async function updateOneUser(userId: string, data: Partial<User>) {
+  const res = await api.put<User>(`api/users/${userId}`, data);
+  return res.data;
+}
+
+export async function deleteOneUser(userId: string) {
+  const res = await api.delete<User>(`api/users/${userId}`);
+  return res.data;
+}
