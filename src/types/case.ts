@@ -5,4 +5,7 @@ export type Case = {
   status: string;
   customer: string;
   createdAt: string;
+  asset: string;
+  case: string;
+  user: string;
 };
