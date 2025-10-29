@@ -1,12 +1,12 @@
 import { useRouterState } from '@tanstack/react-router';
 import {
-  BriefcaseIcon,
-  CalendarIcon,
-  HomeIcon,
+  CalendarRange,
+  ChartBar,
+  ChartNoAxesColumn,
+  FolderOpen,
   PanelLeftClose,
   PanelRightClose,
-  TruckIcon,
-  UserIcon,
+  Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import {
@@ -29,36 +29,46 @@ export function AppSidebar() {
 
   const items = [
     {
-      title: 'Home',
+      title: 'Overview',
       url: '/',
-      icon: HomeIcon,
-    },
-    {
-      title: 'Calendar',
-      url: '/calendar',
-      icon: CalendarIcon,
-    },
-    {
-      title: 'Assets',
-      url: '/assets',
-      icon: TruckIcon,
+      icon: ChartNoAxesColumn,
     },
     {
       title: 'Cases',
       url: '/cases',
-      icon: BriefcaseIcon,
+      icon: FolderOpen,
     },
     {
-      title: 'Users',
-      url: '/users',
-      icon: UserIcon,
+      title: 'Assets',
+      url: '/assets',
+      icon: ChartBar,
+    },
+    {
+      title: 'Employees',
+      url: '/employees',
+      icon: Users,
+    },
+    {
+      title: 'Calendar',
+      url: '/calendar',
+      icon: CalendarRange,
     },
   ];
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="h-24">
+            {open ? (
+              <img src="/Logo_Small.svg" alt="Sidebar picture here" />
+            ) : (
+              <img
+                src="/Collapsed_Logo_Sidebar.svg"
+                alt="Collapsed Logo for sidebar"
+                className="!w-8 !h-8 max-w-none max-h-none relative left-[-8px]"
+              />
+            )}
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
