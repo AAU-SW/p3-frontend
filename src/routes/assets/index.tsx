@@ -1,8 +1,8 @@
-import { getAssets } from '@/api/assets.ts';
-import type { Asset } from '@/types/asset.ts';
 import { createFileRoute } from '@tanstack/react-router';
-import { AssetsTable } from '@/components/assets/assets-table/assets-table.tsx';
 import { useEffect, useState } from 'react';
+import type { Asset } from '@/types/asset.ts';
+import { getAssets } from '@/api/assets.ts';
+import { AssetsTable } from '@/components/assets/assets-table/assets-table.tsx';
 import { CreateAssetDialog } from '@/components/assets/create-asset/create-asset-dialog.tsx';
 
 export const Route = createFileRoute('/assets/')({
@@ -10,7 +10,7 @@ export const Route = createFileRoute('/assets/')({
 });
 
 function RouteComponent() {
-  const [assetData, setAssetData] = useState<Asset[]>([]);
+  const [assetData, setAssetData] = useState<Array<Asset>>([]);
 
   useEffect(() => {
     const fetchAsset = async () => {

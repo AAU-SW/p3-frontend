@@ -1,5 +1,6 @@
+import { useState } from 'react';
+import type { FC, FormEvent } from 'react';
 import type { Asset } from '@/types/asset.ts';
-import { useState, type FC, type FormEvent } from 'react';
 import { createAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';

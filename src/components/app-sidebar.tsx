@@ -1,4 +1,4 @@
-import { useRouterState } from '@tanstack/react-router';
+import { Link, useRouterState } from '@tanstack/react-router';
 import {
   CalendarRange,
   ChartBar,
@@ -11,18 +11,17 @@ import {
 import { Button } from '@/components/ui/button.tsx';
 import {
   Sidebar,
-  SidebarHeader,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Link } from '@tanstack/react-router';
 import { cn } from '@/lib/utils';
 
 export function AppSidebar() {
