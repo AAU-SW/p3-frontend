@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
+import type { Asset } from '@/types/asset';
+import { formatDate } from '@/utils/formatDate';
 
 interface AssetsBaseDataProps {
   data: Asset | undefined;
@@ -15,9 +17,9 @@ interface AssetsBaseDataProps {
 
 export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
   const statusColor =
-    data?.status === 'active'
+    data?.status === 'ACTIVE'
       ? 'bg-green-100 text-green-800 border-green-300'
-      : data?.status === 'closed'
+      : data?.status === 'CLOSED'
         ? 'bg-red-100 text-red-800 border-red-300'
         : 'bg-gray-100 text-gray-800 border-gray-300';
   return (
@@ -63,7 +65,9 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
             <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
               Created
             </span>
-            <span className="mb-4 font-medium">{data?.createdAt}</span>
+            <span className="mb-4 font-medium">
+              {formatDate(data?.createdAt)}
+            </span>
 
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Updated by
@@ -76,7 +80,9 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
             <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
               Last updated
             </span>
-            <span className="mb-4 font-medium">{data?.updatedAt}</span>
+            <span className="mb-4 font-medium">
+              {formatDate(data?.updatedAt)}
+            </span>
 
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Last invoiced

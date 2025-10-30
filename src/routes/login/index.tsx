@@ -44,16 +44,16 @@ function Login() {
   return (
     <div className="flex w-full">
       <img
-        className="w-1/2 hidden md:block object-cover"
-        src="/bruger-telefon-i-skoven.jpg"
-        alt="User using phone in forest"
+        className="w-4/10 hidden md:block object-cover"
+        src="/Grainy-signup-pic.svg"
+        alt="Grainy signup page of man holding phone"
       />
-      <div className="md:w-1/2 items-center m-auto">
+      <div className="md:w-6/10 items-center m-auto">
         <div className="md:w-[350px] p-8 md:p-0 mx-auto">
-          <img src="/Logo_slogan.png" alt="Logo_slogan" />
+          <img src="/SporingsGruppenLogo_Full.svg" alt="Logo_slogan" />
           <form onSubmit={handleSubmit}>
             <label className="block mb-2 mt-4 ml-4 text-sm font-medium text-gray-900 dark:text-white">
-              login
+              Login
             </label>
             <Input
               name="email"
@@ -100,7 +100,7 @@ function Login() {
             </div>
 
             <Button
-              className="w-full mt-6 bg-blue-500 cursor-pointer"
+              className="w-full mt-6 bg-[#01204A] cursor-pointer"
               type="submit"
             >
               Sign in
@@ -109,7 +109,7 @@ function Login() {
             <hr className="my-8" />
 
             <Button className="w-full cursor-pointer">
-              sign in with e-mail link
+              Sign in with e-mail link
             </Button>
           </form>
         </div>

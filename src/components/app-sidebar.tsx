@@ -1,13 +1,12 @@
 import { useRouterState } from '@tanstack/react-router';
 import {
-  FolderOpen,
-  CalendarIcon,
+  CalendarRange,
+  ChartBar,
   ChartNoAxesColumn,
-  UsersIcon,
+  FolderOpen,
   PanelLeftClose,
   PanelRightClose,
-  TruckIcon,
-  Settings
+  Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import {
@@ -45,17 +44,17 @@ export function AppSidebar() {
     {
       title: 'Assets',
       url: '/assets',
-      icon: TruckIcon,
+      icon: ChartBar,
     },
     {
-      title: 'Emplyees',
+      title: 'Employees',
       url: '/users',
-      icon: UsersIcon,
+      icon: Users,
     },
     {
       title: 'Calendar',
       url: '/calendar',
-      icon: CalendarIcon,
+      icon: CalendarRange,
     },
   ];
   return (
@@ -74,7 +73,17 @@ export function AppSidebar() {
           </div>
         </SidebarHeader>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu </SidebarGroupLabel>
+          <SidebarGroupLabel className="h-24">
+            {open ? (
+              <img src="/Logo_Small.svg" alt="Sidebar picture here" />
+            ) : (
+              <img
+                src="/Collapsed_Logo_Sidebar.svg"
+                alt="Collapsed Logo for sidebar"
+                className="!w-8 !h-8 max-w-none max-h-none relative left-[-8px]"
+              />
+            )}
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
