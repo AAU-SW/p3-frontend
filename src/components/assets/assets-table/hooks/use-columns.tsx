@@ -34,6 +34,10 @@ export const useColumns = () => {
         accessorKey: 'registrationNumber',
         header: 'Registration Number',
       },
+      {
+        accessorKey: 'orderRef.orderNumber',
+        header: 'Order Reference',
+      },
     ],
     [],
   );
