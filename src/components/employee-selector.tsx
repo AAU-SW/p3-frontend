@@ -5,28 +5,54 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select.tsx';
-import { type FC } from 'react';
-
-const employeeNames = ['Mathias', 'Kevin', 'Elias', 'Oliver']; // example array
+import { type FC, useEffect, useState } from 'react';
+import { getUsers } from '@/api/user.ts';
+import { toast } from 'sonner';
+import type { User } from '@/types/user.ts';
 
 interface EmployeeSelectorProps {
-  value: string | null;
-  onChange: (value: string) => void;
+  value: User | undefined;
+  onChange: (user: User) => void;
 }
 
 export const EmployeeSelector: FC<EmployeeSelectorProps> = ({
   value,
   onChange,
 }) => {
+  const [usersData, setUsersData] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      try {
+        const response = await getUsers();
+        setUsersData(response);
+      } catch (error) {
+        console.error(error);
+        toast.error('Failed to fetch users');
+      }
+    };
+
+    fetchAllUsers();
+  }, []);
+
+  const handleSelectChange = (selectedId: string) => {
+    const selectedUser = usersData.find((user) => user.id === selectedId);
+    if (selectedUser) {
+      onChange(selectedUser);
+    }
+  };
+
   return (
-    <Select value={value || undefined} onValueChange={onChange}>
+    <Select value={value?.id || undefined} onValueChange={handleSelectChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="Select an employee" />
+        <SelectValue placeholder="Select an employee">
+          {value ? value.name : 'Select an employee'}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
-        {employeeNames.map((name) => (
-          <SelectItem key={name} value={name.toLowerCase()}>
-            {name}
+        {usersData.map((user) => (
+          <SelectItem key={user.id} value={user.id}>
+            {user.name}
           </SelectItem>
         ))}
       </SelectContent>
