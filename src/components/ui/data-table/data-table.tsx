@@ -4,7 +4,7 @@ import {
   type ColumnDef,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
+  getFilteredRowModel, getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
@@ -17,11 +17,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { Button } from '@/components/ui/button.tsx';
+import {ArrowLeft, ArrowRight} from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   withSearchBar: boolean;
+  withPagination?: boolean;
   onRowClick?: (rowData: TData) => void;
 }
 
@@ -29,6 +32,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   withSearchBar,
+  withPagination = true,
   onRowClick,
 }: DataTableProps<TData, TValue>) {
   const [globalFilter, setGlobalFilter] = useState('');
@@ -39,6 +43,7 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onGlobalFilterChange: setGlobalFilter,
+    getPaginationRowModel: getPaginationRowModel(),
     state: {
       globalFilter,
     },
@@ -109,6 +114,26 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      {withPagination && (
+          <div className="flex items-center justify-end space-x-2 py-4">
+            <Button
+                variant="outline"
+                size="sm"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+            >
+              <ArrowLeft/>
+            </Button>
+            <Button
+                variant="outline"
+                size="sm"
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+            >
+              <ArrowRight />
+            </Button>
+          </div>
+      )}
     </div>
   );
 }
