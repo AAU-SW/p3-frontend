@@ -3,7 +3,7 @@ export function formatDate(input: string | undefined): string | undefined {
   const date = new Date(input);
 
   if (isNaN(date.getTime())) {
-    throw new Error('Invalid date string');
+    return ('Invalid date string');
   }
 
   return date.toISOString().split('T')[0];
