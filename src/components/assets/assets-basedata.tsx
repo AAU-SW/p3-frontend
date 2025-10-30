@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
-import type { Asset } from '@/types/asset';
 import { formatDate } from '@/utils/formatDate';
 
 interface AssetsBaseDataProps {

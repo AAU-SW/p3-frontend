@@ -22,7 +22,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Link } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router';
 import { cn } from '@/lib/utils';
 
 export function AppSidebar() {
@@ -61,15 +61,22 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarHeader>
-          <div className={cn("flex items-center justify-left py-4", open && "border-b-2 ")}>
-            <img 
+          <div
+            className={cn(
+              'flex items-center justify-left py-4',
+              open && 'border-b-2 ',
+            )}
+          >
+            <img
               src="/logo.png"
               alt="logo"
               className=" border-black p-1 rounded-full bg-[#D4D4D4] "
             />
             {open && (
-              <span className="ml-2 font-sans font-bold text-md">SPORINGSGRUPPEN</span>
-            )}         
+              <span className="ml-2 font-sans font-bold text-md">
+                SPORINGSGRUPPEN
+              </span>
+            )}
           </div>
         </SidebarHeader>
         <SidebarGroup>
@@ -115,7 +122,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter className="pb-2 pl-0 pr-[3px]">
         <div className="flex ">
-            {open &&
+          {open && (
             <SidebarMenuButton>
               <Link
                 to="/"
@@ -124,14 +131,11 @@ export function AppSidebar() {
                     ? 'bg-muted text-primary font-medium rounded-md p-2'
                     : 'text-muted-foreground hover:text-foreground p-2 rounded-md'
                 }`}
-              >
-                <Settings className="w-4 h-4" />
-                 <span>Settings</span>
-              </Link>
+              ></Link>
             </SidebarMenuButton>
-            }
-                   
-          <div className='ml-auto'>
+          )}
+
+          <div className="ml-auto">
             <Button variant="ghost" onClick={toggleSidebar}>
               {open ? <PanelLeftClose /> : <PanelRightClose />}
             </Button>

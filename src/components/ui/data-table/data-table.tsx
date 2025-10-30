@@ -1,13 +1,13 @@
 'use client';
 
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 import { Input } from '@/components/ui/input.tsx';
 import {
   Table,
@@ -19,8 +19,8 @@ import {
 } from '@/components/ui/table';
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: Array<ColumnDef<TData, TValue>>;
+  data: Array<TData>;
   withSearchBar: boolean;
   onRowClick?: (rowData: TData) => void;
 }
@@ -71,7 +71,6 @@ export function DataTable<TData, TValue>({
                             header.column.columnDef.header,
                             header.getContext(),
                           )}
-                          hello header
                     </TableHead>
                   );
                 })}

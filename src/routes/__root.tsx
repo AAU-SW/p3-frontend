@@ -35,7 +35,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             <Header auth={auth.user} />
           </>
         )}
-        <Toaster/> 
+        <Toaster />
         <SidebarProvider>
           <div className="flex w-full h-screen">
             {/* Left sidebar (only when logged in) */}
