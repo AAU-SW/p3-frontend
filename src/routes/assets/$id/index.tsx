@@ -6,6 +6,9 @@ import { AssetsBreadCrumbs } from '@/components/assets/assets-breadcrumbs.tsx';
 import { DetailHeader } from '@/components/assets/detail-header.tsx';
 import type { Asset } from '@/types/asset';
 import { CasesTable } from '@/components/cases/cases-table/cases-table';
+import { getCases } from '@/api/cases.ts';
+import type { Case } from '@/types/case.ts';
+import { toast } from 'sonner';
 
 export const Route = createFileRoute('/assets/$id/')({
   component: RouteComponent,
@@ -14,6 +17,7 @@ export const Route = createFileRoute('/assets/$id/')({
 function RouteComponent() {
   const assetId = Route.useParams();
   const [assetData, setAssetData] = useState<Asset>();
+  const [casesData, setCasesData] = useState<Case[]>();
 
   useEffect(() => {
     const fetchOneAsset = async () => {
@@ -28,23 +32,19 @@ function RouteComponent() {
     fetchOneAsset();
   }, [assetId]);
 
-  // Test case object
-  const caseData = [
-    {
-      title: 'Udskiftning af vinterdæk',
-      assignedTo: 'Ryan Jespersen',
-      status: 'ACTIVE',
-      customer: 'Sporingsgruppen',
-      createdAt: '25/10/2025',
-    },
-    {
-      title: 'Udskiftning af sommerdæk',
-      assignedTo: 'Peter Jespersen',
-      status: 'CLOSED',
-      customer: 'Sporingsgruppen',
-      createdAt: '25/10/2023',
-    },
-  ];
+  useEffect(() => {
+    const fetchAllCases = async () => {
+      try {
+        const response = await getCases();
+        setCasesData(response);
+      } catch (error) {
+        console.error(error);
+        toast.error('Failed to fetch cases');
+      }
+    };
+
+    fetchAllCases();
+  }, []);
 
   return (
     <div className="flex flex-col w-full">
@@ -55,7 +55,7 @@ function RouteComponent() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4">
           <div className="col-span-2">
-            <CasesTable data={caseData} />
+            <CasesTable data={casesData ?? []} />
           </div>
           <div className="col-span-1 flex justify-end">
             <AssetsBaseData data={assetData} />
