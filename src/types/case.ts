@@ -1,3 +1,5 @@
+import type { Asset } from '@/types/asset.ts';
+
 export type Case = {
   id?: string;
   title: string;
@@ -5,4 +7,5 @@ export type Case = {
   status: string;
   customer?: string;
   createdAt?: string;
+  assetId: Asset;
 };
