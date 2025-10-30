@@ -7,8 +7,6 @@ import {
 } from '@/components/ui/select.tsx';
 import { type FC } from 'react';
 
-const employeeNames = ['Mathias', 'Kevin', 'Elias', 'Oliver']; // example array
-
 interface EmployeeSelectorProps {
   value: string | null;
   onChange: (value: string) => void;

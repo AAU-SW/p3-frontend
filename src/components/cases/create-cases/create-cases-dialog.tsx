@@ -14,10 +14,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { CustomerSelector } from '@/components/customer-selector.tsx';
+import type { Customer } from '@/types/customer.ts';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
-  //const [selectedCustomer, setSelectedCustomer] = useState<string>('');
+  const [selectedCustomer, setSelectedCustomer] = useState<
+    Customer | undefined
+  >(undefined);
   //const [selectedEmployee, setSelectedEmployee] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -28,12 +32,13 @@ export const CreateCasesDialog: FC = () => {
     const data: Case = {
       title: formData.get('name') as string,
       status: 'ACTIVE',
+      customer: selectedCustomer,
     };
 
     try {
       await createCase(data);
 
-      // setSelectedCustomer('');
+      setSelectedCustomer(undefined);
       // setSelectedEmployee('');
       setOpen(false);
     } catch (error) {
@@ -63,10 +68,10 @@ export const CreateCasesDialog: FC = () => {
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Customer</Label>
-              {/*<CustomerSelector
+              <CustomerSelector
                 value={selectedCustomer}
                 onChange={setSelectedCustomer}
-              />*/}
+              />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Employee</Label>
