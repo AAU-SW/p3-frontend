@@ -10,10 +10,10 @@ export const useColumns = () => {
   const columns = useMemo<ColumnDef<Case>[]>(
     () => [
       {
-        accessorKey: 'user',
+        accessorKey: 'assignedTo',
         header: 'User',
         cell: ({ row }) => {
-          const userInitials = row.original.user;
+          const userInitials = row.original.assignedTo?.name;
           return (
             <Avatar>
               <AvatarFallback>{userInitials}</AvatarFallback>
@@ -30,7 +30,7 @@ export const useColumns = () => {
         },
       },
       {
-        accessorKey: 'case',
+        accessorKey: 'title',
         header: 'Case',
       },
       {

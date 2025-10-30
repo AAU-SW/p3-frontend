@@ -8,13 +8,11 @@ export const Route = createFileRoute('/cases/$id/')({
 
 // Test case object caseData and informationData
 const caseData = [
+  // We should maybe create a nested structure within a case type that holds the information relevant for whatt needs to be done in a cse
   {
-    user: 'JA',
     status: 'ACTIVE',
-    case: 'install tracker',
     asset: 'Pillar Truck',
-    title: 'Install Tracker Case',
-    assignedTo: 'JA',
+    title: 'Install Tracker',
     customer: 'Pillar Construction',
     createdAt: '2024-06-01',
   },
