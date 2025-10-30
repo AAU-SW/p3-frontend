@@ -1,14 +1,14 @@
-import {getOneAsset} from '@/api/assets.ts';
-import {createFileRoute} from '@tanstack/react-router';
-import {useEffect, useState} from 'react';
-import {AssetsBaseData} from '@/components/assets/assets-basedata.tsx';
-import {AssetsBreadCrumbs} from '@/components/assets/assets-breadcrumbs.tsx';
-import {DetailHeader} from '@/components/assets/detail-header.tsx';
-import type {Asset} from '@/types/asset';
-import {CasesTable} from '@/components/cases/cases-table/cases-table';
-import {getCasesByAssetId} from '@/api/cases.ts';
-import type {Case} from '@/types/case.ts';
-import {toast} from 'sonner';
+import { getOneAsset } from '@/api/assets.ts';
+import { createFileRoute } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import { AssetsBaseData } from '@/components/assets/assets-basedata.tsx';
+import { AssetsBreadCrumbs } from '@/components/assets/assets-breadcrumbs.tsx';
+import { DetailHeader } from '@/components/assets/detail-header.tsx';
+import type { Asset } from '@/types/asset';
+import { CasesTable } from '@/components/cases/cases-table/cases-table';
+import { getCasesByAssetId } from '@/api/cases.ts';
+import type { Case } from '@/types/case.ts';
+import { toast } from 'sonner';
 
 export const Route = createFileRoute('/assets/$id/')({
   component: RouteComponent,
