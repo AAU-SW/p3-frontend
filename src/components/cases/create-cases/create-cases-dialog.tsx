@@ -1,6 +1,6 @@
 import { createCase } from '@/api/cases.ts';
 import type { Case } from '@/types/case.ts';
-import { useState, type FC, type FormEvent } from 'react';
+import { type FC, type FormEvent, useState } from 'react';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -14,13 +14,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { CustomerSelector } from '@/components/customer-selector.tsx';
 import type { Customer } from '@/types/customer.ts';
+import type { User } from '@/types/user.ts';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
-  //const [selectedEmployee, setSelectedEmployee] = useState<string>('');
+  const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,14 +32,15 @@ export const CreateCasesDialog: FC = () => {
     const data: Case = {
       title: formData.get('name') as string,
       status: 'ACTIVE',
+      assignedTo: selectedEmployee,
       customer: selectedCustomer,
     };
 
     try {
       await createCase(data);
 
+      setSelectedEmployee(undefined);
       setSelectedCustomer(undefined);
-      // setSelectedEmployee('');
       setOpen(false);
     } catch (error) {
       console.error('Failed to create case:', error);
@@ -73,10 +76,10 @@ export const CreateCasesDialog: FC = () => {
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Employee</Label>
-              {/*<EmployeeSelector
+              <EmployeeSelector
                 value={selectedEmployee}
                 onChange={setSelectedEmployee}
-              />*/}
+              />
             </div>
           </div>
 
