@@ -6,7 +6,7 @@ export async function getOrders() {
   return res.data;
 }
 
-export async function createOrders(data: Order) {
+export async function createOrder(data: Order) {
   const res = await api.post(`/api/orders`, data);
   return res.data;
 }
