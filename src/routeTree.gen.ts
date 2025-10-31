@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users/index'
+import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as CalendarIndexRouteImport } from './routes/calendar/index'
 import { Route as AssetsIndexRouteImport } from './routes/assets/index'
+import { Route as OrdersIdIndexRouteImport } from './routes/orders/$id/index'
 import { Route as CasesIdIndexRouteImport } from './routes/cases/$id/index'
 import { Route as AssetsIdIndexRouteImport } from './routes/assets/$id/index'
 
@@ -25,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const UsersIndexRoute = UsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
@@ -40,6 +47,11 @@ const CalendarIndexRoute = CalendarIndexRouteImport.update({
 const AssetsIndexRoute = AssetsIndexRouteImport.update({
   id: '/assets/',
   path: '/assets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIdIndexRoute = OrdersIdIndexRouteImport.update({
+  id: '/orders/$id/',
+  path: '/orders/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasesIdIndexRoute = CasesIdIndexRouteImport.update({
@@ -58,18 +70,22 @@ export interface FileRoutesByFullPath {
   '/assets': typeof AssetsIndexRoute
   '/calendar': typeof CalendarIndexRoute
   '/login': typeof LoginIndexRoute
+  '/orders': typeof OrdersIndexRoute
   '/users': typeof UsersIndexRoute
   '/assets/$id': typeof AssetsIdIndexRoute
   '/cases/$id': typeof CasesIdIndexRoute
+  '/orders/$id': typeof OrdersIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assets': typeof AssetsIndexRoute
   '/calendar': typeof CalendarIndexRoute
   '/login': typeof LoginIndexRoute
+  '/orders': typeof OrdersIndexRoute
   '/users': typeof UsersIndexRoute
   '/assets/$id': typeof AssetsIdIndexRoute
   '/cases/$id': typeof CasesIdIndexRoute
+  '/orders/$id': typeof OrdersIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +93,11 @@ export interface FileRoutesById {
   '/assets/': typeof AssetsIndexRoute
   '/calendar/': typeof CalendarIndexRoute
   '/login/': typeof LoginIndexRoute
+  '/orders/': typeof OrdersIndexRoute
   '/users/': typeof UsersIndexRoute
   '/assets/$id/': typeof AssetsIdIndexRoute
   '/cases/$id/': typeof CasesIdIndexRoute
+  '/orders/$id/': typeof OrdersIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -88,27 +106,33 @@ export interface FileRouteTypes {
     | '/assets'
     | '/calendar'
     | '/login'
+    | '/orders'
     | '/users'
     | '/assets/$id'
     | '/cases/$id'
+    | '/orders/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/assets'
     | '/calendar'
     | '/login'
+    | '/orders'
     | '/users'
     | '/assets/$id'
     | '/cases/$id'
+    | '/orders/$id'
   id:
     | '__root__'
     | '/'
     | '/assets/'
     | '/calendar/'
     | '/login/'
+    | '/orders/'
     | '/users/'
     | '/assets/$id/'
     | '/cases/$id/'
+    | '/orders/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,9 +140,11 @@ export interface RootRouteChildren {
   AssetsIndexRoute: typeof AssetsIndexRoute
   CalendarIndexRoute: typeof CalendarIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
   AssetsIdIndexRoute: typeof AssetsIdIndexRoute
   CasesIdIndexRoute: typeof CasesIdIndexRoute
+  OrdersIdIndexRoute: typeof OrdersIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof UsersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login/': {
@@ -156,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/assets'
       fullPath: '/assets'
       preLoaderRoute: typeof AssetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/$id/': {
+      id: '/orders/$id/'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof OrdersIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cases/$id/': {
@@ -180,9 +220,11 @@ const rootRouteChildren: RootRouteChildren = {
   AssetsIndexRoute: AssetsIndexRoute,
   CalendarIndexRoute: CalendarIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
   AssetsIdIndexRoute: AssetsIdIndexRoute,
   CasesIdIndexRoute: CasesIdIndexRoute,
+  OrdersIdIndexRoute: OrdersIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

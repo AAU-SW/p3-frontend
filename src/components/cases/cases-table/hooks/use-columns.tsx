@@ -27,7 +27,7 @@ export const useColumns = () => {
         },
       },
       {
-        accessorKey: 'assignedTo',
+        accessorKey: 'assignedTo.name',
         header: 'Assigned',
       },
       {

@@ -6,7 +6,7 @@ import { AssetsBreadCrumbs } from '@/components/assets/assets-breadcrumbs.tsx';
 import { DetailHeader } from '@/components/assets/detail-header.tsx';
 import type { Asset } from '@/types/asset';
 import { CasesTable } from '@/components/cases/cases-table/cases-table';
-import { getCases } from '@/api/cases.ts';
+import { getCasesByAssetId } from '@/api/cases.ts';
 import type { Case } from '@/types/case.ts';
 import { toast } from 'sonner';
 
@@ -35,7 +35,7 @@ function RouteComponent() {
   useEffect(() => {
     const fetchAllCases = async () => {
       try {
-        const response = await getCases();
+        const response = await getCasesByAssetId(assetId.id);
         setCasesData(response);
       } catch (error) {
         console.error(error);

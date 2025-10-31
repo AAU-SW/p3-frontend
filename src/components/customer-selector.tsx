@@ -5,28 +5,54 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select.tsx';
-import { type FC } from 'react';
-
-const customerNames = ['Sporingsgruppen', 'Nordkysten', 'AAU', 'Holbøll']; // example array
+import { type FC, useEffect, useState } from 'react';
+import { getCustomers } from '@/api/customer.ts';
+import type { Customer } from '@/types/customer.ts';
+import { toast } from 'sonner';
 
 interface CustomerSelectorProps {
-  value: string | null;
-  onChange: (value: string) => void;
+  onChange: (customer: Customer) => void;
+  value?: Customer;
 }
 
 export const CustomerSelector: FC<CustomerSelectorProps> = ({
   value,
   onChange,
 }) => {
+  const [customersData, setCustomersData] = useState<Customer[]>([]);
+
+  useEffect(() => {
+    const fetchAllCustomers = async () => {
+      try {
+        const response = await getCustomers();
+        setCustomersData(response);
+      } catch (error) {
+        console.error(error);
+        toast.error('Failed to fetch customers');
+      }
+    };
+
+    fetchAllCustomers();
+  }, []);
+
+  const handleSelectChange = (selectedId: string) => {
+    const selectedCustomer = customersData.find(
+      (customer) => customer.id === selectedId,
+    );
+    if (selectedCustomer) {
+      onChange(selectedCustomer);
+    }
+  };
+
   return (
-    <Select value={value || undefined} onValueChange={onChange}>
+    <Select value={value?.id || undefined} onValueChange={handleSelectChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="Select an employee" />
+        <SelectValue placeholder="Select a customer" />
       </SelectTrigger>
       <SelectContent>
-        {customerNames.map((name) => (
-          <SelectItem key={name} value={name.toLowerCase()}>
-            {name}
+        {customersData.map((customer) => (
+          <SelectItem key={customer.id} value={customer.id}>
+            {customer.name}
           </SelectItem>
         ))}
       </SelectContent>
