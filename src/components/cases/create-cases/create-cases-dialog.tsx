@@ -16,11 +16,13 @@ import {
 } from '@/components/ui/dialog';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import type { User } from '@/types/user.ts';
+import { CustomerSelector } from '@/components/customer-selector.tsx';
+import type { Customer } from '@/types/customer.ts';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
-  //const [selectedCustomer, setSelectedCustomer] = useState<string>('');
-  const [selectedEmployee, setSelectedEmployee] = useState<User>();
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
+  const [selectedEmployee, setSelectedEmployee] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,13 +33,14 @@ export const CreateCasesDialog: FC = () => {
       title: formData.get('name') as string,
       status: 'ACTIVE',
       assignedTo: selectedEmployee,
+      customer: selectedCustomer,
     };
 
     try {
       await createCase(data);
 
-      // setSelectedCustomer('');
       setSelectedEmployee(undefined);
+      setSelectedCustomer(undefined);
       setOpen(false);
     } catch (error) {
       console.error('Failed to create case:', error);
@@ -66,10 +69,10 @@ export const CreateCasesDialog: FC = () => {
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Customer</Label>
-              {/*<CustomerSelector
+              <CustomerSelector
                 value={selectedCustomer}
                 onChange={setSelectedCustomer}
-              />*/}
+              />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Employee</Label>
