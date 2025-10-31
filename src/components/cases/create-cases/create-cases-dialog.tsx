@@ -17,7 +17,7 @@ import {
 import { Route } from '@/routes/assets/$id';
 import type { Asset } from '@/types/asset.ts';
 import { getOneAsset } from '@/api/assets.ts';
-import {toast} from "sonner";
+import { toast } from 'sonner';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
@@ -34,7 +34,7 @@ export const CreateCasesDialog: FC = () => {
         const response = await getOneAsset(String(assetId.id));
         setAssetData(response);
       } catch {
-        toast.error("Failed to fetch asset")
+        toast.error('Failed to fetch asset');
       }
     };
 
