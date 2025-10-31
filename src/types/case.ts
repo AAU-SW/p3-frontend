@@ -1,3 +1,4 @@
+import type { Customer } from '@/types/customer.ts';
 import type { User } from '@/types/user.ts';
 
 export type Case = {
@@ -5,6 +6,6 @@ export type Case = {
   title: string;
   assignedTo?: User;
   status: string;
-  customer?: string;
+  customer?: Customer;
   createdAt?: string;
 };
