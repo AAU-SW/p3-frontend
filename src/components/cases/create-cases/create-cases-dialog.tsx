@@ -20,9 +20,7 @@ import type { User } from '@/types/user.ts';
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
   //const [selectedCustomer, setSelectedCustomer] = useState<string>('');
-  const [selectedEmployee, setSelectedEmployee] = useState<User | undefined>(
-    undefined,
-  );
+  const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
