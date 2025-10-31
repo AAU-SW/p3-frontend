@@ -20,8 +20,8 @@ import type { Customer } from '@/types/customer.ts';
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState<
-    Customer | undefined
-  >(undefined);
+    Customer
+  >();
   //const [selectedEmployee, setSelectedEmployee] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
