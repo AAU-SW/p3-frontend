@@ -61,7 +61,7 @@ export const CreateCasesDialog: FC = () => {
       status: 'ACTIVE',
       assetId: assetData,
       assignedTo: selectedEmployee,
-      customer: selectedCustomer,
+      connectedCustomer: selectedCustomer,
     };
 
     try {

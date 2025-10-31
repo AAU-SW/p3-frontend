@@ -46,7 +46,7 @@ export const useColumns = () => {
         },
       },
       {
-        accessorKey: 'customer',
+        accessorKey: 'connectedCustomer.name',
         header: 'Customer',
       },
     ],

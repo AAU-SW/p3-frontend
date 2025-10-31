@@ -7,7 +7,7 @@ export type Case = {
   title: string;
   assignedTo?: User;
   status: string;
-  customer?: Customer;
+  connectedCustomer?: Customer;
   createdAt?: string;
   assetId?: Asset;
 };
