@@ -7,12 +7,12 @@ export async function getCustomers() {
   return res.data;
 }
 
-export async function getOneCustomer(customerId: string) {
+export async function getCustomerById(customerId: string) {
   const res = await api.get<Customer>(`api/customers/${customerId}`);
   return res.data;
 }
 
-export async function updateOneCustomer(
+export async function updateCustomerById(
   customerId: string,
   data: Partial<Case>,
 ) {
@@ -20,7 +20,7 @@ export async function updateOneCustomer(
   return res.data;
 }
 
-export async function deleteOneCustomer(customerId: string) {
+export async function deleteCustomerById(customerId: string) {
   const res = await api.delete<Customer>(`api/customers/${customerId}`);
   return res.data;
 }

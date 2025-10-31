@@ -45,7 +45,7 @@ export function AppSidebar() {
     },
     {
       title: 'Employees',
-      url: '/employees',
+      url: '/users',
       icon: Users,
     },
     {
