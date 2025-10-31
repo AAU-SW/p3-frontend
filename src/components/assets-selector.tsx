@@ -11,8 +11,8 @@ import type { Asset } from '@/types/asset.ts';
 import { getAssets } from '@/api/assets.ts';
 
 interface AssetsSelectorProps {
-  value: Asset | undefined;
   onChange: (asset: Asset) => void;
+  value?: Asset;
 }
 
 export const AssetsSelector: FC<AssetsSelectorProps> = ({
