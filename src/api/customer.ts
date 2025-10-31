@@ -12,7 +12,7 @@ export async function getCustomerById(customerId: string) {
   return res.data;
 }
 
-export async function updateOneCustomer(
+export async function updateCustomerById(
   customerId: string,
   data: Partial<Case>,
 ) {
