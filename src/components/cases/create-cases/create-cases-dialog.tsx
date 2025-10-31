@@ -1,6 +1,6 @@
 import { createCase } from '@/api/cases.ts';
 import type { Case } from '@/types/case.ts';
-import { type FC, type FormEvent, useState } from 'react';
+import { useState, type FC, type FormEvent, useEffect } from 'react';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -14,6 +14,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Route } from '@/routes/assets/$id';
+import type { Asset } from '@/types/asset.ts';
+import { getOneAsset } from '@/api/assets.ts';
+import { toast } from 'sonner';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { CustomerSelector } from '@/components/customer-selector.tsx';
 import type { Customer } from '@/types/customer.ts';
@@ -24,14 +28,38 @@ export const CreateCasesDialog: FC = () => {
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
   const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
+  const assetId = Route.useParams();
+
+  const [assetData, setAssetData] = useState<Asset>();
+
+  useEffect(() => {
+    const fetchOneAsset = async () => {
+      try {
+        const response = await getOneAsset(String(assetId.id));
+        setAssetData(response);
+      } catch {
+        toast.error('Failed to fetch asset');
+      }
+    };
+
+    fetchOneAsset();
+  }, [assetId]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!assetData) {
+      console.error('Asset data not loaded yet');
+      return;
+    }
+
     const form = e.currentTarget;
     const formData = new FormData(form);
 
     const data: Case = {
       title: formData.get('name') as string,
       status: 'ACTIVE',
+      assetId: assetData,
       assignedTo: selectedEmployee,
       customer: selectedCustomer,
     };

@@ -1,3 +1,4 @@
+import type { Asset } from '@/types/asset.ts';
 import type { Customer } from '@/types/customer.ts';
 import type { User } from '@/types/user.ts';
 
@@ -8,4 +9,5 @@ export type Case = {
   status: string;
   customer?: Customer;
   createdAt?: string;
+  assetId?: Asset;
 };
