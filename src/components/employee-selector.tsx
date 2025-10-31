@@ -11,8 +11,8 @@ import { toast } from 'sonner';
 import type { User } from '@/types/user.ts';
 
 interface EmployeeSelectorProps {
-  value: User | undefined;
   onChange: (user: User) => void;
+  value?: User;
 }
 
 export const EmployeeSelector: FC<EmployeeSelectorProps> = ({
