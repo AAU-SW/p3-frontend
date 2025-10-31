@@ -20,7 +20,7 @@ export async function updateCustomerById(
   return res.data;
 }
 
-export async function deleteOneCustomer(customerId: string) {
+export async function deleteCustomerById(customerId: string) {
   const res = await api.delete<Customer>(`api/customers/${customerId}`);
   return res.data;
 }
