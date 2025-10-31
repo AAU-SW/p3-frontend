@@ -18,11 +18,15 @@ import { Route } from '@/routes/assets/$id';
 import type { Asset } from '@/types/asset.ts';
 import { getOneAsset } from '@/api/assets.ts';
 import {toast} from "sonner";
+import { EmployeeSelector } from '@/components/employee-selector.tsx';
+import { CustomerSelector } from '@/components/customer-selector.tsx';
+import type { Customer } from '@/types/customer.ts';
+import type { User } from '@/types/user.ts';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
-  //const [selectedCustomer, setSelectedCustomer] = useState<string>('');
-  //const [selectedEmployee, setSelectedEmployee] = useState<string>('');
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
+  const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
   const assetId = Route.useParams();
 
@@ -56,13 +60,15 @@ export const CreateCasesDialog: FC = () => {
       title: formData.get('name') as string,
       status: 'ACTIVE',
       assetId: assetData,
+      assignedTo: selectedEmployee,
+      customer: selectedCustomer,
     };
 
     try {
       await createCase(data);
 
-      // setSelectedCustomer('');
-      // setSelectedEmployee('');
+      setSelectedEmployee(undefined);
+      setSelectedCustomer(undefined);
       setOpen(false);
     } catch (error) {
       console.error('Failed to create case:', error);
@@ -91,17 +97,17 @@ export const CreateCasesDialog: FC = () => {
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Customer</Label>
-              {/*<CustomerSelector
+              <CustomerSelector
                 value={selectedCustomer}
                 onChange={setSelectedCustomer}
-              />*/}
+              />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="description">Employee</Label>
-              {/*<EmployeeSelector
+              <EmployeeSelector
                 value={selectedEmployee}
                 onChange={setSelectedEmployee}
-              />*/}
+              />
             </div>
           </div>
 

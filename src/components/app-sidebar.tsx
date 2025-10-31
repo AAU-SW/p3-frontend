@@ -7,6 +7,7 @@ import {
   PanelLeftClose,
   PanelRightClose,
   Users,
+  Wallet,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import {
@@ -44,8 +45,13 @@ export function AppSidebar() {
       icon: ChartBar,
     },
     {
+      title: 'Orders',
+      url: '/orders',
+      icon: Wallet,
+    },
+    {
       title: 'Employees',
-      url: '/employees',
+      url: '/users',
       icon: Users,
     },
     {
