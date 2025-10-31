@@ -1,9 +1,9 @@
-import {createCase} from '@/api/cases.ts';
-import type {Case} from '@/types/case.ts';
-import {type FC, type FormEvent, useState} from 'react';
-import {Button} from '@/components/ui/button.tsx';
-import {Input} from '@/components/ui/input.tsx';
-import {Label} from '@/components/ui/label.tsx';
+import { createCase } from '@/api/cases.ts';
+import type { Case } from '@/types/case.ts';
+import { type FC, type FormEvent, useState } from 'react';
+import { Button } from '@/components/ui/button.tsx';
+import { Input } from '@/components/ui/input.tsx';
+import { Label } from '@/components/ui/label.tsx';
 import {
   Dialog,
   DialogClose,
@@ -14,10 +14,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import {EmployeeSelector} from '@/components/employee-selector.tsx';
-import {CustomerSelector} from '@/components/customer-selector.tsx';
-import type {Customer} from '@/types/customer.ts';
-import type {User} from "@/types/user.ts";
+import { EmployeeSelector } from '@/components/employee-selector.tsx';
+import { CustomerSelector } from '@/components/customer-selector.tsx';
+import type { Customer } from '@/types/customer.ts';
+import type { User } from '@/types/user.ts';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
