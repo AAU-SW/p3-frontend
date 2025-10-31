@@ -7,7 +7,7 @@ export async function getCustomers() {
   return res.data;
 }
 
-export async function getOneCustomer(customerId: string) {
+export async function getCustomerById(customerId: string) {
   const res = await api.get<Customer>(`api/customers/${customerId}`);
   return res.data;
 }
