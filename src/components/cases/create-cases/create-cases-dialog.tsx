@@ -74,7 +74,7 @@ export const CreateCasesDialog: FC = () => {
             <div className="grid gap-3">
               <Label htmlFor="description">Employee</Label>
               <EmployeeSelector
-                value={selectedEmployee ?? undefined}
+                value={selectedEmployee}
                 onChange={setSelectedEmployee}
               />
             </div>
