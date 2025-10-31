@@ -11,8 +11,8 @@ import type { Customer } from '@/types/customer.ts';
 import { toast } from 'sonner';
 
 interface CustomerSelectorProps {
-  value: Customer | undefined;
   onChange: (customer: Customer) => void;
+  value?: Customer;
 }
 
 export const CustomerSelector: FC<CustomerSelectorProps> = ({
