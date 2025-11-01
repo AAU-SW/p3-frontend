@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
 import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
+import BackLink from '@/components/backlink.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -26,6 +27,7 @@ const informationData = {
 function RouteComponent() {
   return (
     <div className="w-full bg-[#F8FAFC] p-5">
+      <BackLink />
       <h1 className="text-4xl mb-4"> Tracking device installation </h1>
       <div className="flex justify-between gap-4">
         {/* case table */}
