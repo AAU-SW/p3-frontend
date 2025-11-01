@@ -1,3 +1,5 @@
+import type { Asset } from '@/types/asset.ts';
+import type { Customer } from '@/types/customer.ts';
 import type { User } from '@/types/user.ts';
 
 export type Case = {
@@ -5,6 +7,7 @@ export type Case = {
   title: string;
   assignedTo?: User;
   status: string;
-  customer?: string;
+  connectedCustomer?: Customer;
   createdAt?: string;
+  assetId?: Asset;
 };

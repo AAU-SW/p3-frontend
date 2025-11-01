@@ -1,4 +1,5 @@
 import type { User } from './user';
+import type { Order } from '@/types/order.ts';
 
 export type Asset = {
   id?: string;
@@ -12,4 +13,5 @@ export type Asset = {
   lastInvoiced?: string;
   createdBy?: User;
   updatedBy?: User;
+  orderRef?: Order;
 };

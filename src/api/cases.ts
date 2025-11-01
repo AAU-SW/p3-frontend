@@ -12,7 +12,9 @@ export async function getOneCase(caseId: string) {
 }
 
 export async function getCasesByAssetId(assetId: string) {
-  const res = await api.get<Case[]>(`/api/cases/asset/${assetId}`);
+  const res = await api.get<Case[]>('/api/cases', {
+    params: { assetId },
+  });
   return res.data;
 }
 

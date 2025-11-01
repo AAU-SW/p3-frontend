@@ -11,10 +11,7 @@ const caseData = [
   // We should maybe create a nested structure within a case type that holds the information relevant for whatt needs to be done in a cse
   {
     status: 'ACTIVE',
-    asset: 'Pillar Truck',
     title: 'Install Tracker',
-    customer: 'Pillar Construction',
-    createdAt: '2024-06-01',
   },
 ];
 

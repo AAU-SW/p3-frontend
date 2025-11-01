@@ -27,7 +27,7 @@ export const useColumns = () => {
         },
       },
       {
-        accessorKey: 'assignedTo',
+        accessorKey: 'assignedTo.name',
         header: 'Assigned',
       },
       {
@@ -46,7 +46,7 @@ export const useColumns = () => {
         },
       },
       {
-        accessorKey: 'customer',
+        accessorKey: 'connectedCustomer.name',
         header: 'Customer',
       },
     ],
