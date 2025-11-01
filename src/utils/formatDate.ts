@@ -6,5 +6,5 @@ export function formatDate(input: string | undefined): string | undefined {
     return 'Invalid date string';
   }
 
-  return date.toISOString().split('T')[0];
+  return date.toLocaleDateString().split('T')[0];
 }

@@ -2,8 +2,9 @@
 
 import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { Badge } from '@/components/ui/badge.tsx';
 import type { Case } from '@/types/case';
+import { formatDate } from '@/utils/formatDate.ts';
+import { StatusBadge } from '@/components/status-badge.tsx';
 
 export const useColumns = () => {
   const columns = useMemo<ColumnDef<Case>[]>(
@@ -20,7 +21,7 @@ export const useColumns = () => {
                 {caseItem.title}
               </span>
               <span className="text-sm text-gray-500">
-                Created: {caseItem.createdAt} {/*TODO: FormatDate*/}
+                Created at: {formatDate(caseItem.createdAt)}
               </span>
             </div>
           );
@@ -34,15 +35,8 @@ export const useColumns = () => {
         accessorKey: 'status',
         header: 'Status',
         cell: ({ row }) => {
-          // TODO: Use badge component
-          const status = row.getValue('status') as 'ACTIVE' | 'CLOSED';
-
-          const statusColor =
-            status === 'ACTIVE'
-              ? 'bg-green-100 text-green-800 border-green-300'
-              : 'bg-red-100 text-red-800 border-red-300';
-
-          return <Badge className={`${statusColor}`}>{status}</Badge>;
+          const status = row.original.status;
+          return <StatusBadge status={status} />;
         },
       },
       {
