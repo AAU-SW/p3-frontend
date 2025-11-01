@@ -16,7 +16,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -68,24 +67,10 @@ export function AppSidebar() {
         <SidebarHeader>
           <div
             className={cn(
-              'flex items-center justify-left py-4',
+              'flex items-center justify-left px-2 py-4',
               open && 'border-b-2 ',
             )}
           >
-            <img
-              src="/logo.png"
-              alt="logo"
-              className=" border-black p-1 rounded-full bg-[#D4D4D4] "
-            />
-            {open && (
-              <span className="ml-2 font-sans font-bold text-md">
-                SPORINGSGRUPPEN
-              </span>
-            )}
-          </div>
-        </SidebarHeader>
-        <SidebarGroup>
-          <SidebarGroupLabel className="h-24">
             {open ? (
               <img src="/Logo_Small.svg" alt="Sidebar picture here" />
             ) : (
@@ -95,7 +80,9 @@ export function AppSidebar() {
                 className="!w-8 !h-8 max-w-none max-h-none relative left-[-8px]"
               />
             )}
-          </SidebarGroupLabel>
+          </div>
+        </SidebarHeader>
+        <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
