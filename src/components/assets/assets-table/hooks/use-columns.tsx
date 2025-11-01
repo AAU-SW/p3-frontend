@@ -1,9 +1,9 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge.tsx';
 import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import type { Asset } from '@/types/asset.ts';
+import { StatusBadge } from '@/components/status-badge.tsx';
 
 export const useColumns = () => {
   const columns = useMemo<ColumnDef<Asset>[]>(
@@ -20,14 +20,8 @@ export const useColumns = () => {
         accessorKey: 'status',
         header: 'Status',
         cell: ({ row }) => {
-          const status = row.getValue('status') as 'ACTIVE' | 'CLOSED';
-
-          const statusColor =
-            status === 'ACTIVE'
-              ? 'bg-green-100 text-green-800 border-green-300'
-              : 'bg-red-100 text-red-800 border-red-300';
-
-          return <Badge className={`${statusColor}`}>{status}</Badge>;
+          const status = row.original.status;
+          return <StatusBadge status={status} />;
         },
       },
       {
