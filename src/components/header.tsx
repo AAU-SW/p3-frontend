@@ -1,16 +1,15 @@
+import type { FC } from 'react';
 import * as React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useAuth } from '@/stores/auth.ts';
 
-interface HeaderProps {
-  auth: {
-    name: string;
-  } | null;
-}
-
-export const Header: React.FC<HeaderProps> = ({ auth }) => {
+export const Header: FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const auth = useAuth();
+  const authUser = auth.user;
   /* const [notifications, setNotifications] = React.useState(3);
   const [seetNotifications, setSeetNotifications] = React.useState(false); */
 
@@ -18,8 +17,10 @@ export const Header: React.FC<HeaderProps> = ({ auth }) => {
     setNotifications(0); // reset counter
     setSeetNotifications((prev) => !prev); // toggle dropdown
   }; */
-  const firstLetter = auth?.name ? auth.name.charAt(0).toUpperCase() : 'U';
-  const fullName = auth?.name ?? 'User';
+  const firstLetter = authUser?.name
+    ? authUser.name.charAt(0).toUpperCase()
+    : 'U';
+  const fullName = authUser?.name ?? 'User';
   const firstName = fullName.split(' ')[0];
   return (
     <header className="h-19 flex items-center justify-between px-6 border-b shadow-sm bg-white">
