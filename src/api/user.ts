@@ -1,6 +1,6 @@
-import type { User } from '@/types/user';
-import { api } from './axios';
 import { AxiosError } from 'axios';
+import { api } from './axios';
+import type { User } from '@/types/user';
 
 export async function getCurrentUser() {
   try {

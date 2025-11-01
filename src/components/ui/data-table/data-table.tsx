@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -9,6 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 import { Input } from '@/components/ui/input.tsx';
 import {
   Table,
@@ -22,8 +22,8 @@ import { Button } from '@/components/ui/button.tsx';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: Array<ColumnDef<TData, TValue>>;
+  data: Array<TData>;
   withSearchBar: boolean;
   withPagination?: boolean;
   onRowClick?: (rowData: TData) => void;
@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}

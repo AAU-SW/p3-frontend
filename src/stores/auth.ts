@@ -1,5 +1,5 @@
-import type { User } from '@/types/user';
 import { create } from 'zustand';
+import type { User } from '@/types/user';
 import { login as apiLogin, logout as apiLogout } from '@/api/auth';
 import { getCurrentUser as apiGetCurrentUser } from '@/api/user';
 

@@ -1,14 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router';
+import type { User } from '@/types/user';
 import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 import { Button } from '@/components/ui/button';
-import type { User } from '@/types/user';
 
 export const Route = createFileRoute('/users/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const data: User[] = [
+  const data: Array<User> = [
     {
       name: 'Jonas',
       email: 'jonas@example.com',

@@ -1,4 +1,4 @@
-import { useRouterState } from '@tanstack/react-router';
+import { Link, useRouterState } from '@tanstack/react-router';
 import {
   CalendarRange,
   ChartBar,
@@ -16,12 +16,13 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { cn } from '@/lib/utils';
 
 export function AppSidebar() {
   const { open, toggleSidebar } = useSidebar();
@@ -63,8 +64,13 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="h-24">
+        <SidebarHeader>
+          <div
+            className={cn(
+              'flex items-center justify-left px-2 py-4',
+              open && 'border-b-2 ',
+            )}
+          >
             {open ? (
               <img src="/Logo_Small.svg" alt="Sidebar picture here" />
             ) : (
@@ -74,7 +80,9 @@ export function AppSidebar() {
                 className="!w-8 !h-8 max-w-none max-h-none relative left-[-8px]"
               />
             )}
-          </SidebarGroupLabel>
+          </div>
+        </SidebarHeader>
+        <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => {
@@ -85,8 +93,8 @@ export function AppSidebar() {
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={isActive}>
-                      <a
-                        href={item.url}
+                      <Link
+                        to={item.url}
                         className={`flex items-center gap-2 transition-colors ${
                           isActive
                             ? 'bg-muted text-primary font-medium rounded-md'
@@ -95,7 +103,7 @@ export function AppSidebar() {
                       >
                         <item.icon className="w-4 h-4" />
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
@@ -105,10 +113,25 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="pb-2 pl-0 pr-[3px]">
-        <div className="flex justify-end">
-          <Button variant="ghost" onClick={toggleSidebar}>
-            {open ? <PanelLeftClose /> : <PanelRightClose />}
-          </Button>
+        <div className="flex ">
+          {open && (
+            <SidebarMenuButton>
+              <Link
+                to="/"
+                className={`flex items-center gap-2 transition-colors ${
+                  currentPath === '/settings'
+                    ? 'bg-muted text-primary font-medium rounded-md p-2'
+                    : 'text-muted-foreground hover:text-foreground p-2 rounded-md'
+                }`}
+              ></Link>
+            </SidebarMenuButton>
+          )}
+
+          <div className="ml-auto">
+            <Button variant="ghost" onClick={toggleSidebar}>
+              {open ? <PanelLeftClose /> : <PanelRightClose />}
+            </Button>
+          </div>
         </div>
       </SidebarFooter>
     </Sidebar>
