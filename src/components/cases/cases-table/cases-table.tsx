@@ -5,7 +5,7 @@ import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useColumns } from '@/components/cases/cases-table/hooks/use-columns.tsx';
 
 interface CasesTableProps {
-  data: Array<Case>;
+  data: Case[];
 }
 
 export const CasesTable: FC<CasesTableProps> = ({ data }) => {

@@ -5,7 +5,7 @@ import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useColumns } from '@/components/orders/orders-table/hooks/use-columns.tsx';
 
 interface OrdersTableProps {
-  data: Array<Order>;
+  data: Order[];
 }
 
 export const OrdersTable: FC<OrdersTableProps> = ({ data }) => {

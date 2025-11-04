@@ -6,7 +6,7 @@ import type { Asset } from '@/types/asset.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 
 export const useColumns = () => {
-  const columns = useMemo<Array<ColumnDef<Asset>>>(
+  const columns = useMemo<ColumnDef<Asset>[]>(
     () => [
       {
         accessorKey: 'id',

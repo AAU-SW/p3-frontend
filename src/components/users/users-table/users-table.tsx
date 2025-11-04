@@ -4,7 +4,7 @@ import { useColumns } from '@/components/users/hooks/use-columns.tsx';
 import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 
 interface UsersTableProps {
-  data: Array<User>;
+  data: User[];
 }
 
 export const UsersTable: FC<UsersTableProps> = ({ data }) => {

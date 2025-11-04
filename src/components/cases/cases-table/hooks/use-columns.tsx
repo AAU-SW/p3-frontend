@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/formatDate.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 
 export const useColumns = () => {
-  const columns = useMemo<Array<ColumnDef<Case>>>(
+  const columns = useMemo<ColumnDef<Case>[]>(
     () => [
       {
         accessorKey: 'title',

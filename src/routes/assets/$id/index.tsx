@@ -17,7 +17,7 @@ export const Route = createFileRoute('/assets/$id/')({
 function RouteComponent() {
   const assetId = Route.useParams();
   const [assetData, setAssetData] = useState<Asset>();
-  const [casesData, setCasesData] = useState<Array<Case>>();
+  const [casesData, setCasesData] = useState<Case[]>();
 
   useEffect(() => {
     const fetchOneAsset = async () => {

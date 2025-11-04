@@ -20,7 +20,7 @@ export const EmployeeSelector: FC<EmployeeSelectorProps> = ({
   value,
   onChange,
 }) => {
-  const [usersData, setUsersData] = useState<Array<User>>([]);
+  const [usersData, setUsersData] = useState<User[]>([]);
 
   useEffect(() => {
     const fetchAllUsers = async () => {

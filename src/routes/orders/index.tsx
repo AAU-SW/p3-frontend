@@ -11,7 +11,7 @@ export const Route = createFileRoute('/orders/')({
 });
 
 function RouteComponent() {
-  const [ordersData, setOrdersData] = useState<Array<Order>>();
+  const [ordersData, setOrdersData] = useState<Order[]>();
 
   useEffect(() => {
     const fetchAllOrders = async () => {

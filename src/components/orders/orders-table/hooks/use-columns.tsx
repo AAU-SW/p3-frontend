@@ -5,7 +5,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 import type { Order } from '@/types/order.ts';
 
 export const useColumns = () => {
-  const columns = useMemo<Array<ColumnDef<Order>>>(
+  const columns = useMemo<ColumnDef<Order>[]>(
     () => [
       {
         accessorKey: 'orderNumber',
