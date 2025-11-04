@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import type { FC } from 'react';
+import type { Customer } from '@/types/customer.ts';
 import {
   Select,
   SelectContent,
@@ -5,10 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select.tsx';
-import { type FC, useEffect, useState } from 'react';
 import { getCustomers } from '@/api/customer.ts';
-import type { Customer } from '@/types/customer.ts';
-import { toast } from 'sonner';
 
 interface CustomerSelectorProps {
   onChange: (customer: Customer) => void;
@@ -19,7 +20,7 @@ export const CustomerSelector: FC<CustomerSelectorProps> = ({
   value,
   onChange,
 }) => {
-  const [customersData, setCustomersData] = useState<Customer[]>([]);
+  const [customersData, setCustomersData] = useState<Array<Customer>>([]);
 
   useEffect(() => {
     const fetchAllCustomers = async () => {

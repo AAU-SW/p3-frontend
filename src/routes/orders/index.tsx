@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { OrdersTable } from '@/components/orders/orders-table/orders-table.tsx';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { getOrders } from '@/api/order.ts';
 import type { Order } from '@/types/order.ts';
+import { getOrders } from '@/api/order.ts';
+import { OrdersTable } from '@/components/orders/orders-table/orders-table.tsx';
 import Header from '@/components/header.tsx';
 
 export const Route = createFileRoute('/orders/')({
@@ -11,7 +11,7 @@ export const Route = createFileRoute('/orders/')({
 });
 
 function RouteComponent() {
-  const [ordersData, setOrdersData] = useState<Order[]>();
+  const [ordersData, setOrdersData] = useState<Array<Order>>();
 
   useEffect(() => {
     const fetchAllOrders = async () => {

@@ -1,11 +1,11 @@
 'use client';
 
-import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 import type { Order } from '@/types/order.ts';
 
 export const useColumns = () => {
-  const columns = useMemo<ColumnDef<Order>[]>(
+  const columns = useMemo<Array<ColumnDef<Order>>>(
     () => [
       {
         accessorKey: 'orderNumber',

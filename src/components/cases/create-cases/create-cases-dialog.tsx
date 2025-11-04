@@ -1,6 +1,11 @@
-import { createCase } from '@/api/cases.ts';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import type { FC, FormEvent } from 'react';
 import type { Case } from '@/types/case.ts';
-import { useState, type FC, type FormEvent, useEffect } from 'react';
+import type { Asset } from '@/types/asset.ts';
+import type { Customer } from '@/types/customer.ts';
+import type { User } from '@/types/user.ts';
+import { createCase } from '@/api/cases.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -15,13 +20,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Route } from '@/routes/assets/$id';
-import type { Asset } from '@/types/asset.ts';
 import { getOneAsset } from '@/api/assets.ts';
-import { toast } from 'sonner';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { CustomerSelector } from '@/components/customer-selector.tsx';
-import type { Customer } from '@/types/customer.ts';
-import type { User } from '@/types/user.ts';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);

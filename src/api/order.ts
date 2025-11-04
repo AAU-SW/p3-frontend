@@ -1,5 +1,5 @@
-import { api } from '@/api/axios.ts';
 import type { Order } from '@/types/order.ts';
+import { api } from '@/api/axios.ts';
 
 export async function getOrders() {
   const res = await api.get('/api/orders');

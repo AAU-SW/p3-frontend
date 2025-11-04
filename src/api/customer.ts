@@ -1,5 +1,5 @@
-import type { Case } from '@/types/case';
 import { api } from './axios';
+import type { Case } from '@/types/case';
 import type { Customer } from '@/types/customer.ts';
 
 export async function getCustomers() {

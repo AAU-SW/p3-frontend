@@ -1,10 +1,10 @@
 import type { FC } from 'react';
-import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import type { Case } from '@/types/case';
+import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useColumns } from '@/components/cases/cases-detail-table/use-columns.tsx';
 
 interface CasesTableProps {
-  data: Case[];
+  data: Array<Case>;
 }
 
 export const CasesDetailTable: FC<CasesTableProps> = ({ data }) => {

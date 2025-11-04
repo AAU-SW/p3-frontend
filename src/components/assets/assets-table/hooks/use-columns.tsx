@@ -1,12 +1,12 @@
 'use client';
 
-import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 import type { Asset } from '@/types/asset.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 
 export const useColumns = () => {
-  const columns = useMemo<ColumnDef<Asset>[]>(
+  const columns = useMemo<Array<ColumnDef<Asset>>>(
     () => [
       {
         accessorKey: 'id',

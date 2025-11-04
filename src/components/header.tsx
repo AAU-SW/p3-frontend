@@ -1,7 +1,7 @@
-import type { FC } from 'react';
 import * as React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from './ui/button';
+import type { FC } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/stores/auth.ts';
 
