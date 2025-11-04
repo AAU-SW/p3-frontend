@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { StatusBadge } from '@/components/status-badge';
 
 export const useColumns = () => {
-  const columns = useMemo<Array<ColumnDef<Case>>>(
+  const columns = useMemo<ColumnDef<Case>[]>(
     () => [
       {
         accessorKey: 'assignedTo',

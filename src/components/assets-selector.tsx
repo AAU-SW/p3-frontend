@@ -20,7 +20,7 @@ export const AssetsSelector: FC<AssetsSelectorProps> = ({
   value,
   onChange,
 }) => {
-  const [assetsData, setAssetsData] = useState<Array<Asset>>([]);
+  const [assetsData, setAssetsData] = useState<Asset[]>([]);
 
   useEffect(() => {
     const fetchAllAssets = async () => {

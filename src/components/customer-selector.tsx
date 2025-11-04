@@ -20,7 +20,7 @@ export const CustomerSelector: FC<CustomerSelectorProps> = ({
   value,
   onChange,
 }) => {
-  const [customersData, setCustomersData] = useState<Array<Customer>>([]);
+  const [customersData, setCustomersData] = useState<Customer[]>([]);
 
   useEffect(() => {
     const fetchAllCustomers = async () => {

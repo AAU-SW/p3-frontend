@@ -22,8 +22,8 @@ import {
 import { Button } from '@/components/ui/button.tsx';
 
 interface DataTableProps<TData, TValue> {
-  columns: Array<ColumnDef<TData, TValue>>;
-  data: Array<TData>;
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
   withSearchBar: boolean;
   withPagination?: boolean;
   onRowClick?: (rowData: TData) => void;

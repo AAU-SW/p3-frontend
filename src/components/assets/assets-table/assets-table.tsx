@@ -5,7 +5,7 @@ import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useColumns } from '@/components/assets/assets-table/hooks/use-columns.tsx';
 
 interface AssetsTableProps {
-  data: Array<Asset>;
+  data: Asset[];
 }
 
 export const AssetsTable: FC<AssetsTableProps> = ({ data }) => {
