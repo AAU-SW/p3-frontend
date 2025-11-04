@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
+import type { Case } from '@/types/case';
 import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
 import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
-import type { Case } from '@/types/case';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
