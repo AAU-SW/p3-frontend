@@ -1,5 +1,5 @@
-import type { Case } from '@/types/case';
 import { api } from './axios';
+import type { Case } from '@/types/case';
 
 export async function getCases() {
   const res = await api.get(`api/cases`);
@@ -12,7 +12,7 @@ export async function getOneCase(caseId: string) {
 }
 
 export async function getCasesByAssetId(assetId: string) {
-  const res = await api.get<Case[]>('/api/cases', {
+  const res = await api.get<Array<Case>>('/api/cases', {
     params: { assetId },
   });
   return res.data;

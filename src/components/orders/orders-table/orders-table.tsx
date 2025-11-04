@@ -1,11 +1,11 @@
-import type { FC } from 'react';
-import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useNavigate } from '@tanstack/react-router';
+import type { FC } from 'react';
 import type { Order } from '@/types/order.ts';
+import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useColumns } from '@/components/orders/orders-table/hooks/use-columns.tsx';
 
 interface OrdersTableProps {
-  data: Order[];
+  data: Array<Order>;
 }
 
 export const OrdersTable: FC<OrdersTableProps> = ({ data }) => {

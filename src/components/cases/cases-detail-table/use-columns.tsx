@@ -1,13 +1,13 @@
 'use client';
 
-import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import type { ColumnDef } from '@tanstack/react-table';
 import type { Case } from '@/types/case';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { StatusBadge } from '@/components/status-badge';
 
 export const useColumns = () => {
-  const columns = useMemo<ColumnDef<Case>[]>(
+  const columns = useMemo<Array<ColumnDef<Case>>>(
     () => [
       {
         accessorKey: 'assignedTo',

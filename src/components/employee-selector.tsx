@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import type { FC } from 'react';
+import type { User } from '@/types/user.ts';
+import { getUsers } from '@/api/user.ts';
 import {
   Select,
   SelectContent,
@@ -5,10 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select.tsx';
-import { type FC, useEffect, useState } from 'react';
-import { getUsers } from '@/api/user.ts';
-import { toast } from 'sonner';
-import type { User } from '@/types/user.ts';
 
 interface EmployeeSelectorProps {
   onChange: (user: User) => void;
@@ -19,7 +20,7 @@ export const EmployeeSelector: FC<EmployeeSelectorProps> = ({
   value,
   onChange,
 }) => {
-  const [usersData, setUsersData] = useState<User[]>([]);
+  const [usersData, setUsersData] = useState<Array<User>>([]);
 
   useEffect(() => {
     const fetchAllUsers = async () => {
