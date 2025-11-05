@@ -10,5 +10,12 @@ interface CasesTableProps {
 export const CasesDetailTable: FC<CasesTableProps> = ({ data }) => {
   const columns = useColumns();
 
-  return <DataTable columns={columns} data={data} withSearchBar={false} isLoading={Boolean(data.length)} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      withSearchBar={false}
+      isLoading={Boolean(data.length)}
+    />
+  );
 };
