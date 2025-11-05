@@ -1,4 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
+import type { FC } from 'react';
 import type { Asset } from '@/types/asset.ts';
 import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 import { useColumns } from '@/components/assets/assets-table/hooks/use-columns.tsx';
