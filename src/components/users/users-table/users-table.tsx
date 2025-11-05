@@ -10,5 +10,5 @@ interface UsersTableProps {
 export const UsersTable: FC<UsersTableProps> = ({ data }) => {
   const columns = useColumns();
 
-  return <DataTable columns={columns} data={data} withSearchBar={true} />;
+  return <DataTable columns={columns} data={data} withSearchBar={true} isLoading={Boolean(data.length)} />;
 };

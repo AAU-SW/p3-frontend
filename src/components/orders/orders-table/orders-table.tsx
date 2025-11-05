@@ -18,6 +18,7 @@ export const OrdersTable: FC<OrdersTableProps> = ({ data }) => {
       data={data}
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/orders/${rowData.id}` })}
+      isLoading={Boolean(data.length)}
     />
   );
 };

@@ -18,6 +18,7 @@ export const AssetsTable: FC<AssetsTableProps> = ({ data }) => {
       data={data}
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/assets/${rowData.id}` })}
+      isLoading={Boolean(data.length)}
     />
   );
 };

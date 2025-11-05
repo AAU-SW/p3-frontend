@@ -18,6 +18,7 @@ export const CasesTable: FC<CasesTableProps> = ({ data }) => {
       data={data}
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/cases/${rowData.id}` })}
+      isLoading={Boolean(data.length)}
     />
   );
 };
