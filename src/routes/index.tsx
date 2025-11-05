@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import Header from '@/components/header.tsx';
+import { Button } from '@/components/ui/button';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -10,7 +9,6 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <Header />
       <div>
         <Button onClick={() => toast.success('Welcome to the')}>
           Home Page

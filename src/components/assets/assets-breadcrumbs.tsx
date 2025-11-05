@@ -15,7 +15,7 @@ export const AssetsBreadCrumbs: FC<AssetsBreadCrumbsProps> = ({
   assetTitle,
 }) => {
   return (
-    <div className="border p-2 pl-4">
+    <div className=" p-2 pl-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
