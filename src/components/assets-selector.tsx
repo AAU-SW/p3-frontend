@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import type { FC } from 'react';
+import type { Asset } from '@/types/asset.ts';
 import {
   Select,
   SelectContent,
@@ -5,9 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select.tsx';
-import { type FC, useEffect, useState } from 'react';
-import { toast } from 'sonner';
-import type { Asset } from '@/types/asset.ts';
 import { getAssets } from '@/api/assets.ts';
 
 interface AssetsSelectorProps {

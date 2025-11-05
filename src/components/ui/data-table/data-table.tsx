@@ -8,6 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Input } from '@/components/ui/input.tsx';
 import {
@@ -19,11 +20,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button.tsx';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
-  columns: Array<ColumnDef<TData, TValue>>;
-  data: Array<TData>;
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
   withSearchBar: boolean;
   withPagination?: boolean;
   onRowClick?: (rowData: TData) => void;
@@ -55,7 +55,7 @@ export function DataTable<TData, TValue>({
       {withSearchBar ? (
         <div className="flex items-center py-4">
           <Input
-            value={globalFilter ?? ''}
+            value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
             placeholder="Search..."
             className="max-w-sm"

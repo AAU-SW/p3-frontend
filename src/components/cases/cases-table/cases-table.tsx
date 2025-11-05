@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import { DataTable } from '@/components/ui/data-table/data-table.tsx';
-import type { Case } from '@/types/case';
-import { useColumns } from '@/components/cases/cases-table/hooks/use-columns.tsx';
 import { useNavigate } from '@tanstack/react-router';
+import type { FC } from 'react';
+import type { Case } from '@/types/case';
+import { DataTable } from '@/components/ui/data-table/data-table.tsx';
+import { useColumns } from '@/components/cases/cases-table/hooks/use-columns.tsx';
 
 interface CasesTableProps {
   data: Case[];

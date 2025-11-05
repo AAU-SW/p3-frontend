@@ -1,7 +1,7 @@
 'use client';
 
-import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import type { ColumnDef } from '@tanstack/react-table';
 import type { Case } from '@/types/case';
 import { formatDate } from '@/utils/formatDate.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';

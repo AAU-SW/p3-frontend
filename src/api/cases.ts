@@ -1,5 +1,5 @@
-import type { Case } from '@/types/case';
 import { api } from './axios';
+import type { Case } from '@/types/case';
 
 export async function getCases() {
   const res = await api.get(`api/cases`);

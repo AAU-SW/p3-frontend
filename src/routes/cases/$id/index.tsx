@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import type { Case } from '@/types/case';
 import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
 import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
@@ -8,7 +9,7 @@ export const Route = createFileRoute('/cases/$id/')({
 });
 
 // Test case object caseData and informationData
-const caseData = [
+const caseData: Case[] = [
   // We should maybe create a nested structure within a case type that holds the information relevant for whatt needs to be done in a cse
   {
     status: 'ACTIVE',

@@ -1,8 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import type { Asset } from '@/types/asset.ts';
-import type { FC } from 'react';
-import { useColumns } from '@/components/assets/assets-table/hooks/use-columns.tsx';
 import { DataTable } from '@/components/ui/data-table/data-table.tsx';
+import { useColumns } from '@/components/assets/assets-table/hooks/use-columns.tsx';
 
 interface AssetsTableProps {
   data: Array<Asset>;

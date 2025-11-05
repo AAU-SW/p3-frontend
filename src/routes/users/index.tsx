@@ -8,7 +8,7 @@ export const Route = createFileRoute('/users/')({
 });
 
 function RouteComponent() {
-  const data: Array<User> = [
+  const data: User[] = [
     {
       name: 'Jonas',
       email: 'jonas@example.com',
