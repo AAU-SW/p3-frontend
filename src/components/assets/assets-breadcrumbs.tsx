@@ -15,11 +15,11 @@ export const AssetsBreadCrumbs: FC<AssetsBreadCrumbsProps> = ({
   assetTitle,
 }) => {
   return (
-    <div className=" p-2 pl-4">
+    <div className="border p-2 pl-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/assets">Assets</BreadcrumbLink>
+            <BreadcrumbLink to="/assets">Assets</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
