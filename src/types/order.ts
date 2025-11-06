@@ -1,6 +1,6 @@
 import type { Customer } from '@/types/customer.ts';
 
-export type OrderBaseSchema = {
+type OrderBaseSchema = {
   id: string;
   orderNumber: string;
   connectedCustomers: Customer;
