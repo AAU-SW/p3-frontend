@@ -33,10 +33,9 @@ export const CreateAssetDialog: FC = () => {
 
     // Get the image file if it exists
     const imageFile = formData.get('imageUpload') as File;
-    const hasImage = imageFile && imageFile.size > 0;
 
     try {
-      await createAsset(data, hasImage ? imageFile : undefined);
+      await createAsset(data, imageFile);
       form.reset();
       setOpen(false);
     } catch (error) {

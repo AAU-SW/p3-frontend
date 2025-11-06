@@ -1,4 +1,5 @@
-import { type FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { FC } from 'react';
 import type { Asset } from '@/types/asset';
 import { Badge } from '@/components/ui/badge.tsx';
 import {
@@ -20,13 +21,13 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
 
   useEffect(() => {
     const fetchUrl = async () => {
-      const url = await getImageUrlById(
+      const res = await getImageUrlById(
         data?.profilePicture?.id,
         data?.profilePicture?.fileExtension,
       );
-      setUrl(url);
+      setUrl(res);
     };
-    if (Boolean(data?.profilePicture)) {
+    if (data?.profilePicture) {
       fetchUrl();
     }
   }, [data]);
@@ -41,7 +42,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
     <Card className="w-full max-w shadow-md border border-gray-200 pt-0">
       <div className="relative">
         <img
-          src={url ?? null}
+          src={url}
           className="object-cover aspect-square rounded-2xl"
           alt={data?.name}
         />
