@@ -7,7 +7,7 @@ export type Asset = {
   createdAt: string;
   updatedAt: string;
   createdBy: User;
-  updatedBy: User;
+  updatedBy?: User;
   name: string;
   registrationNumber: string;
   status: 'ACTIVE' | 'CLOSED';
