@@ -1,12 +1,11 @@
-import {createFileRoute} from '@tanstack/react-router';
-import {CasesDetailTable} from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
-import {InformationBox} from '@/components/cases/cases-detail-table/information-box.tsx';
+import { createFileRoute } from '@tanstack/react-router';
+import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
+import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
 });
-
 
 const informationData = {
   name: 'Pillar A/S',
