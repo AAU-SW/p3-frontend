@@ -21,8 +21,8 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
   useEffect(() => {
     const fetchUrl = async () => {
       const url = await getImageUrlById(
-          data?.profilePicture?.id,
-          data?.profilePicture?.fileExtension,
+        data?.profilePicture?.id,
+        data?.profilePicture?.fileExtension,
       );
       setUrl(url);
     };
