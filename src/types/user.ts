@@ -5,3 +5,5 @@ export type User = {
   name: string;
   role: 'user' | 'admin';
 };
+
+export type CreateUser = Omit<User, 'id'>;
