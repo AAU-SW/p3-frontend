@@ -1,5 +1,5 @@
 import { api } from './axios';
-import type { Asset } from '@/types/asset.ts';
+import type { CreateAsset } from '@/types/asset.ts';
 
 export async function getAssets() {
   const res = await api.get('/api/assets');
@@ -11,7 +11,7 @@ export async function getOneAsset(assetId: string) {
   return res.data;
 }
 
-export async function createAsset(data: Asset, imageFile?: File) {
+export async function createAsset(data: CreateAsset, imageFile?: File) {
   // If there's an image file, send as multipart/form-data
   if (imageFile) {
     const formData = new FormData();

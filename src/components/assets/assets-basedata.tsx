@@ -89,7 +89,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
               Updated by
             </span>
             <span className="mb-4 font-medium">
-              {data?.updatedBy?.name ?? 'Unknown'}
+              {data?.updatedBy.name ?? 'Unknown'}
             </span>
           </div>
           <div className="col-span-1 flex flex-col">
