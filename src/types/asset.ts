@@ -1,7 +1,7 @@
 import type { User } from './user';
 import type { Order } from '@/types/order.ts';
 
-type AssetBaseSchema = {
+export type Asset = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -16,7 +16,7 @@ type AssetBaseSchema = {
   orderRef?: Order;
 };
 
-export type Asset = Omit<
-  AssetBaseSchema,
+export type CreateAsset = Omit<
+  Asset,
   'id' | 'createdAt' | 'createdBy' | 'updatedBy' | 'updatedAt'
 >;

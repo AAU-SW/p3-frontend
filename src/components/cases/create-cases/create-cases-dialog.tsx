@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
-import type { FC, FormEvent } from 'react';
-import type { Case } from '@/types/case.ts';
-import type { Asset } from '@/types/asset.ts';
-import type { Customer } from '@/types/customer.ts';
-import type { User } from '@/types/user.ts';
-import { createCase } from '@/api/cases.ts';
-import { Button } from '@/components/ui/button.tsx';
-import { Input } from '@/components/ui/input.tsx';
-import { Label } from '@/components/ui/label.tsx';
+import type {FC, FormEvent} from 'react';
+import {useEffect, useState} from 'react';
+import {toast} from 'sonner';
+import type {CreateCase} from '@/types/case.ts';
+import type {Asset} from '@/types/asset.ts';
+import type {Customer} from '@/types/customer.ts';
+import type {User} from '@/types/user.ts';
+import {createCase} from '@/api/cases.ts';
+import {Button} from '@/components/ui/button.tsx';
+import {Input} from '@/components/ui/input.tsx';
+import {Label} from '@/components/ui/label.tsx';
 import {
   Dialog,
   DialogClose,
@@ -19,10 +19,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Route } from '@/routes/assets/$id';
-import { getOneAsset } from '@/api/assets.ts';
-import { EmployeeSelector } from '@/components/employee-selector.tsx';
-import { CustomerSelector } from '@/components/customer-selector.tsx';
+import {Route} from '@/routes/assets/$id';
+import {getOneAsset} from '@/api/assets.ts';
+import {EmployeeSelector} from '@/components/employee-selector.tsx';
+import {CustomerSelector} from '@/components/customer-selector.tsx';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
@@ -57,7 +57,7 @@ export const CreateCasesDialog: FC = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const data: Case = {
+    const data: CreateCase = {
       title: formData.get('name') as string,
       status: 'ACTIVE',
       assetId: assetData,

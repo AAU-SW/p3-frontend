@@ -1,6 +1,6 @@
-type CustomerBaseSchema = {
+export type Customer = {
   id: string;
   name: string;
 };
 
-export type Customer = Omit<CustomerBaseSchema, 'id'>;
+export type CreateCustomer = Omit<Customer, 'id'>;

@@ -1,4 +1,4 @@
-type UserBaseSchema = {
+export type User = {
   id: string;
   email: string;
   encryptedPassword: string;
@@ -6,4 +6,4 @@ type UserBaseSchema = {
   role: 'user' | 'admin';
 };
 
-export type User = Omit<UserBaseSchema, 'id'>;
+export type CreateUser = Omit<User, 'id'>;

@@ -4,7 +4,7 @@ import type { User } from '@/types/user.ts';
 
 export type CaseStatus = 'ACTIVE' | 'CLOSED';
 
-type CaseBaseSchema = {
+export type Case = {
   id: string;
   createdAt: string;
   createdBy: User;
@@ -15,4 +15,4 @@ type CaseBaseSchema = {
   assetId?: Asset;
 };
 
-export type Case = Omit<CaseBaseSchema, 'id' | 'createdAt' | 'createdBy'>;
+export type CreateCase = Omit<Case, 'id' | 'createdAt' | 'createdBy'>;
