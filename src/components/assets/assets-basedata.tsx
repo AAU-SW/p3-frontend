@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 import type { Asset } from '@/types/asset';
 import { Badge } from '@/components/ui/badge.tsx';
@@ -9,12 +10,28 @@ import {
 } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { formatDate } from '@/utils/formatDate';
+import { getImageUrlById } from '@/api/file.ts';
 
 interface AssetsBaseDataProps {
   data: Asset | undefined;
 }
 
 export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    const fetchUrl = async () => {
+      const res = await getImageUrlById(
+        data?.profilePicture?.id,
+        data?.profilePicture?.fileExtension,
+      );
+      setUrl(res);
+    };
+    if (data?.profilePicture) {
+      fetchUrl();
+    }
+  }, [data]);
+
   const statusColor =
     data?.status === 'ACTIVE'
       ? 'bg-green-100 text-green-800 border-green-300'
@@ -25,7 +42,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
     <Card className="w-full max-w shadow-md border border-gray-200 pt-0">
       <div className="relative">
         <img
-          src=""
+          src={url}
           className="object-cover aspect-square rounded-2xl"
           alt={data?.name}
         />

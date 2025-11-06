@@ -31,8 +31,11 @@ export const CreateAssetDialog: FC = () => {
       status: 'ACTIVE', // default on creation
     };
 
+    // Get the image file if it exists
+    const imageFile = formData.get('imageUpload') as File;
+
     try {
-      await createAsset(data);
+      await createAsset(data, imageFile);
       form.reset();
       setOpen(false);
     } catch (error) {
@@ -71,6 +74,15 @@ export const CreateAssetDialog: FC = () => {
             <div className="grid gap-3">
               <Label htmlFor="description">Description</Label>
               <Input id="description" name="description" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="imageUpload">Upload image</Label>
+              <Input
+                type="file"
+                id="imageUpload"
+                name="imageUpload"
+                accept="image/*"
+              />
             </div>
           </div>
 

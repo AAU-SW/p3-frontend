@@ -11,7 +11,22 @@ export async function getOneAsset(assetId: string) {
   return res.data;
 }
 
-export async function createAsset(data: CreateAsset) {
+export async function createAsset(data: CreateAsset, imageFile?: File) {
+  // If there's an image file, send as multipart/form-data
+  if (imageFile) {
+    const formData = new FormData();
+    formData.append('asset', JSON.stringify(data));
+    formData.append('image', imageFile);
+
+    const res = await api.post(`/api/assets`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return res.data;
+  }
+
+  // Otherwise, send as regular JSON
   const res = await api.post(`/api/assets`, data);
   return res.data;
 }
