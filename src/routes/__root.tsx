@@ -2,6 +2,7 @@ import {
   Outlet,
   createRootRouteWithContext,
   redirect,
+  useLocation,
 } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
@@ -27,6 +28,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   },
   component: () => {
     const auth = useAuth();
+    const location = useLocation();
+    const isRoute = /^\/$/.test(location.pathname);
 
     return (
       <>
@@ -38,8 +41,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
             {/* Right side: header + content */}
             <div className="flex flex-col flex-1 bg-gray-50">
-              {/* Header (moves with sidebar) */}
-              {auth.user && <Header />}
+              {auth.user && isRoute && <Header />}
 
               {/* Main content */}
               <main className="flex-1 overflow-auto">
