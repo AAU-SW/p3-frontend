@@ -1,4 +1,9 @@
-import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
+import {
+  Link,
+  createFileRoute,
+  redirect,
+  useNavigate,
+} from '@tanstack/react-router';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
@@ -91,12 +96,9 @@ function Login() {
                 </Label>
               </div>
               <div>
-                <a
-                  href="/forgot-password"
-                  className="text-blue-600 hover:underline"
-                >
+                <Link to="/" className="text-blue-600 hover:underline">
                   Forgot password?
-                </a>
+                </Link>
               </div>
             </div>
 
