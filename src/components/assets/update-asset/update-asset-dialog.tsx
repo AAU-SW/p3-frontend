@@ -130,7 +130,7 @@ export const UpdateAssetDialog: FC<DetailHeaderProps> = ({ assetData }) => {
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Create Asset</Button>
+            <Button type="submit">Update Asset</Button>
           </DialogFooter>
         </form>
       </DialogContent>
