@@ -51,7 +51,7 @@ export const UpdateAssetDialog: FC<DetailHeaderProps> = ({ assetData }) => {
     e.preventDefault();
 
     try {
-      await updateAsset(assetData.id!, formData);
+      await updateAsset(assetData.id, formData);
       setOpen(false);
     } catch (error) {
       console.error('Faild to update asset: ', error);

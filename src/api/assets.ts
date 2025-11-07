@@ -31,7 +31,7 @@ export async function createAsset(data: CreateAsset, imageFile?: File) {
   return res.data;
 }
 
-export async function updateAsset(assetId: string, data: Asset) {
+export async function updateAsset(assetId: string, data: CreateAsset) {
   const res = await api.put(`/api/assets/${assetId}`, data);
   return res.data;
 }
