@@ -16,6 +16,11 @@ export async function createAsset(data: Asset) {
   return res.data;
 }
 
+export async function updateAsset(assetId: string, data: Asset) {
+  const res = await api.put(`/api/assets/${assetId}`, data);
+  return res.data;
+}
+
 export async function deleteOneAsset(assetId: string) {
   const res = await api.delete(`/api/assets/${assetId}`);
   return res.data;
