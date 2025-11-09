@@ -1,6 +1,6 @@
-import {createFileRoute} from '@tanstack/react-router';
-import {CasesDetailTable} from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
-import {InformationBox} from '@/components/cases/cases-detail-table/information-box.tsx';
+import { createFileRoute } from '@tanstack/react-router';
+import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
+import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
@@ -32,7 +32,7 @@ function RouteComponent() {
         {/* information box */}
         <div className="w-1/3">
           <InformationBox informationData={informationData} />
-          {/*<FileCard image={} />*/}
+          {/* <FileCard image={} />*/}
         </div>
       </div>
     </div>

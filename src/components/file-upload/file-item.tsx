@@ -1,5 +1,7 @@
 import { DownloadIcon, FileIcon } from 'lucide-react';
 
+import type { FC } from 'react';
+import type { Image } from '@/types/image.ts';
 import { Button } from '@/components/ui/button.tsx';
 import {
   Item,
@@ -9,8 +11,6 @@ import {
   ItemMedia,
   ItemTitle,
 } from '@/components/ui/item.tsx';
-import { type FC } from 'react';
-import type { Image } from '@/types/image.ts';
 import { getImageUrlById } from '@/api/file.ts';
 
 interface FileItemProps {
