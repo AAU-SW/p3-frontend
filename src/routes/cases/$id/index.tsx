@@ -1,7 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
-import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
+import {createFileRoute} from '@tanstack/react-router';
+import {CasesDetailTable} from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
+import {InformationBox} from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
+import {FileCard} from "@/components/file-upload/file-card.tsx";
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -15,6 +16,10 @@ const informationData = {
   information: 'Install tracker on truck',
 };
 
+const image = {
+  id: '690cf9765708e515b352fb69',
+  fileExtension: '.jpeg',
+};
 function RouteComponent() {
   return (
     <div className="w-full bg-[#F8FAFC] p-5">
@@ -32,6 +37,7 @@ function RouteComponent() {
         {/* information box */}
         <div className="w-1/3">
           <InformationBox informationData={informationData} />
+          <FileCard image={image} />
         </div>
       </div>
     </div>
