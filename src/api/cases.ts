@@ -32,3 +32,15 @@ export async function createCase(data: CreateCase) {
   const res = await api.post(`/api/cases`, data);
   return res.data;
 }
+
+export async function uploadCaseFile(data: string, file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const res = await api.post(`/api/cases/${data}/images`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return res.data;
+}
