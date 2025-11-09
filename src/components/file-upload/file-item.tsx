@@ -42,8 +42,8 @@ export const FileItem: FC<FileItemProps> = ({ image }) => {
           <FileIcon />
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>{image.id}</ItemTitle>
-          <ItemDescription>Uploaded: ...</ItemDescription>
+          <ItemTitle>{image.id + image.fileExtension}</ItemTitle>
+          <ItemDescription>{image.title}</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button size="sm" variant="outline" onClick={handleDownload}>

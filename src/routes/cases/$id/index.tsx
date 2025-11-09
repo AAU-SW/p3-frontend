@@ -19,6 +19,7 @@ const informationData = {
 const image = {
   id: '690cf9765708e515b352fb69',
   fileExtension: '.jpeg',
+  title: "Installation af sikkerhedspakke"
 };
 function RouteComponent() {
   return (
