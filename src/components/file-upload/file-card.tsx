@@ -33,6 +33,7 @@ export const FileCard: FC<FileCardProps> = ({ image }) => {
 
     try {
       await uploadCaseFile(params.id, file);
+      toast.success("File uploaded")
     } catch (error) {
       toast.error('Upload failed');
     }
