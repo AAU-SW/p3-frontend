@@ -20,6 +20,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button.tsx';
+import { Spinner } from '@/components/ui/spinner.tsx';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,9 +28,11 @@ interface DataTableProps<TData, TValue> {
   withSearchBar: boolean;
   withPagination?: boolean;
   onRowClick?: (rowData: TData) => void;
+  isLoading?: boolean;
 }
 
 export function DataTable<TData, TValue>({
+  isLoading,
   columns,
   data,
   withSearchBar,
@@ -52,7 +55,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      {withSearchBar ? (
+      {withSearchBar && (
         <div className="flex items-center py-4">
           <Input
             value={globalFilter}
@@ -61,34 +64,47 @@ export function DataTable<TData, TValue>({
             className="max-w-sm"
           />
         </div>
-      ) : null}
+      )}
 
       <div className="overflow-hidden rounded-xl border">
         <Table>
           <TableHeader className="bg-gray-100">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody>
-            {table.getRowModel().rows.length ? (
+            {!isLoading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-32 text-center"
+                >
+                  <div className="flex flex-col items-center justify-center space-y-2">
+                    <Spinner className="w-6 h-6 text-gray-500" />
+                    <span className="text-gray-500 text-sm">
+                      Loading data...
+                    </span>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  onClick={() => onRowClick?.(row.original)} // Handle click
+                  onClick={() => onRowClick?.(row.original)}
                   className="cursor-pointer hover:bg-gray-100 transition-colors h-12"
                   data-state={row.getIsSelected() && 'selected'}
                 >
@@ -106,9 +122,9 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-24 text-center text-gray-500"
                 >
-                  No results.
+                  No results found.
                 </TableCell>
               </TableRow>
             )}
