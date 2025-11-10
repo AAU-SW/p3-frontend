@@ -1,5 +1,6 @@
 import { api } from './axios';
 import type { Case, CreateCase } from '@/types/case';
+import type { Image } from '@/types/image.ts';
 
 export async function getCases() {
   const res = await api.get(`api/cases`);
@@ -41,6 +42,13 @@ export async function uploadCaseFile(data: string, file: File) {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+  });
+  return res.data;
+}
+
+export async function getAllCaseFilesById(caseId: string) {
+  const res = await api.get<Image[]>('/api/cases/files', {
+    params: { caseId },
   });
   return res.data;
 }
