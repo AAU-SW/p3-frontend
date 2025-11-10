@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
-import type { Asset } from '@/types/asset.ts';
+import type { CreateAsset } from '@/types/asset.ts';
 import { createAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
@@ -24,15 +24,18 @@ export const CreateAssetDialog: FC = () => {
     const form = e.currentTarget;
 
     const formData = new FormData(form);
-    const data: Asset = {
+    const data: CreateAsset = {
       name: formData.get('name') as string,
       registrationNumber: formData.get('registrationNumber') as string,
       description: formData.get('description') as string,
       status: 'ACTIVE', // default on creation
     };
 
+    // Get the image file if it exists
+    const imageFile = formData.get('imageUpload') as File;
+
     try {
-      await createAsset(data);
+      await createAsset(data, imageFile);
       form.reset();
       setOpen(false);
     } catch (error) {
@@ -71,6 +74,15 @@ export const CreateAssetDialog: FC = () => {
             <div className="grid gap-3">
               <Label htmlFor="description">Description</Label>
               <Input id="description" name="description" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="imageUpload">Upload image</Label>
+              <Input
+                type="file"
+                id="imageUpload"
+                name="imageUpload"
+                accept="image/*"
+              />
             </div>
           </div>
 

@@ -1,6 +1,12 @@
-import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
+import {
+  Link,
+  createFileRoute,
+  redirect,
+  useNavigate,
+} from '@tanstack/react-router';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { Label } from '@radix-ui/react-label';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
@@ -62,9 +68,9 @@ function Login() {
               onChange={handleChange}
             />
 
-            <label className="block mb-2 mt-4 ml-4 text-sm font-medium text-gray-900 dark:text-white">
+            <Label className="block mb-2 mt-4 ml-4 text-sm font-medium text-gray-900 dark:text-white">
               Password
-            </label>
+            </Label>
             <div className="relative">
               <Input
                 name="password"
@@ -85,17 +91,14 @@ function Login() {
             <div className="flex items-center justify-between mt-6 -mb-1 pb-6">
               <div className="flex items-center">
                 <Switch id="remember" />
-                <label className="ml-2" htmlFor="remember">
+                <Label className="ml-2" htmlFor="remember">
                   Remember me
-                </label>
+                </Label>
               </div>
               <div>
-                <a
-                  href="/forgot-password"
-                  className="text-blue-600 hover:underline"
-                >
+                <Link to="/" className="text-blue-600 hover:underline">
                   Forgot password?
-                </a>
+                </Link>
               </div>
             </div>
 

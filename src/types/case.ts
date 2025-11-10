@@ -5,11 +5,14 @@ import type { User } from '@/types/user.ts';
 export type CaseStatus = 'ACTIVE' | 'CLOSED';
 
 export type Case = {
-  id?: string;
+  id: string;
+  createdAt: string;
+  createdBy: User;
   title: string;
   assignedTo?: User;
   status: CaseStatus;
   connectedCustomer?: Customer;
-  createdAt?: string;
   assetId?: Asset;
 };
+
+export type CreateCase = Omit<Case, 'id' | 'createdAt' | 'createdBy'>;

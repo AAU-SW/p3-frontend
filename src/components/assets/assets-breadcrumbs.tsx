@@ -19,7 +19,7 @@ export const AssetsBreadCrumbs: FC<AssetsBreadCrumbsProps> = ({
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/assets">Assets</BreadcrumbLink>
+            <BreadcrumbLink to="/assets">Assets</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

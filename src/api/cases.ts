@@ -1,5 +1,5 @@
 import { api } from './axios';
-import type { Case } from '@/types/case';
+import type { Case, CreateCase } from '@/types/case';
 
 export async function getCases() {
   const res = await api.get(`api/cases`);
@@ -28,7 +28,7 @@ export async function deleteOneCase(caseId: string) {
   return res.data;
 }
 
-export async function createCase(data: Case) {
+export async function createCase(data: CreateCase) {
   const res = await api.post(`/api/cases`, data);
   return res.data;
 }

@@ -55,7 +55,7 @@ function RouteComponent() {
       <AssetsBreadCrumbs assetTitle={assetData?.name ?? ''} />
 
       <div className="container mx-auto">
-        <DetailHeader title={assetData?.name ?? ''} />
+        {assetData && <DetailHeader assetData={assetData} />}
 
         <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4">
           <div className="col-span-2">

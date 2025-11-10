@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import type { User } from '@/types/user';
 import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 import { Button } from '@/components/ui/button';
-import Header from '@/components/header.tsx';
 
 export const Route = createFileRoute('/users/')({
   component: RouteComponent,
@@ -28,7 +27,6 @@ function RouteComponent() {
 
   return (
     <>
-      <Header />
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Users </h1>
