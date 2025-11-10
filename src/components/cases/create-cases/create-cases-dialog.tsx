@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
-import type { Case } from '@/types/case.ts';
+import type { CreateCase } from '@/types/case.ts';
 import type { Asset } from '@/types/asset.ts';
 import type { Customer } from '@/types/customer.ts';
 import type { User } from '@/types/user.ts';
@@ -57,7 +57,7 @@ export const CreateCasesDialog: FC = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const data: Case = {
+    const data: CreateCase = {
       title: formData.get('name') as string,
       status: 'ACTIVE',
       assetId: assetData,

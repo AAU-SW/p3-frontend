@@ -2,6 +2,7 @@ import {
   Outlet,
   createRootRouteWithContext,
   redirect,
+  useLocation,
 } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
@@ -10,6 +11,7 @@ import { useAuth } from '@/stores/auth';
 import { SidebarProvider } from '@/components/ui/sidebar.tsx';
 import { Toaster } from '@/components/ui/sonner';
 import { AppSidebar } from '@/components/app-sidebar.tsx';
+import Header from '@/components/header';
 
 interface MyRouterContext {
   auth: AuthStore;
@@ -26,22 +28,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   },
   component: () => {
     const auth = useAuth();
+    const location = useLocation();
+    const isRoute = /^\/$/.test(location.pathname);
 
     return (
       <>
         <Toaster />
         <SidebarProvider>
           <div className="flex w-full h-screen">
-            {/* Left sidebar (only when logged in) */}
-            {auth.user && (
-              <>
-                <AppSidebar />
-              </>
-            )}
+            {/* Left sidebar */}
+            {auth.user && <AppSidebar />}
 
-            {/* Main content area */}
-            <div className="bg-gray-50 w-full">
-              <main>
+            {/* Right side: header + content */}
+            <div className="flex flex-col flex-1 bg-gray-50">
+              {auth.user && isRoute && <Header />}
+
+              {/* Main content */}
+              <main className="flex-1 overflow-auto">
                 <Outlet />
               </main>
             </div>
@@ -49,9 +52,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
           {import.meta.env.DEV && (
             <TanStackDevtools
-              config={{
-                position: 'bottom-right',
-              }}
+              config={{ position: 'bottom-right' }}
               plugins={[
                 {
                   name: 'Tanstack Router',

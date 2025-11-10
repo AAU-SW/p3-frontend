@@ -4,7 +4,6 @@ import { toast } from 'sonner';
 import type { Order } from '@/types/order.ts';
 import { getOrders } from '@/api/order.ts';
 import { OrdersTable } from '@/components/orders/orders-table/orders-table.tsx';
-import Header from '@/components/header.tsx';
 
 export const Route = createFileRoute('/orders/')({
   component: RouteComponent,
@@ -33,7 +32,6 @@ function RouteComponent() {
 
   return (
     <>
-      <Header />
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Orders </h1>
