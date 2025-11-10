@@ -11,14 +11,18 @@ export const Route = createFileRoute('/assets/')({
 
 function RouteComponent() {
   const [assetData, setAssetData] = useState<Asset[]>([]);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchAsset = async () => {
       try {
+        setLoading(false);
         const response = await getAssets();
         setAssetData(response);
       } catch (error) {
         console.error('Failed to fetch asset:', error);
+        setLoading(true);
+      } finally {
+        setLoading(true);
       }
     };
 
@@ -32,7 +36,7 @@ function RouteComponent() {
           <h1 className="text-4xl"> Assets </h1>
           <CreateAssetDialog />
         </div>
-        <AssetsTable data={assetData} />
+        <AssetsTable data={assetData} isLoading={loading} />
       </div>
     </>
   );

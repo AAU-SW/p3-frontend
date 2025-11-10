@@ -6,9 +6,10 @@ import { useColumns } from '@/components/orders/orders-table/hooks/use-columns.t
 
 interface OrdersTableProps {
   data: Order[];
+  isLoading: boolean;
 }
 
-export const OrdersTable: FC<OrdersTableProps> = ({ data }) => {
+export const OrdersTable: FC<OrdersTableProps> = ({ data, isLoading }) => {
   const columns = useColumns();
   const navigate = useNavigate({ from: '/orders/$id' });
 
@@ -18,6 +19,7 @@ export const OrdersTable: FC<OrdersTableProps> = ({ data }) => {
       data={data}
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/orders/${rowData.id}` })}
+      isLoading={isLoading}
     />
   );
 };
