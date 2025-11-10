@@ -6,9 +6,10 @@ import { useColumns } from '@/components/assets/assets-table/hooks/use-columns.t
 
 interface AssetsTableProps {
   data: Asset[];
+  isLoading: boolean;
 }
 
-export const AssetsTable: FC<AssetsTableProps> = ({ data }) => {
+export const AssetsTable: FC<AssetsTableProps> = ({ data, isLoading }) => {
   const navigate = useNavigate({ from: '/assets' });
   const columns = useColumns();
 
@@ -18,7 +19,7 @@ export const AssetsTable: FC<AssetsTableProps> = ({ data }) => {
       data={data}
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/assets/${rowData.id}` })}
-      isLoading={Boolean(data.length)}
+      isLoading={isLoading}
     />
   );
 };

@@ -15,7 +15,6 @@ export const UsersTable: FC<UsersTableProps> = ({ data }) => {
       columns={columns}
       data={data}
       withSearchBar={true}
-      isLoading={Boolean(data.length)}
     />
   );
 };

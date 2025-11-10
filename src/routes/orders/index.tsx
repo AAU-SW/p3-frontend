@@ -12,15 +12,19 @@ export const Route = createFileRoute('/orders/')({
 
 function RouteComponent() {
   const [ordersData, setOrdersData] = useState<Order[]>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchAllOrders = async () => {
       try {
+        setLoading(false);
         const response = await getOrders();
         setOrdersData(response);
       } catch (error) {
-        console.error(error);
         toast.error('Failed to fetch orders');
+        setLoading(true);
+      } finally {
+        setLoading(true);
       }
     };
 
@@ -34,7 +38,7 @@ function RouteComponent() {
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Orders </h1>
         </div>
-        <OrdersTable data={ordersData ?? []} />
+        <OrdersTable data={ordersData ?? []} isLoading={loading} />
       </div>
     </>
   );

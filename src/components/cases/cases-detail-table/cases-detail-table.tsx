@@ -15,7 +15,6 @@ export const CasesDetailTable: FC<CasesTableProps> = ({ data }) => {
       columns={columns}
       data={data}
       withSearchBar={false}
-      isLoading={Boolean(data.length)}
     />
   );
 };

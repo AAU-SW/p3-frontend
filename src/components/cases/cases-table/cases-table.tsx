@@ -6,9 +6,10 @@ import { useColumns } from '@/components/cases/cases-table/hooks/use-columns.tsx
 
 interface CasesTableProps {
   data: Case[];
+  isLoading: boolean;
 }
 
-export const CasesTable: FC<CasesTableProps> = ({ data }) => {
+export const CasesTable: FC<CasesTableProps> = ({ data, isLoading }) => {
   const columns = useColumns();
   const navigate = useNavigate({ from: '/cases/$id' });
 
@@ -18,7 +19,7 @@ export const CasesTable: FC<CasesTableProps> = ({ data }) => {
       data={data}
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/cases/${rowData.id}` })}
-      isLoading={Boolean(data.length)}
+      isLoading={isLoading}
     />
   );
 };
