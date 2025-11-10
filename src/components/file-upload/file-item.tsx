@@ -49,8 +49,8 @@ export const FileItem: FC<FileItemProps> = ({ image }) => {
             <FileIcon />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>{`${img.id}.${img.fileExtension}`}</ItemTitle>
-            <ItemDescription>{img.title}</ItemDescription>
+            <ItemTitle>{img.fileTitle}</ItemTitle>
+            <ItemDescription>{`${img.id}.${img.fileExtension}`}</ItemDescription>
           </ItemContent>
           <ItemActions>
             <Button
