@@ -3,6 +3,7 @@ import {
   CalendarRange,
   ChartBar,
   ChartNoAxesColumn,
+  Factory,
   FolderOpen,
   PanelLeftClose,
   PanelRightClose,
@@ -54,6 +55,11 @@ export function AppSidebar() {
       title: 'Employees',
       url: '/users',
       icon: Users,
+    },
+    {
+      title: 'Customers',
+      url: '/customers',
+      icon: Factory,
     },
     {
       title: 'Calendar',

@@ -13,10 +13,10 @@ export async function getOneAsset(assetId: string) {
 
 export async function createAsset(data: CreateAsset, imageFile?: File) {
   // If there's an image file, send as multipart/form-data
-  if (imageFile) {
+  if (imageFile?.size != 0) {
     const formData = new FormData();
     formData.append('asset', JSON.stringify(data));
-    formData.append('image', imageFile);
+    formData.append('image', imageFile as Blob);
 
     const res = await api.post(`/api/assets`, formData, {
       headers: {
