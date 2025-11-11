@@ -13,7 +13,7 @@ export async function getCustomerById(customerId: string) {
 }
 
 export async function createCustomer(data: CreateCustomer, imageFile?: File) {
-  if (imageFile?.size != 0) {
+  if (imageFile && imageFile.size != 0) {
     const formData = new FormData();
     formData.append('customer', JSON.stringify(data));
     formData.append('image', imageFile as Blob);

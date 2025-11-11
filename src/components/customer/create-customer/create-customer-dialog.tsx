@@ -60,7 +60,7 @@ export const CreateCustomerDialog: FC = () => {
               <Label htmlFor="name">Name</Label>
               <Input id="name" name="name" required />
             </div>
-            {/*             <div className="grid gap-3">
+            {/*  <div className="grid gap-3">
               <Label htmlFor="imageUpload">Upload Logo</Label>
               <Input
                 type="file"
