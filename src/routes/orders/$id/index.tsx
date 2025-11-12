@@ -72,8 +72,7 @@ export const Route = createFileRoute('/orders/$id/')({
 function RouteComponent() {
   const orderId = Route.useParams();
   const [orderData, setOrderData] = useState<Order>();
-  const [orderLoading, setOrderLoading] = useState(false);
-  const [noteLoading, setNoteLoading] = useState(false);
+  const [noteLoading] = useState(false);
 
   useEffect(() => {
     const fetchOneOrder = async () => {
