@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { toast } from "sonner";
 import type { Asset } from '@/types/asset.ts';
 import { getAssets } from '@/api/assets.ts';
 import { AssetsTable } from '@/components/assets/assets-table/assets-table.tsx';
@@ -19,7 +20,8 @@ function RouteComponent() {
         const response = await getAssets();
         setAssetData(response);
       } catch (error) {
-        console.error('Failed to fetch asset:', error);
+        console.error(error)
+        toast.error('Failed to fetch asset');
         setLoading(true);
       } finally {
         setLoading(true);

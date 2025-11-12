@@ -72,7 +72,8 @@ export const CreateCasesDialog: FC = () => {
       setSelectedCustomer(undefined);
       setOpen(false);
     } catch (error) {
-      console.error('Failed to create case:', error);
+      console.error(error)
+        toast.error('Failed to fetch asset');
     }
   };
 
