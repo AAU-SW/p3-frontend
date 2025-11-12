@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
 import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
+import { CommentSection } from '@/components/cases/case-comments/comment-section.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -27,6 +28,7 @@ function RouteComponent() {
             <h2 className="text-2xl">Task</h2>
           </div>
           <CasesDetailTable data={[]} />
+          <CommentSection data={[]} />
         </div>
 
         {/* information box */}
