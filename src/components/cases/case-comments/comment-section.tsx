@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
 import type { Comment, CreateComment } from '@/types/comment.ts';
 import { Textarea } from '@/components/ui/textarea.tsx';
@@ -31,7 +32,9 @@ export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
 
     try {
       await addComment(caseId.id, comment);
+      form.reset();
     } catch (error) {
+      toast.error('Failed to post comment.');
       console.error('Faild to post comment: ', error);
     }
   };
