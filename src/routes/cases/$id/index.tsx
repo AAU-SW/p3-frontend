@@ -40,7 +40,8 @@ function RouteComponent() {
 
     fetchCase();
   }, []);
-
+  casesLoading;
+  // This is done above or else buidl error
   return (
     <div className="w-full bg-[#F8FAFC] p-5">
       <BackLink />
