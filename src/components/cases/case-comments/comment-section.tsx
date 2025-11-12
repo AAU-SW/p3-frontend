@@ -1,4 +1,5 @@
-import { type FC, type FormEvent } from 'react';
+import type { FC, FormEvent } from 'react';
+import type { Comment, CreateComment } from '@/types/comment.ts';
 import { Textarea } from '@/components/ui/textarea.tsx';
 import {
   Card,
@@ -8,7 +9,6 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { CommentItem } from '@/components/cases/case-comments/comment-item.tsx';
-import type { Comment, CreateComment } from '@/types/comment.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { addComment } from '@/api/cases.ts';
 import { Route } from '@/routes/cases/$id';

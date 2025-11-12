@@ -1,11 +1,11 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
+import type { Comment } from '@/types/comment.ts';
 import {
   Item,
   ItemContent,
   ItemDescription,
   ItemTitle,
 } from '@/components/ui/item.tsx';
-import type { Comment } from '@/types/comment.ts';
 
 interface CommentItemProps {
   data: Comment[];
