@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, type FormEvent } from 'react';
 import { Textarea } from '@/components/ui/textarea.tsx';
 import {
   Card,
@@ -8,40 +8,33 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { CommentItem } from '@/components/cases/case-comments/comment-item.tsx';
-import type { Comment } from '@/types/comment.ts';
-import {Button} from "@/components/ui/button.tsx";
+import type { Comment, CreateComment } from '@/types/comment.ts';
+import { Button } from '@/components/ui/button.tsx';
+import { addComment } from '@/api/cases.ts';
+import { Route } from '@/routes/cases/$id';
 
 interface CommentSectionProps {
   data?: Comment[];
 }
 
 export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
-  const data1 = [
-    {
-      id: 'tes2',
-      comment: 'Lorem ipsum',
-      createdBy: 'Mathias Storgaard',
-      createdAt: '12/10/2024',
-    },
-    {
-      id: 'test',
-      comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas justo arcu, quis tristique leo commodo consequat. Curabitur a sollicitudin ligula. Nunc tincidunt sem non metus tincidunt, eu efficitur ex aliquam. Duis malesuada ligula et magna sagittis pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla at libero tortor. Vestibulum at sollicitudin lorem. Praesent mauris diam, ultricies et sollicitudin vitae, pretium sed sapien. ',
-      createdBy: 'Elias Razi',
-      createdAt: '12/10/2024',
-    },
-    {
-      id: 'tes2',
-      comment: 'Lorem ipsum',
-      createdBy: 'Mathias Storgaard',
-      createdAt: '12/10/2024',
-    },
-    {
-      id: 'test',
-      comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas justo arcu, quis tristique leo commodo consequat. Curabitur a sollicitudin ligula. Nunc tincidunt sem non metus tincidunt, eu efficitur ex aliquam. Duis malesuada ligula et magna sagittis pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla at libero tortor. Vestibulum at sollicitudin lorem. Praesent mauris diam, ultricies et sollicitudin vitae, pretium sed sapien. ',
-      createdBy: 'Elias Razi',
-      createdAt: '12/10/2024',
-    },
-  ];
+  const caseId = Route.useParams();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    const formData = new FormData(form);
+    const comment: CreateComment = {
+      comment: formData.get('comment') as string,
+    };
+
+    try {
+      await addComment(caseId.id, comment);
+    } catch (error) {
+      console.error('Faild to post comment: ', error);
+    }
+  };
 
   return (
     <Card>
@@ -49,13 +42,19 @@ export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
         <CardTitle>Comments</CardTitle>
       </CardHeader>
       <CardContent>
-        <CommentItem data={data1} />
+        <CommentItem data={data ?? []} />
       </CardContent>
       <CardFooter>
-        <form className="w-full">
-          <Textarea />
+        <form onSubmit={handleSubmit} className="w-full">
+          <Textarea
+            id="comment"
+            name="comment"
+            placeholder="Write a comment..."
+          />
           <div className="flex justify-end pt-2">
-            <Button variant="outline">Comment</Button>
+            <Button type="submit" variant="outline">
+              Comment
+            </Button>
           </div>
         </form>
       </CardFooter>

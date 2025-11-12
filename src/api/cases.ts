@@ -1,5 +1,6 @@
 import { api } from './axios';
 import type { Case, CreateCase } from '@/types/case';
+import type { Comment } from '@/types/comment.ts';
 
 export async function getCases() {
   const res = await api.get(`api/cases`);
@@ -30,5 +31,10 @@ export async function deleteOneCase(caseId: string) {
 
 export async function createCase(data: CreateCase) {
   const res = await api.post(`/api/cases`, data);
+  return res.data;
+}
+
+export async function addComment(caseId: string, data: Partial<Comment>) {
+  const res = await api.put<Comment>(`api/cases/${caseId}/comment`, data);
   return res.data;
 }

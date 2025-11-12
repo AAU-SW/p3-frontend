@@ -6,3 +6,5 @@ export type Comment = {
   createdBy: User;
   createdAt: string;
 };
+
+export type CreateComment = Omit<Comment, 'id' | 'createdAt' | 'createdBy'>;
