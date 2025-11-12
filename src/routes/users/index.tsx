@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import type { User } from '@/types/user';
 import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 import { Button } from '@/components/ui/button';
@@ -16,14 +17,15 @@ function RouteComponent() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        setLoading(false);
+        setLoading(true);
         const response = await getUsers();
         setUserData(response);
       } catch (error) {
         console.error('Failed to fetch users:', error);
-        setLoading(true);
+        toast.error('Failed to fetch users');
+        setLoading(false);
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
     fetchUsers();
