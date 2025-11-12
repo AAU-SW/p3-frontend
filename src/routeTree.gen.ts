@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users/index'
 import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as CasesIndexRouteImport } from './routes/cases/index'
 import { Route as CalendarIndexRouteImport } from './routes/calendar/index'
 import { Route as AssetsIndexRouteImport } from './routes/assets/index'
 import { Route as OrdersIdIndexRouteImport } from './routes/orders/$id/index'
@@ -37,6 +38,11 @@ const OrdersIndexRoute = OrdersIndexRouteImport.update({
 const LoginIndexRoute = LoginIndexRouteImport.update({
   id: '/login/',
   path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesIndexRoute = CasesIndexRouteImport.update({
+  id: '/cases/',
+  path: '/cases/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarIndexRoute = CalendarIndexRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assets': typeof AssetsIndexRoute
   '/calendar': typeof CalendarIndexRoute
+  '/cases': typeof CasesIndexRoute
   '/login': typeof LoginIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/users': typeof UsersIndexRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assets': typeof AssetsIndexRoute
   '/calendar': typeof CalendarIndexRoute
+  '/cases': typeof CasesIndexRoute
   '/login': typeof LoginIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/users': typeof UsersIndexRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assets/': typeof AssetsIndexRoute
   '/calendar/': typeof CalendarIndexRoute
+  '/cases/': typeof CasesIndexRoute
   '/login/': typeof LoginIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/users/': typeof UsersIndexRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assets'
     | '/calendar'
+    | '/cases'
     | '/login'
     | '/orders'
     | '/users'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assets'
     | '/calendar'
+    | '/cases'
     | '/login'
     | '/orders'
     | '/users'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assets/'
     | '/calendar/'
+    | '/cases/'
     | '/login/'
     | '/orders/'
     | '/users/'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssetsIndexRoute: typeof AssetsIndexRoute
   CalendarIndexRoute: typeof CalendarIndexRoute
+  CasesIndexRoute: typeof CasesIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases/': {
+      id: '/cases/'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calendar/': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssetsIndexRoute: AssetsIndexRoute,
   CalendarIndexRoute: CalendarIndexRoute,
+  CasesIndexRoute: CasesIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
