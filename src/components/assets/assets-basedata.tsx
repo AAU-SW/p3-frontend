@@ -59,51 +59,63 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
       </CardHeader>
 
       <CardContent>
-        <div className="grid grid-cols-2">
-          <div className="col-span-1 flex flex-col">
-            <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
-              Registration number
+        {/* Top Section */}
+        <div className="grid grid-cols-1 gap-4">
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
+              Registration no.
             </span>
-            <span className=" font-medium">
+            <span className="font-medium">
               {data?.registrationNumber ?? 'Unknown'}
             </span>
           </div>
-          <div className="col-span-1 flex flex-col">
-            <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
+          <Separator />
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
               ID
             </span>
-            <span className="mb-4 font-medium">{data?.id ?? 'Unknown'}</span>
+            <span className="font-medium">{data?.id ?? 'Unknown'}</span>
           </div>
         </div>
-        <Separator className="mt-2" />
-        <div className="grid grid-cols-2 mt-2">
-          <div className="col-span-1 flex flex-col">
-            <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
+
+        <Separator className="my-4" />
+
+        {/* Bottom Section (styled to match top) */}
+        <div className="grid grid-cols-1 gap-4">
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
               Created
             </span>
-            <span className="mb-4 font-medium">
-              {formatDate(data?.createdAt)}
-            </span>
+            <span className="font-medium">{formatDate(data?.createdAt)}</span>
+          </div>
 
-            <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
+          <Separator />
+
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
               Updated by
             </span>
-            <span className="mb-4 font-medium">
+            <span className="font-medium">
               {data?.updatedBy?.name ?? 'Unknown'}
             </span>
           </div>
-          <div className="col-span-1 flex flex-col">
-            <span className="text-xs mt-4 font-semibold text-gray-500 uppercase mb-2">
+
+          <Separator />
+
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
               Last updated
             </span>
-            <span className="mb-4 font-medium">
-              {formatDate(data?.updatedAt)}
-            </span>
+            <span className="font-medium">{formatDate(data?.updatedAt)}</span>
+          </div>
 
-            <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
+          <Separator />
+
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-semibold text-gray-500 uppercase">
               Last invoiced
             </span>
-            <span className="mb-4 font-medium">
+            <span className="font-medium">
               {data?.lastInvoiced ?? 'Unknown'}
             </span>
           </div>
