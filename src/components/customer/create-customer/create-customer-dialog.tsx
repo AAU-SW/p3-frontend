@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
 import type { CreateCustomer } from '@/types/customer';
 import { createCustomer } from '@/api/customer.ts';
@@ -34,8 +35,10 @@ export const CreateCustomerDialog: FC = () => {
     try {
       await createCustomer(data, imageFile);
       form.reset();
+      toast.success('Customer created successfully');
       setOpen(false);
     } catch (error) {
+      toast.error('Failed to create Customer');
       console.error('Failed to create Customer:', error);
     }
   };

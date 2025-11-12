@@ -16,16 +16,16 @@ function RouteComponent() {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        setLoading(false);
+        setLoading(true);
         const response = await getCustomers();
         setCustomers(response);
       } catch (error) {
         console.error('Failed to fetch customers:', error);
-        setLoading(true);
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
+
     fetchCustomers();
   }, []);
 

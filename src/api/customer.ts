@@ -1,6 +1,6 @@
 import { api } from './axios';
 import type { Case } from '@/types/case';
-import type { CreateCustomer } from '@/types/customer.ts';
+import type { CreateCustomer, Customer } from '@/types/customer.ts';
 
 export async function getCustomers() {
   const res = await api.get(`api/customers`);
@@ -8,7 +8,7 @@ export async function getCustomers() {
 }
 
 export async function getCustomerById(customerId: string) {
-  const res = await api.get(`api/customers/${customerId}`);
+  const res = await api.get<Customer[]>(`api/customers/${customerId}`);
   return res.data;
 }
 
@@ -34,7 +34,7 @@ export async function updateCustomerById(
   customerId: string,
   data: Partial<Case>,
 ) {
-  const res = await api.put(`api/customers/${customerId}`, data);
+  const res = await api.put<Customer[]>(`api/customers/${customerId}`, data);
   return res.data;
 }
 
