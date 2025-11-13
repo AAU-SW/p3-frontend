@@ -1,11 +1,13 @@
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import type { Case } from '@/types/case.ts';
 import type { Image } from '@/types/image.ts';
 import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
 import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
-import { getAllCaseFilesById } from '@/api/cases.ts';
+import { CommentSection } from '@/components/cases/case-comments/comment-section.tsx';
+import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
@@ -21,6 +23,27 @@ const informationData = {
 };
 
 function RouteComponent() {
+  const caseId = Route.useParams();
+  const [casesLoading, setCasesLoading] = useState(false);
+  const [caseData, setCaseData] = useState<Case>();
+  useEffect(() => {
+    const fetchCase = async () => {
+      try {
+        setCasesLoading(true);
+        const response = await getOneCase(caseId.id);
+        setCaseData(response);
+      } catch (error) {
+        setCasesLoading(false);
+        toast.error('Failed to fetch cases');
+      } finally {
+        setCasesLoading(false);
+      }
+    };
+
+    fetchCase();
+  }, []);
+  casesLoading;
+  // This is done above or else buidl error
   const params = useParams({ from: '/cases/$id/' });
   const [caseFiles, setCaseFiles] = useState<Image[]>([]);
   useEffect(() => {
@@ -48,6 +71,7 @@ function RouteComponent() {
             <h2 className="text-2xl">Task</h2>
           </div>
           <CasesDetailTable data={[]} />
+          <CommentSection data={caseData?.comments ?? []} />
         </div>
 
         {/* information box */}
