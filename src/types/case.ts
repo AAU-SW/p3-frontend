@@ -15,6 +15,7 @@ export type Case = {
   connectedCustomer?: Customer;
   assetId?: Asset;
   comments?: Comment[];
+  description?: string;
 };
 
 export type CreateCase = Omit<Case, 'id' | 'createdAt' | 'createdBy'>;
