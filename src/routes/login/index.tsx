@@ -44,7 +44,7 @@ function Login() {
       await auth.login(formData.email, formData.password);
       navigate({ to: '/' });
     } catch (error) {
-      console.error(error)
+      console.error(error);
       toast.error('Login failed');
     }
   };

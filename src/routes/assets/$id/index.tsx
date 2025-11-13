@@ -26,7 +26,7 @@ function RouteComponent() {
         const response = await getOneAsset(String(assetId.id));
         setAssetData(response);
       } catch (error) {
-        console.error(error)
+        console.error(error);
         toast.error('Failed to fetch asset:');
       }
     };
@@ -42,7 +42,7 @@ function RouteComponent() {
         setCasesData(response);
       } catch (error) {
         setCasesLoading(true);
-        console.error(error)
+        console.error(error);
         toast.error('Failed to fetch cases');
       } finally {
         setCasesLoading(true);

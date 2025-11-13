@@ -40,7 +40,7 @@ export const CreateAssetDialog: FC = () => {
       form.reset();
       setOpen(false);
     } catch (error) {
-      console.error(error)
+      console.error(error);
       toast.error('Failed to create asset:');
     }
   };

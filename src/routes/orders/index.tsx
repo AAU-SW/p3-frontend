@@ -20,7 +20,7 @@ function RouteComponent() {
         const response = await getOrders();
         setOrdersData(response);
       } catch (error) {
-        console.error(error)
+        console.error(error);
         toast.error('Failed to fetch orders');
         setLoading(true);
       } finally {
@@ -33,10 +33,10 @@ function RouteComponent() {
 
   return (
     <div className="w-full p-4 container mx-auto">
-        <div className="flex flex-row justify-between items-center mb-4">
-          <h1 className="text-4xl"> Orders </h1>
-        </div>
-        <OrdersTable data={ordersData ?? []} isLoading={loading} />
+      <div className="flex flex-row justify-between items-center mb-4">
+        <h1 className="text-4xl"> Orders </h1>
       </div>
+      <OrdersTable data={ordersData ?? []} isLoading={loading} />
+    </div>
   );
 }
