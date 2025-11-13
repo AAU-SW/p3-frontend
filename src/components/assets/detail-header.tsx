@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import type { FC } from 'react';
 import type { Asset } from '@/types/asset';
 import { CreateCasesDialog } from '@/components/cases/create-cases/create-cases-dialog.tsx';
@@ -9,8 +10,11 @@ interface DetailHeaderProps {
 }
 
 export const DetailHeader: FC<DetailHeaderProps> = ({ assetData }) => {
+  const navigate = useNavigate();
   const onDeleteSuccess = () => {
-    window.location.href = '/assets';
+    navigate({
+      to: '/assets',
+    });
   };
 
   return (
