@@ -32,7 +32,7 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({
-  isLoading,
+  isLoading = false,
   columns,
   data,
   withSearchBar,
@@ -86,7 +86,7 @@ export function DataTable<TData, TValue>({
           </TableHeader>
 
           <TableBody>
-            {!isLoading ? (
+            {isLoading ? (
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
