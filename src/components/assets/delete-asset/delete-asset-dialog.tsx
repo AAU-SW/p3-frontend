@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
-
 interface DeleteAssetDialogProps {
   assetId: string;
   onDeleteSuccess: () => void;
