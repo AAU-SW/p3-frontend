@@ -19,7 +19,8 @@ function RouteComponent() {
   const [assetData, setAssetData] = useState<Asset>();
   const [casesData, setCasesData] = useState<Case[]>();
 
-  const [casesLoading, setCasesLoading] = useState(false);
+  const [isCasesLoading, setIsCasesLoading] = useState(false);
+
   useEffect(() => {
     const fetchOneAsset = async () => {
       try {
@@ -37,7 +38,7 @@ function RouteComponent() {
   useEffect(() => {
     const fetchAllCases = async () => {
       try {
-        setCasesLoading(false);
+        setIsCasesLoading(true);
         const response = await getCasesByAssetId(assetId.id);
         setCasesData(response);
       } catch (error) {
@@ -45,7 +46,7 @@ function RouteComponent() {
         console.error(error);
         toast.error('Failed to fetch cases');
       } finally {
-        setCasesLoading(true);
+        setIsCasesLoading(false);
       }
     };
 
@@ -61,7 +62,7 @@ function RouteComponent() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4">
           <div className="col-span-2">
-            <CasesTable data={casesData ?? []} isLoading={casesLoading} />
+            <CasesTable data={casesData ?? []} isLoading={isCasesLoading} />
           </div>
           <div className="col-span-1 flex justify-end">
             <AssetsBaseData data={assetData} />

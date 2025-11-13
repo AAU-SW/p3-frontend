@@ -11,20 +11,19 @@ export const Route = createFileRoute('/orders/')({
 
 function RouteComponent() {
   const [ordersData, setOrdersData] = useState<Order[]>();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchAllOrders = async () => {
       try {
-        setLoading(false);
+        setIsLoading(true);
         const response = await getOrders();
         setOrdersData(response);
       } catch (error) {
         console.error(error);
         toast.error('Failed to fetch orders');
-        setLoading(true);
       } finally {
-        setLoading(true);
+        setIsLoading(false);
       }
     };
 
