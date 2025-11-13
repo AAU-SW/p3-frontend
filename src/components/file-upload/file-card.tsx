@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button.tsx';
 import { uploadCaseFile } from '@/api/cases.ts';
 
 interface FileCardProps {
-  image: Image;
+  image: Image[];
 }
 
 export const FileCard: FC<FileCardProps> = ({ image }) => {
