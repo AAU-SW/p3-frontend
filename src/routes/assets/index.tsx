@@ -23,7 +23,7 @@ function RouteComponent() {
         console.error(error);
         toast.error('Failed to fetch asset');
         setLoading(true);
-        console.error(error)
+        console.error(error);
         toast.error('Failed to fetch asset:');
       } finally {
         setIsLoading(false);
@@ -34,13 +34,12 @@ function RouteComponent() {
   }, []);
 
   return (
-<>
-  <div className="w-full p-4 container mx-auto">
-    <div className="flex flex-row justify-between items-center mb-4">
-      <h1 className="text-4xl">Assets</h1>
-      <CreateAssetDialog />
+    <div className="w-full p-4 container mx-auto">
+      <div className="flex flex-row justify-between items-center mb-4">
+        <h1 className="text-4xl">Assets</h1>
+        <CreateAssetDialog />
+      </div>
+      <AssetsTable data={assetData} isLoading={isLoading} />
     </div>
-    <AssetsTable data={assetData} isLoading={isLoading} />
-  </div>
-</>
-
+  );
+}
