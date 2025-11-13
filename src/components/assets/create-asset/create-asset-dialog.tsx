@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
 import type { CreateAsset } from '@/types/asset.ts';
@@ -15,7 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { toast } from 'sonner';
 
 export const CreateAssetDialog: FC = () => {
   const [open, setOpen] = useState(false);

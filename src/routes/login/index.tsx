@@ -7,11 +7,11 @@ import {
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
+import { toast } from 'sonner';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/stores/auth';
-import { toast } from 'sonner';
 
 export const Route = createFileRoute('/login/')({
   component: Login,
