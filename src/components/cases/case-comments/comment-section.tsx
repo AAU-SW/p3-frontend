@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card.tsx';
 import { CommentItem } from '@/components/cases/case-comments/comment-item.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { addComment } from '@/api/cases.ts';
+import { createComment } from '@/api/cases.ts';
 import { Route } from '@/routes/cases/$id';
 
 interface CommentSectionProps {
@@ -31,7 +31,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
     };
 
     try {
-      await addComment(caseId.id, comment);
+      await createComment(caseId.id, comment);
       form.reset();
     } catch (error) {
       toast.error('Failed to post comment.');

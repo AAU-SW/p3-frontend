@@ -34,7 +34,7 @@ export async function createCase(data: CreateCase) {
   return res.data;
 }
 
-export async function addComment(caseId: string, data: Partial<Comment>) {
+export async function createComment(caseId: string, data: Partial<Comment>) {
   const res = await api.put<Comment>(`api/cases/${caseId}/comment`, data);
   return res.data;
 }
