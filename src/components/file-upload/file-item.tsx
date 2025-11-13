@@ -12,6 +12,7 @@ import {
   ItemTitle,
 } from '@/components/ui/item.tsx';
 import { getImageUrlById } from '@/api/file.ts';
+import { toast } from 'sonner';
 
 interface FileItemProps {
   image: Image;
@@ -32,6 +33,7 @@ export const FileItem: FC<FileItemProps> = ({ image }) => {
       document.body.removeChild(link);
     } catch (error) {
       console.error('Download failed:', error);
+      toast.error('Download failed');
     }
   };
 
