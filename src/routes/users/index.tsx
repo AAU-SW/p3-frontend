@@ -1,29 +1,35 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import type { User } from '@/types/user';
 import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 import { Button } from '@/components/ui/button';
+import { getUsers } from '@/api/user';
 
 export const Route = createFileRoute('/users/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const data: User[] = [
-    {
-      name: 'Jonas',
-      email: 'jonas@example.com',
-      encryptedPassword: '*******',
-      role: 'admin',
-      id: '1',
-    },
-    {
-      name: 'Ryan',
-      email: 'ryan@example.com',
-      encryptedPassword: '*******',
-      role: 'user',
-      id: '2',
-    },
-  ];
+  const [userData, setUserData] = useState<User[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const response = await getUsers();
+        setUserData(response);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+        toast.error('Failed to fetch users');
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   return (
     <>
@@ -32,7 +38,7 @@ function RouteComponent() {
           <h1 className="text-4xl"> Users </h1>
           <Button variant="outline">Add User</Button>
         </div>
-        <UsersTable data={data} />
+        <UsersTable data={userData} isLoading={loading} />
       </div>
     </>
   );
