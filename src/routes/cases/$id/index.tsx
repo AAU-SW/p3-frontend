@@ -30,6 +30,7 @@ function RouteComponent() {
         setCaseFiles(response);
       } catch (error) {
         toast.error('Failed to fetch files');
+        console.error('Failed to fetch case files:', error);
       }
     };
 
