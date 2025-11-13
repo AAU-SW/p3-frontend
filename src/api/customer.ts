@@ -34,7 +34,7 @@ export async function updateCustomerById(
   customerId: string,
   data: Partial<Case>,
 ) {
-  const res = await api.put<Customer[]>(`api/customers/${customerId}`, data);
+  const res = await api.put<Customer>(`api/customers/${customerId}`, data);
   return res.data;
 }
 
