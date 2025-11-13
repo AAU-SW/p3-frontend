@@ -1,4 +1,4 @@
-import {createFileRoute, useParams} from '@tanstack/react-router';
+import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { Case } from '@/types/case.ts';
@@ -7,8 +7,7 @@ import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-de
 import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
 import { CommentSection } from '@/components/cases/case-comments/comment-section.tsx';
-import { getOneCase } from '@/api/cases.ts';
-import { getAllCaseFilesById } from '@/api/cases.ts';
+import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
