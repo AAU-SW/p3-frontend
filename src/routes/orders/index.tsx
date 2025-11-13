@@ -35,7 +35,7 @@ function RouteComponent() {
       <div className="flex flex-row justify-between items-center mb-4">
         <h1 className="text-4xl"> Orders </h1>
       </div>
-      <OrdersTable data={ordersData ?? []} isLoading={loading} />
+      <OrdersTable data={ordersData ?? []} isLoading={isLoading} />
     </div>
   );
 }
