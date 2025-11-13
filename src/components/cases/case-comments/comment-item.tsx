@@ -16,11 +16,11 @@ export const CommentItem: FC<CommentItemProps> = ({ data }) => {
   return (
     <div className="flex w-full flex-col gap-2">
       {data.map((comment) => (
-        <Item key={comment?.id} variant="outline">
+        <Item key={comment.id} variant="outline">
           <ItemContent>
             <ItemTitle className="w-full">
               <div className="w-full flex justify-between items-center font-light text-gray-500">
-                <span>{comment?.createdBy?.name}</span>
+                <span>{comment.createdBy.name}</span>
                 <span>{formatDate(comment.createdAt)}</span>
               </div>
             </ItemTitle>

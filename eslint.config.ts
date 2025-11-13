@@ -12,7 +12,6 @@ export default [
           default: 'array',
         },
       ],
-      '@typescript-eslint/no-unnecessary-condition': 'off',
     },
   },
 ];
