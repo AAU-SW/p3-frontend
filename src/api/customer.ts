@@ -8,7 +8,7 @@ export async function getCustomers() {
 }
 
 export async function getCustomerById(customerId: string) {
-  const res = await api.get<Customer[]>(`api/customers/${customerId}`);
+  const res = await api.get<Customer>(`api/customers/${customerId}`);
   return res.data;
 }
 
