@@ -1,11 +1,11 @@
-import type {FC} from 'react';
-import {useEffect, useState} from 'react';
-import type {Asset} from '@/types/asset';
-import {Badge} from '@/components/ui/badge.tsx';
-import {Card, CardContent,} from '@/components/ui/card.tsx';
-import {Separator} from '@/components/ui/separator.tsx';
-import {formatDate} from '@/utils/formatDate';
-import {getImageUrlById} from '@/api/file.ts';
+import { useEffect, useState } from 'react';
+import type { FC } from 'react';
+import type { Asset } from '@/types/asset';
+import { Badge } from '@/components/ui/badge.tsx';
+import { Card, CardContent } from '@/components/ui/card.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
+import { formatDate } from '@/utils/formatDate';
+import { getImageUrlById } from '@/api/file.ts';
 
 interface AssetsBaseDataProps {
   data: Asset | undefined;
