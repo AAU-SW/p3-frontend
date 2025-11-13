@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
 import type { Comment, CreateComment } from '@/types/comment.ts';
 import { Textarea } from '@/components/ui/textarea.tsx';
-import { Card, CardContent, CardFooter } from '@/components/ui/card.tsx';
+import {Card, CardContent, CardFooter, CardHeader, CardTitle} from '@/components/ui/card.tsx';
 import { CommentItem } from '@/components/cases/case-comments/comment-item.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { createComment } from '@/api/cases.ts';
@@ -35,6 +35,9 @@ export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
 
   return (
     <Card>
+      <CardHeader>
+        <CardTitle>Comments</CardTitle>
+      </CardHeader>
       <CardContent>
         <CommentItem data={data ?? []} />
       </CardContent>

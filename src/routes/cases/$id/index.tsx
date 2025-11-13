@@ -8,20 +8,11 @@ import BackLink from '@/components/backlink.tsx';
 import {CommentSection} from '@/components/cases/case-comments/comment-section.tsx';
 import {getAllCaseFilesById, getOneCase} from '@/api/cases.ts';
 import {FileCard} from '@/components/file-upload/file-card.tsx';
-import {Card, CardContent, CardHeader, CardTitle,} from '@/components/ui/card.tsx';
 import {CaseTask} from "@/components/cases/cases-detail-table/case-task.tsx";
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
 });
-
-const informationData = {
-  name: 'Pillar A/S',
-  adress: 'Knuds kirkevej, 3700 Rønne',
-  caseID: '12345678',
-  Customer: 'Pillar Construction',
-  information: 'Install tracker on truck',
-};
 
 function RouteComponent() {
   const caseId = Route.useParams();
@@ -60,30 +51,19 @@ function RouteComponent() {
 
     fetchAllCaseFiles();
   }, []);
-
+  console.log(caseData)
   return (
     <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
       <h1 className="text-4xl mb-4"> Tracking device installation </h1>
       <div className="flex justify-between gap-6">
-        {/* case table */}
-        <Card className="w-2/3 h-fit">
-          <CardHeader>
-            <CardTitle>Task</CardTitle>
-          </CardHeader>
-          <CardContent>
+        <div className="w-2/3 h-fit gap-6 flex flex-col">
             <CaseTask data={caseData} />
-          </CardContent>
-          <CardHeader>
-            <CardTitle>Comments</CardTitle>
-          </CardHeader>
-          <CardContent>
             <CommentSection data={caseData?.comments ?? []} />
-          </CardContent>
-        </Card>
+        </div>
 
         <div className="w-1/3 flex flex-col gap-6">
-          <InformationBox informationData={informationData} />
+          <InformationBox data={caseData} />
           <FileCard image={caseFiles} />
         </div>
       </div>
