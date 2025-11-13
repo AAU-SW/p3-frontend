@@ -32,14 +32,12 @@ function RouteComponent() {
   }, []);
 
   return (
-    <>
-      <div className="w-full p-4 container mx-auto">
+    <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Assets </h1>
           <CreateAssetDialog />
         </div>
         <AssetsTable data={assetData} isLoading={loading} />
       </div>
-    </>
   );
 }

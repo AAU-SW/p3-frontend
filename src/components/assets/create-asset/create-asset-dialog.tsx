@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { toast } from 'sonner';
 
 export const CreateAssetDialog: FC = () => {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,8 @@ export const CreateAssetDialog: FC = () => {
       form.reset();
       setOpen(false);
     } catch (error) {
-      console.error('Failed to create asset:', error);
+      console.error(error)
+      toast.error('Failed to create asset:');
     }
   };
 

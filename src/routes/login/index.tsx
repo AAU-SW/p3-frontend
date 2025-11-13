@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/stores/auth';
+import { toast } from 'sonner';
 
 export const Route = createFileRoute('/login/')({
   component: Login,
@@ -43,7 +44,8 @@ function Login() {
       await auth.login(formData.email, formData.password);
       navigate({ to: '/' });
     } catch (error) {
-      console.error('Login failed', error);
+      console.error(error)
+      toast.error('Login failed');
     }
   };
 
