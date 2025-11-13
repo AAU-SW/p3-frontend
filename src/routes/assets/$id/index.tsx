@@ -42,7 +42,7 @@ function RouteComponent() {
         const response = await getCasesByAssetId(assetId.id);
         setCasesData(response);
       } catch (error) {
-        setCasesLoading(true);
+        setIsCasesLoading(true);
         console.error(error);
         toast.error('Failed to fetch cases');
       } finally {
