@@ -1,7 +1,7 @@
+import { toast } from 'sonner';
 import { useState } from 'react';
 import type { ChangeEvent, FC, FormEvent } from 'react';
 import type { Asset } from '@/types/asset.ts';
-import { toast } from 'sonner';
 
 import { updateAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
