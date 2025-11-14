@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
 import type { CreateAsset } from '@/types/asset.ts';
@@ -40,7 +41,8 @@ export const CreateAssetDialog: FC = () => {
       form.reset();
       setOpen(false);
     } catch (error) {
-      console.error('Failed to create asset:', error);
+      console.error(error);
+      toast.error('Failed to create asset:');
     }
   };
 
