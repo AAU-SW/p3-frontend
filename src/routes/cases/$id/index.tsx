@@ -60,13 +60,13 @@ function RouteComponent() {
     <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
       <h1 className="text-4xl mb-4"> Tracking device installation </h1>
-      <div className="flex justify-between gap-6">
-        <div className="w-2/3 h-fit gap-6 flex flex-col">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 h-fit gap-6 flex flex-col">
           <CaseTask data={caseData} />
           <CommentSection data={caseData.comments ?? []} />
         </div>
 
-        <div className="w-1/3 flex flex-col gap-6">
+        <div className="col-span-1 flex flex-col gap-6">
           <InformationBox data={caseData} />
           <FileCard image={caseFiles} />
         </div>
