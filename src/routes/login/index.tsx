@@ -7,6 +7,7 @@ import {
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
+import { toast } from 'sonner';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
@@ -43,7 +44,8 @@ function Login() {
       await auth.login(formData.email, formData.password);
       navigate({ to: '/' });
     } catch (error) {
-      console.error('Login failed', error);
+      console.error(error);
+      toast.error('Login failed');
     }
   };
 

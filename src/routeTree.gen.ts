@@ -13,9 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as UsersIndexRouteImport } from './routes/users/index'
 import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as CustomersIndexRouteImport } from './routes/customers/index'
+import { Route as CasesIndexRouteImport } from './routes/cases/index'
 import { Route as CalendarIndexRouteImport } from './routes/calendar/index'
 import { Route as AssetsIndexRouteImport } from './routes/assets/index'
 import { Route as OrdersIdIndexRouteImport } from './routes/orders/$id/index'
+import { Route as CustomersIdIndexRouteImport } from './routes/customers/$id/index'
 import { Route as CasesIdIndexRouteImport } from './routes/cases/$id/index'
 import { Route as AssetsIdIndexRouteImport } from './routes/assets/$id/index'
 
@@ -39,6 +42,16 @@ const LoginIndexRoute = LoginIndexRouteImport.update({
   path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CustomersIndexRoute = CustomersIndexRouteImport.update({
+  id: '/customers/',
+  path: '/customers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesIndexRoute = CasesIndexRouteImport.update({
+  id: '/cases/',
+  path: '/cases/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalendarIndexRoute = CalendarIndexRouteImport.update({
   id: '/calendar/',
   path: '/calendar/',
@@ -52,6 +65,11 @@ const AssetsIndexRoute = AssetsIndexRouteImport.update({
 const OrdersIdIndexRoute = OrdersIdIndexRouteImport.update({
   id: '/orders/$id/',
   path: '/orders/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomersIdIndexRoute = CustomersIdIndexRouteImport.update({
+  id: '/customers/$id/',
+  path: '/customers/$id/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CasesIdIndexRoute = CasesIdIndexRouteImport.update({
@@ -69,22 +87,28 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assets': typeof AssetsIndexRoute
   '/calendar': typeof CalendarIndexRoute
+  '/cases': typeof CasesIndexRoute
+  '/customers': typeof CustomersIndexRoute
   '/login': typeof LoginIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/users': typeof UsersIndexRoute
   '/assets/$id': typeof AssetsIdIndexRoute
   '/cases/$id': typeof CasesIdIndexRoute
+  '/customers/$id': typeof CustomersIdIndexRoute
   '/orders/$id': typeof OrdersIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assets': typeof AssetsIndexRoute
   '/calendar': typeof CalendarIndexRoute
+  '/cases': typeof CasesIndexRoute
+  '/customers': typeof CustomersIndexRoute
   '/login': typeof LoginIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/users': typeof UsersIndexRoute
   '/assets/$id': typeof AssetsIdIndexRoute
   '/cases/$id': typeof CasesIdIndexRoute
+  '/customers/$id': typeof CustomersIdIndexRoute
   '/orders/$id': typeof OrdersIdIndexRoute
 }
 export interface FileRoutesById {
@@ -92,11 +116,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assets/': typeof AssetsIndexRoute
   '/calendar/': typeof CalendarIndexRoute
+  '/cases/': typeof CasesIndexRoute
+  '/customers/': typeof CustomersIndexRoute
   '/login/': typeof LoginIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/users/': typeof UsersIndexRoute
   '/assets/$id/': typeof AssetsIdIndexRoute
   '/cases/$id/': typeof CasesIdIndexRoute
+  '/customers/$id/': typeof CustomersIdIndexRoute
   '/orders/$id/': typeof OrdersIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -105,33 +132,42 @@ export interface FileRouteTypes {
     | '/'
     | '/assets'
     | '/calendar'
+    | '/cases'
+    | '/customers'
     | '/login'
     | '/orders'
     | '/users'
     | '/assets/$id'
     | '/cases/$id'
+    | '/customers/$id'
     | '/orders/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/assets'
     | '/calendar'
+    | '/cases'
+    | '/customers'
     | '/login'
     | '/orders'
     | '/users'
     | '/assets/$id'
     | '/cases/$id'
+    | '/customers/$id'
     | '/orders/$id'
   id:
     | '__root__'
     | '/'
     | '/assets/'
     | '/calendar/'
+    | '/cases/'
+    | '/customers/'
     | '/login/'
     | '/orders/'
     | '/users/'
     | '/assets/$id/'
     | '/cases/$id/'
+    | '/customers/$id/'
     | '/orders/$id/'
   fileRoutesById: FileRoutesById
 }
@@ -139,11 +175,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssetsIndexRoute: typeof AssetsIndexRoute
   CalendarIndexRoute: typeof CalendarIndexRoute
+  CasesIndexRoute: typeof CasesIndexRoute
+  CustomersIndexRoute: typeof CustomersIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
   UsersIndexRoute: typeof UsersIndexRoute
   AssetsIdIndexRoute: typeof AssetsIdIndexRoute
   CasesIdIndexRoute: typeof CasesIdIndexRoute
+  CustomersIdIndexRoute: typeof CustomersIdIndexRoute
   OrdersIdIndexRoute: typeof OrdersIdIndexRoute
 }
 
@@ -177,6 +216,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/customers/': {
+      id: '/customers/'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof CustomersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases/': {
+      id: '/cases/'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calendar/': {
       id: '/calendar/'
       path: '/calendar'
@@ -196,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/orders/$id'
       fullPath: '/orders/$id'
       preLoaderRoute: typeof OrdersIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customers/$id/': {
+      id: '/customers/$id/'
+      path: '/customers/$id'
+      fullPath: '/customers/$id'
+      preLoaderRoute: typeof CustomersIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cases/$id/': {
@@ -219,11 +279,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssetsIndexRoute: AssetsIndexRoute,
   CalendarIndexRoute: CalendarIndexRoute,
+  CasesIndexRoute: CasesIndexRoute,
+  CustomersIndexRoute: CustomersIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
   UsersIndexRoute: UsersIndexRoute,
   AssetsIdIndexRoute: AssetsIdIndexRoute,
   CasesIdIndexRoute: CasesIdIndexRoute,
+  CustomersIdIndexRoute: CustomersIdIndexRoute,
   OrdersIdIndexRoute: OrdersIdIndexRoute,
 }
 export const routeTree = rootRouteImport

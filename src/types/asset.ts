@@ -7,13 +7,13 @@ export type Asset = {
   createdAt: string;
   updatedAt: string;
   createdBy: User;
-  updatedBy?: User;
+  updatedBy?: User; // Is not supported in the backend?
   name: string;
   registrationNumber: string;
   status: 'ACTIVE' | 'CLOSED';
   description: string;
   deletedAt?: string; // Are we going to implement this?
-  lastInvoiced?: string;
+  lastInvoiced?: string; // TODO: Implement a simple button that tracks last date of invoice.
   orderRef?: Order;
   profilePicture?: Image;
 };
