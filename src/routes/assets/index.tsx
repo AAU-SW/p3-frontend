@@ -23,8 +23,6 @@ function RouteComponent() {
         console.error(error);
         toast.error('Failed to fetch asset');
         setIsLoading(true);
-        console.error(error);
-        toast.error('Failed to fetch asset:');
       } finally {
         setIsLoading(false);
       }
