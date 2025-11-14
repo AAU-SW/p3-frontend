@@ -11,6 +11,11 @@ export async function getOneAsset(assetId: string) {
   return res.data;
 }
 
+export async function getAssetsByOrderId(orderId: string) {
+  const res = await api.get(`/api/assets/order/${orderId}`);
+  return res.data;
+}
+
 export async function createAsset(data: CreateAsset, imageFile?: File) {
   // If there's an image file, send as multipart/form-data
   if (imageFile && imageFile.size != 0) {
