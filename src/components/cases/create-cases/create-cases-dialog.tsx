@@ -23,6 +23,7 @@ import { Route } from '@/routes/assets/$id';
 import { getOneAsset } from '@/api/assets.ts';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { CustomerSelector } from '@/components/customer-selector.tsx';
+import { Textarea } from '@/components/ui/textarea.tsx';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
@@ -63,6 +64,8 @@ export const CreateCasesDialog: FC = () => {
       assetId: assetData,
       assignedTo: selectedEmployee,
       connectedCustomer: selectedCustomer,
+      description: formData.get('description') as string,
+      location: formData.get('location') as string,
     };
 
     try {
@@ -97,14 +100,30 @@ export const CreateCasesDialog: FC = () => {
               <Input id="name" name="name" required />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="description">Customer</Label>
+              <Label htmlFor="description">Task description</Label>
+              <Textarea
+                id="description"
+                name="description"
+                placeholder="Write a description of the task..."
+              />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="location">Location</Label>
+              <Input
+                id="location"
+                name="location"
+                placeholder="Write a location for the task..."
+              />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="customer">Customer</Label>
               <CustomerSelector
                 value={selectedCustomer}
                 onChange={setSelectedCustomer}
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="description">Employee</Label>
+              <Label htmlFor="employee">Employee</Label>
               <EmployeeSelector
                 value={selectedEmployee}
                 onChange={setSelectedEmployee}
