@@ -36,7 +36,7 @@ export async function updateAsset(assetId: string, data: CreateAsset) {
   return res.data;
 }
 
-export async function deleteOneAsset(assetId: string) {
+export async function deleteAssetById(assetId: string) {
   const res = await api.delete(`/api/assets/${assetId}`);
   return res.data;
 }
