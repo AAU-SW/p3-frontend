@@ -3,24 +3,16 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { Case } from '@/types/case.ts';
 import type { Image } from '@/types/image.ts';
-import { CasesDetailTable } from '@/components/cases/cases-detail-table/cases-detail-table.tsx';
-import { InformationBox } from '@/components/cases/cases-detail-table/information-box.tsx';
+import { InformationBox } from '@/components/cases/cases-detail/information-box.tsx';
 import BackLink from '@/components/backlink.tsx';
-import { CommentSection } from '@/components/cases/case-comments/comment-section.tsx';
+import { CommentSection } from '@/components/cases/cases-detail/case-comments/comment-section.tsx';
 import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
+import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
 });
-
-const informationData = {
-  name: 'Pillar A/S',
-  adress: 'Knuds kirkevej, 3700 Rønne',
-  caseID: '12345678',
-  Customer: 'Pillar Construction',
-  information: 'Install tracker on truck',
-};
 
 function RouteComponent() {
   const caseId = Route.useParams();
@@ -60,23 +52,22 @@ function RouteComponent() {
     fetchAllCaseFiles();
   }, []);
 
+  if (!caseData) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="w-full bg-[#F8FAFC] p-5">
+    <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
       <h1 className="text-4xl mb-4"> Tracking device installation </h1>
-      <div className="flex justify-between gap-4">
-        {/* case table */}
-        <div className="w-2/3">
-          <div className="bg-[#01204B] text-white p-4 rounded-t-lg mb-2">
-            <h2 className="text-2xl">Task</h2>
-          </div>
-          <CasesDetailTable data={[]} />
-          <CommentSection data={caseData?.comments ?? []} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 h-fit gap-6 flex flex-col">
+          <CaseTask data={caseData} />
+          <CommentSection data={caseData.comments ?? []} />
         </div>
 
-        {/* information box */}
-        <div className="w-1/3">
-          <InformationBox informationData={informationData} />
+        <div className="col-span-1 flex flex-col gap-6">
+          <InformationBox data={caseData} />
           <FileCard image={caseFiles} />
         </div>
       </div>
