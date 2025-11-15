@@ -1,12 +1,11 @@
-import { toast } from 'sonner';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
-import type { CreateAsset } from '@/types/asset.ts';
-import { createAsset } from '@/api/assets.ts';
+import type { CreateCustomer } from '@/types/customer';
+import { createCustomer } from '@/api/customer.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
-import { Textarea } from '@/components/ui/textarea';
 import {
   Dialog,
   DialogClose,
@@ -18,7 +17,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-export const CreateAssetDialog: FC = () => {
+export const CreateCustomerDialog: FC = () => {
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -26,38 +25,36 @@ export const CreateAssetDialog: FC = () => {
     const form = e.currentTarget;
 
     const formData = new FormData(form);
-    const data: CreateAsset = {
+    const data: CreateCustomer = {
       name: formData.get('name') as string,
-      registrationNumber: formData.get('registrationNumber') as string,
-      description: formData.get('description') as string,
-      status: 'ACTIVE', // default on creation
     };
 
     // Get the image file if it exists
     const imageFile = formData.get('imageUpload') as File;
 
     try {
-      await createAsset(data, imageFile);
+      await createCustomer(data, imageFile);
       form.reset();
+      toast.success('Customer created successfully');
       setOpen(false);
     } catch (error) {
-      console.error(error);
-      toast.error('Failed to create asset:');
+      toast.error('Failed to create Customer');
+      console.error('Failed to create Customer:', error);
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Asset</Button>
+        <Button variant="outline">Add Customer</Button>
       </DialogTrigger>
 
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Add Asset</DialogTitle>
+            <DialogTitle>Add Customer</DialogTitle>
             <DialogDescription>
-              To create an asset you must fill out the following form.
+              To create an Customer you must fill out the following form.
             </DialogDescription>
           </DialogHeader>
 
@@ -66,27 +63,15 @@ export const CreateAssetDialog: FC = () => {
               <Label htmlFor="name">Name</Label>
               <Input id="name" name="name" required />
             </div>
-            <div className="grid gap-3">
-              <Label htmlFor="registrationNumber">Registration number</Label>
-              <Input
-                id="registrationNumber"
-                name="registrationNumber"
-                required
-              />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="description">Description</Label>
-              <Textarea id="description" name="description" />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="imageUpload">Upload image</Label>
+            {/*  <div className="grid gap-3">
+              <Label htmlFor="imageUpload">Upload Logo</Label>
               <Input
                 type="file"
                 id="imageUpload"
                 name="imageUpload"
                 accept="image/*"
               />
-            </div>
+            </div> */}
           </div>
 
           <DialogFooter className="sm:justify-start md:justify-between pt-2">
@@ -95,7 +80,7 @@ export const CreateAssetDialog: FC = () => {
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Create Asset</Button>
+            <Button type="submit">Create Customer</Button>
           </DialogFooter>
         </form>
       </DialogContent>

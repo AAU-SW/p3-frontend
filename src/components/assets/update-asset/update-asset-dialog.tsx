@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import { useState } from 'react';
 import type { ChangeEvent, FC, FormEvent } from 'react';
 import type { Asset } from '@/types/asset.ts';
@@ -54,7 +55,8 @@ export const UpdateAssetDialog: FC<DetailHeaderProps> = ({ assetData }) => {
       await updateAsset(assetData.id, formData);
       setOpen(false);
     } catch (error) {
-      console.error('Faild to update asset: ', error);
+      console.error(error);
+      toast.error('Faild to update asset: ');
     }
   };
 
