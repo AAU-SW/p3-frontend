@@ -23,7 +23,6 @@ function RouteComponent() {
       } catch (error) {
         console.error('Failed to fetch users:', error);
         toast.error('Failed to fetch users');
-        setLoading(false);
       } finally {
         setLoading(false);
       }
