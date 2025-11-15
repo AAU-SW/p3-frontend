@@ -10,7 +10,6 @@ interface InformationBoxProps {
 }
 
 export const InformationBox: FC<InformationBoxProps> = ({ data }) => {
-  console.log(data);
   return (
     <Card>
       <CardHeader>
