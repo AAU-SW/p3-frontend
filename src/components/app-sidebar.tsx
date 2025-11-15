@@ -1,6 +1,6 @@
 import { Link, useRouterState } from '@tanstack/react-router';
 import {
-  CalendarRange,
+  // CalendarRange,
   ChartBar,
   ChartNoAxesColumn,
   Factory,
@@ -61,11 +61,11 @@ export function AppSidebar() {
       url: '/customers',
       icon: Factory,
     },
-    {
-      title: 'Calendar',
-      url: '/calendar',
-      icon: CalendarRange,
-    },
+    // {
+    //   title: 'Calendar',
+    //   url: '/calendar',
+    //   icon: CalendarRange,
+    // },
   ];
   return (
     <Sidebar collapsible="icon">
