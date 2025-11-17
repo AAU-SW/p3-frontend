@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { User } from '@/types/user.ts';
+import { Button } from '@/components/ui/button';
 
 export const useColumns = () => {
   const columns = useMemo<ColumnDef<User>[]>(
@@ -22,6 +23,11 @@ export const useColumns = () => {
       {
         accessorKey: 'role',
         header: 'Role',
+      },
+      {
+        id: 'deleteUser',
+        header: '',
+        cell: () => <Button variant="outline">Delete</Button>,
       },
     ],
     [],
