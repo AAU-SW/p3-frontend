@@ -67,14 +67,15 @@ function RouteComponent() {
   return (
     <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
-      <h1 className="text-4xl mb-4">
-        {' '}
-        Tracking device installation
-        <DeleteCaseDialog
-          caseId={caseData.id}
-          onDeleteSuccess={onDeleteSuccess}
-        />
-      </h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-4xl">Tracking device installation</h1>
+        <div>
+          <DeleteCaseDialog
+            caseId={caseData.id}
+            onDeleteSuccess={onDeleteSuccess}
+          />
+        </div>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 h-fit gap-6 flex flex-col">
           <CaseTask data={caseData} />
