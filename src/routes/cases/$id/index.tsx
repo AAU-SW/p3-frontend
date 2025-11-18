@@ -1,6 +1,9 @@
-import { useNavigate } from '@tanstack/react-router';
-import { createFileRoute, useParams } from '@tanstack/react-router';
-import { useEffect, useState, useCallback } from 'react';
+import {
+  createFileRoute,
+  useParams,
+  useNavigate,
+} from '@tanstack/react-router';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { Case } from '@/types/case.ts';
 import type { Image } from '@/types/image.ts';
