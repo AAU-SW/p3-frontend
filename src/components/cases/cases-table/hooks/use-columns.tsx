@@ -6,11 +6,12 @@ import type { Case } from '@/types/case';
 import { formatDate } from '@/utils/formatDate.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 import { Button } from '@/components/ui/button';
+import { Edit } from 'lucide-react';
 
 export const useColumns = ({
   onEdit,
 }: {
-  onEdit: (caseItem: Case) => void;
+  onEdit?: (caseItem: Case) => void;
 }) => {
   const columns = useMemo<ColumnDef<Case>[]>(
     () => [
@@ -53,17 +54,17 @@ export const useColumns = ({
         header: '',
         cell: ({ row }) => {
           const caseItem = row.original;
-          return (
+          return onEdit!! ? (
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={(e) => {
                 e.stopPropagation();
                 onEdit(caseItem);
               }}
             >
-              Edit
+              <Edit size={16} />
             </Button>
-          );
+          ) : undefined;
         },
       },
     ],
