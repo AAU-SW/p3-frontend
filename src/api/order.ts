@@ -1,4 +1,4 @@
-import type { Order } from '@/types/order.ts';
+import type { CreateOrder } from '@/types/order.ts';
 import { api } from '@/api/axios.ts';
 
 export async function getOrders() {
@@ -6,7 +6,8 @@ export async function getOrders() {
   return res.data;
 }
 
-export async function createOrder(data: Order) {
+export async function createOrder(data: CreateOrder) {
   const res = await api.post(`/api/orders`, data);
   return res.data;
 }
+
