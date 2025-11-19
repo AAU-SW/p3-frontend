@@ -1,9 +1,9 @@
 export type User = {
   id: string;
   email: string;
-  encryptedPassword: string;
+  password: string;
   name: string;
-  role: 'user' | 'admin';
+  role: 'USER' | 'ADMIN';
 };
 
 export type CreateUser = Omit<User, 'id'>;
