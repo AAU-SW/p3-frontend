@@ -16,9 +16,10 @@ import { Route } from '@/routes/cases/$id';
 
 interface CommentSectionProps {
   data?: Comment[];
+  onCommentCreated?: () => void;
 }
 
-export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
+export const CommentSection: FC<CommentSectionProps> = ({ data, onCommentCreated }) => {
   const caseId = Route.useParams();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -33,6 +34,7 @@ export const CommentSection: FC<CommentSectionProps> = ({ data }) => {
     try {
       await createComment(caseId.id, comment);
       form.reset();
+      onCommentCreated?.();
     } catch (error) {
       toast.error('Failed to post comment.');
       console.error('Faild to post comment: ', error);
