@@ -2,9 +2,9 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { User } from '@/types/user';
-import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 import { getUsers } from '@/api/user';
 import { CreateUserDialog } from '@/components/users/create-user/create-user-dialog';
+import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 
 export const Route = createFileRoute('/users/')({
   component: RouteComponent,
@@ -13,6 +13,10 @@ export const Route = createFileRoute('/users/')({
 function RouteComponent() {
   const [userData, setUserData] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const handleUserCreation = (newUser: User) => {
+    setUserData((prevUsers) => [...prevUsers, newUser]);
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -35,11 +39,7 @@ function RouteComponent() {
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Users </h1>
-          <CreateUserDialog
-            onUserCreation={(newUser) =>
-              setUserData((prev) => [...prev, newUser])
-            }
-          />
+          <CreateUserDialog onUserCreation={handleUserCreation} />
         </div>
         <UsersTable data={userData} isLoading={loading} />
       </div>

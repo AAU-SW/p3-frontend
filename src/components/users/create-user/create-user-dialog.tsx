@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { toast } from 'sonner';
 import type { FC } from 'react';
-import type { CreateUser } from '@/types/user';
+import type { CreateUser, User } from '@/types/user';
 import {
   Dialog,
   DialogClose,
@@ -27,7 +27,7 @@ import {
 import { createUser } from '@/api/user';
 
 interface CreateUserDialogProps {
-  onUserCreation?: (newUser: CreateUser) => void;
+  onUserCreation?: (newUser: User) => void;
 }
 
 export const CreateUserDialog: FC<CreateUserDialogProps> = ({
