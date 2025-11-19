@@ -62,7 +62,7 @@ function RouteComponent() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4">
           <div className="col-span-2">
-            <CasesTable data={casesData ?? []} isLoading={isCasesLoading} />
+            <CasesTable data={casesData ?? []} isLoading={isCasesLoading } />
           </div>
           <div className="col-span-1 flex justify-end">
             <AssetsBaseData data={assetData} />
