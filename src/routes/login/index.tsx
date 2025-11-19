@@ -50,9 +50,9 @@ function Login() {
   };
 
   return (
-    <div className="flex w-full">
+    <div className="flex h-full w-full">
       <img
-        className="w-4/10 hidden md:block object-cover"
+        className="w-4/10 hidden md:block object-cover object-left"
         src="/Grainy-signup-pic.svg"
         alt="Grainy signup page of man holding phone"
       />
