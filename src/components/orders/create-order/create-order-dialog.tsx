@@ -78,10 +78,6 @@ export const CreateOrderDialog: FC = () => {
               <Textarea id="notes" name="notes" />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="attachment">Attachment (optional)</Label>
-              <Input type="file" id="attachment" name="attachment" />
-            </div>
-            <div className="grid gap-3">
               <Label htmlFor="orderNumber">OrderNumber (optional)</Label>
               <Input type="number" id="orderNumber" name="orderNumber" />
             </div>
