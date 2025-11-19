@@ -1,8 +1,9 @@
 import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
-import type { CreateOrder } from '@/types/order.ts'; 
-import { createOrder } from '@/api/order.ts'; 
+import type { CreateOrder } from '@/types/order.ts';
+import type { Customer } from '@/types/customer';
+import { createOrder } from '@/api/order.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -18,7 +19,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { CustomerSelector } from '@/components/customer-selector';
-import type { Customer } from '@/types/customer';
 
 export const CreateOrderDialog: FC = () => {
   const [open, setOpen] = useState(false);
@@ -33,11 +33,10 @@ export const CreateOrderDialog: FC = () => {
       name: formData.get('namel') as string,
       product: formData.get('product') as string,
       notes: formData.get('notes') as string,
-      status: 'PENDING', 
-      orderNumber: '123', 
+      status: 'PENDING',
+      orderNumber: '123',
       connectedCustomers: selectedCustomer,
     };
-
 
     try {
       await createOrder(data);

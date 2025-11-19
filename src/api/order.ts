@@ -10,4 +10,3 @@ export async function createOrder(data: CreateOrder) {
   const res = await api.post(`/api/orders`, data);
   return res.data;
 }
-
