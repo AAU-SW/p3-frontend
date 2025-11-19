@@ -13,6 +13,11 @@ export const Route = createFileRoute('/assets/')({
 function RouteComponent() {
   const [assetData, setAssetData] = useState<Asset[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleAssetCreation = (newAsset: Asset) => {
+    setAssetData((prevAssets) => [...prevAssets, newAsset]);
+  };
+
   useEffect(() => {
     const fetchAsset = async () => {
       try {
@@ -34,7 +39,7 @@ function RouteComponent() {
     <div className="w-full p-4 container mx-auto">
       <div className="flex flex-row justify-between items-center mb-4">
         <h1 className="text-4xl">Assets</h1>
-        <CreateAssetDialog />
+        <CreateAssetDialog onAssetCreation={handleAssetCreation} />
       </div>
       <AssetsTable data={assetData} isLoading={isLoading} />
     </div>
