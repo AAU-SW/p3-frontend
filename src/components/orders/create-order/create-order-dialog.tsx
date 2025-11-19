@@ -34,7 +34,7 @@ export const CreateOrderDialog: FC = () => {
       product: formData.get('product') as string,
       notes: formData.get('notes') as string,
       status: 'PENDING',
-      orderNumber: '123',
+      orderNumber: formData.get('orderNumber') as string,
       connectedCustomers: selectedCustomer,
     };
 
@@ -80,6 +80,10 @@ export const CreateOrderDialog: FC = () => {
             <div className="grid gap-3">
               <Label htmlFor="attachment">Attachment (optional)</Label>
               <Input type="file" id="attachment" name="attachment" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="orderNumber">OrderNumber (optional)</Label>
+              <Input type="number" id="orderNumber" name="orderNumber" />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="attachment">Customer</Label>
