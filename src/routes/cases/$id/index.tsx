@@ -1,5 +1,9 @@
-import { createFileRoute, useParams } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import {
+  createFileRoute,
+  useNavigate,
+  useParams,
+} from '@tanstack/react-router';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { Case } from '@/types/case.ts';
 import type { Image } from '@/types/image.ts';
@@ -9,6 +13,7 @@ import { CommentSection } from '@/components/cases/cases-detail/case-comments/co
 import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
+import { DeleteCaseDialog } from '@/components/cases/delete-case/delete-case-dialog.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -26,6 +31,7 @@ function RouteComponent() {
         setCaseData(response);
       } catch (error) {
         setCasesLoading(false);
+        console.error(error);
         toast.error('Failed to fetch cases');
       } finally {
         setCasesLoading(false);
@@ -52,6 +58,11 @@ function RouteComponent() {
     fetchAllCaseFiles();
   }, []);
 
+  const navigate = useNavigate();
+  const onDeleteSuccess = useCallback(() => {
+    navigate({ to: '/cases' });
+  }, [navigate]);
+
   if (!caseData) {
     return <div>Loading...</div>;
   }
@@ -59,8 +70,15 @@ function RouteComponent() {
   return (
     <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <DeleteCaseDialog
+            caseId={caseData.id}
+            onDeleteSuccess={onDeleteSuccess}
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 h-fit gap-6 flex flex-col">
           <CaseTask data={caseData} />
           <CommentSection data={caseData.comments ?? []} />
