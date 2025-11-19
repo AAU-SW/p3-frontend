@@ -30,7 +30,7 @@ export const CreateOrderDialog: FC = () => {
 
     const formData = new FormData(form);
     const data: CreateOrder = {
-      name: formData.get('namel') as string,
+      name: formData.get('name') as string,
       product: formData.get('product') as string,
       notes: formData.get('notes') as string,
       status: 'PENDING',

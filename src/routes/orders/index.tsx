@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import type { Order } from '@/types/order.ts';
 import { getOrders } from '@/api/order.ts';
 import { OrdersTable } from '@/components/orders/orders-table/orders-table.tsx';
+import { DetailHeader } from '@/components/orders/detail-header';
 
 export const Route = createFileRoute('/orders/')({
   component: RouteComponent,
@@ -35,6 +36,7 @@ function RouteComponent() {
       <div className="flex flex-row justify-between items-center mb-4">
         <h1 className="text-4xl"> Orders </h1>
       </div>
+      <DetailHeader/>
       <OrdersTable data={ordersData ?? []} isLoading={isLoading} />
     </div>
   );
