@@ -19,7 +19,10 @@ interface CommentSectionProps {
   onCommentCreated?: () => void;
 }
 
-export const CommentSection: FC<CommentSectionProps> = ({ data, onCommentCreated }) => {
+export const CommentSection: FC<CommentSectionProps> = ({
+  data,
+  onCommentCreated,
+}) => {
   const caseId = Route.useParams();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

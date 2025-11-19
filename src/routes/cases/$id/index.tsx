@@ -64,7 +64,7 @@ function RouteComponent() {
         <div>
           <DeleteCaseDialog
             caseId={caseData.id}
-            onDeleteSuccess={() => navigate({to: '/cases'})}
+            onDeleteSuccess={() => navigate({ to: '/cases' })}
           />
         </div>
       </div>
@@ -72,8 +72,8 @@ function RouteComponent() {
         <div className="lg:col-span-2 h-fit gap-6 flex flex-col">
           <CaseTask data={caseData} />
           <CommentSection
-              data={caseData.comments ?? []}
-              onCommentCreated={fetchCase}
+            data={caseData.comments ?? []}
+            onCommentCreated={fetchCase}
           />
         </div>
 
