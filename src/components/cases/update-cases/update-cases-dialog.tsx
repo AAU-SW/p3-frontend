@@ -1,5 +1,6 @@
 import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
+import type { Case, CaseStatus, CreateCase } from '@/types/case';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -13,7 +14,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import type { Case, CaseStatus, CreateCase } from '@/types/case';
 import { createCase } from '@/api/cases';
 
 interface UpdateCaseDialogProps {
@@ -27,7 +27,6 @@ export const UpdateCaseDialog: FC<UpdateCaseDialogProps> = ({
   onOpenChange,
   caseData,
 }) => {
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -55,9 +54,7 @@ export const UpdateCaseDialog: FC<UpdateCaseDialogProps> = ({
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit Case</DialogTitle>
-            <DialogDescription>
-              Edit the selected case below.
-            </DialogDescription>
+            <DialogDescription>Edit the selected case below.</DialogDescription>
           </DialogHeader>
 
           <div className="grid gap-4 pt-4">

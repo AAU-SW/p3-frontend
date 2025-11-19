@@ -40,10 +40,14 @@ function RouteComponent() {
           <h1 className="text-4xl">Cases</h1>
           <Button variant="outline">Add Case</Button>
         </div>
-        <CasesTable data={data} isLoading={isLoading} onEdit={(caseItem) => {
-          setSelectedCase(caseItem);
-          setOpen(true);
-        }} />
+        <CasesTable
+          data={data}
+          isLoading={isLoading}
+          onEdit={(caseItem) => {
+            setSelectedCase(caseItem);
+            setOpen(true);
+          }}
+        />
       </div>
       <UpdateCaseDialog
         open={open}

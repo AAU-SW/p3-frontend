@@ -7,7 +7,11 @@ import { formatDate } from '@/utils/formatDate.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 import { Button } from '@/components/ui/button';
 
-export const useColumns = ({ onEdit }: { onEdit: (caseItem: Case) => void }) => {
+export const useColumns = ({
+  onEdit,
+}: {
+  onEdit: (caseItem: Case) => void;
+}) => {
   const columns = useMemo<ColumnDef<Case>[]>(
     () => [
       {
@@ -60,7 +64,7 @@ export const useColumns = ({ onEdit }: { onEdit: (caseItem: Case) => void }) => 
               Edit
             </Button>
           );
-        }
+        },
       },
     ],
     [],
