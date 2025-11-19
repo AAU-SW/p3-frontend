@@ -7,10 +7,11 @@ import { useColumns } from '@/components/cases/cases-table/hooks/use-columns.tsx
 interface CasesTableProps {
   data: Case[];
   isLoading: boolean;
+  onEdit: (caseItem: Case) => void; 
 }
 
-export const CasesTable: FC<CasesTableProps> = ({ data, isLoading }) => {
-  const columns = useColumns();
+export const CasesTable: FC<CasesTableProps> = ({ data, isLoading, onEdit }) => {
+  const columns = useColumns({ onEdit });
   const navigate = useNavigate({ from: '/cases/$id' });
 
   return (
