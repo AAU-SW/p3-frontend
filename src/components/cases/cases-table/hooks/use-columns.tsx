@@ -39,10 +39,6 @@ export const useColumns = () => {
           return <StatusBadge status={status} />;
         },
       },
-      {
-        accessorKey: 'connectedCustomer.name',
-        header: 'Customer',
-      },
     ],
     [],
   );
