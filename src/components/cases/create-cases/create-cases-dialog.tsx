@@ -3,7 +3,6 @@ import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
 import type { CreateCase } from '@/types/case.ts';
 import type { Asset } from '@/types/asset.ts';
-import type { Customer } from '@/types/customer.ts';
 import type { User } from '@/types/user.ts';
 import { createCase } from '@/api/cases.ts';
 import { Button } from '@/components/ui/button.tsx';
@@ -22,12 +21,10 @@ import {
 import { Route } from '@/routes/assets/$id';
 import { getOneAsset } from '@/api/assets.ts';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
-import { CustomerSelector } from '@/components/customer-selector.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 
 export const CreateCasesDialog: FC = () => {
   const [open, setOpen] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
   const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
   const assetId = Route.useParams();
@@ -63,7 +60,6 @@ export const CreateCasesDialog: FC = () => {
       status: 'ACTIVE',
       assetId: assetData,
       assignedTo: selectedEmployee,
-      connectedCustomer: selectedCustomer,
       description: formData.get('description') as string,
       location: formData.get('location') as string,
     };
@@ -72,7 +68,7 @@ export const CreateCasesDialog: FC = () => {
       await createCase(data);
 
       setSelectedEmployee(undefined);
-      setSelectedCustomer(undefined);
+
       setOpen(false);
     } catch (error) {
       console.error(error);
@@ -114,13 +110,6 @@ export const CreateCasesDialog: FC = () => {
                 id="location"
                 name="location"
                 placeholder="Write a location for the task..."
-              />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="customer">Customer</Label>
-              <CustomerSelector
-                value={selectedCustomer}
-                onChange={setSelectedCustomer}
               />
             </div>
             <div className="grid gap-3">

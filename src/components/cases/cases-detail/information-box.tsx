@@ -22,8 +22,8 @@ export const InformationBox: FC<InformationBoxProps> = ({ data }) => {
         <div className="grid grid-cols-2">
           <div className="col-span-1">
             <div>
-              <p className="font-bold flex flex-row pb-1">Customer</p>
-              <p className="pb-2">{data.connectedCustomer?.name}</p>
+              <p className="font-bold flex flex-row pb-1">Location</p>
+              <p className="pb-2">{data.location}</p>
             </div>
             <div>
               <p className="font-bold pb-1">Created By</p>

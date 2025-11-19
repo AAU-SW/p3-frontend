@@ -37,14 +37,14 @@ export function AppSidebar() {
       icon: ChartNoAxesColumn,
     },
     {
-      title: 'Cases',
-      url: '/cases',
-      icon: FolderOpen,
-    },
-    {
       title: 'Assets',
       url: '/assets',
       icon: ChartBar,
+    },
+    {
+      title: 'Cases',
+      url: '/cases',
+      icon: FolderOpen,
     },
     {
       title: 'Orders',

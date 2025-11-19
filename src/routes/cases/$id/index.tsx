@@ -71,7 +71,6 @@ function RouteComponent() {
     <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-4xl">Tracking device installation</h1>
         <div>
           <DeleteCaseDialog
             caseId={caseData.id}
