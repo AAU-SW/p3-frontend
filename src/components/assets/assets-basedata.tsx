@@ -96,7 +96,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
               Last invoiced
             </span>
             <span className="mb-4 font-medium">
-              {data?.lastInvoiced ?? 'Unknown'}
+              {formatDate(data?.lastInvoiced) ?? 'Unknown'}
             </span>
           </div>
         </div>

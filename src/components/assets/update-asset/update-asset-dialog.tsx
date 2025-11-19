@@ -2,7 +2,6 @@ import { toast } from 'sonner';
 import { useState } from 'react';
 import type { ChangeEvent, FC, FormEvent } from 'react';
 import type { Asset } from '@/types/asset.ts';
-
 import { updateAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
@@ -15,7 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from '@/components/ui/dialog.tsx';
 
 import {
   Select,
@@ -25,8 +24,9 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
+} from '@/components/ui/select.tsx';
+import { Textarea } from '@/components/ui/textarea.tsx';
+import { DatePicker } from '@/components/date-picker.tsx';
 
 interface DetailHeaderProps {
   assetData: Asset;
@@ -34,11 +34,13 @@ interface DetailHeaderProps {
 
 export const UpdateAssetDialog: FC<DetailHeaderProps> = ({ assetData }) => {
   const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date>();
   const [formData, setFormData] = useState({
     name: assetData.name || '',
     registrationNumber: assetData.registrationNumber || '',
     description: assetData.description || '',
     status: assetData.status,
+    lastInvoiced: date || assetData.lastInvoiced,
   });
 
   const handleChange = (
@@ -122,6 +124,19 @@ export const UpdateAssetDialog: FC<DetailHeaderProps> = ({ assetData }) => {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
+              />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="date">Last Invoiced</Label>
+              <DatePicker
+                date={date}
+                onDateChange={(selectedDate) => {
+                  setDate(selectedDate);
+                  setFormData((prev) => ({
+                    ...prev,
+                    lastInvoiced: selectedDate,
+                  }));
+                }}
               />
             </div>
           </div>
