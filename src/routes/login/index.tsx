@@ -1,14 +1,8 @@
-import {
-  Link,
-  createFileRoute,
-  redirect,
-  useNavigate,
-} from '@tanstack/react-router';
+import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
 import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/stores/auth';
 
@@ -88,20 +82,6 @@ function Login() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between mt-6 -mb-1 pb-6">
-              <div className="flex items-center">
-                <Switch id="remember" />
-                <Label className="ml-2" htmlFor="remember">
-                  Remember me
-                </Label>
-              </div>
-              <div>
-                <Link to="/" className="text-blue-600 hover:underline">
-                  Forgot password?
-                </Link>
-              </div>
-            </div>
-
             <Button
               className="w-full mt-6 bg-[#01204A] cursor-pointer"
               type="submit"
@@ -110,10 +90,6 @@ function Login() {
             </Button>
 
             <hr className="my-8" />
-
-            <Button className="w-full cursor-pointer">
-              Sign in with e-mail link
-            </Button>
           </form>
         </div>
       </div>
