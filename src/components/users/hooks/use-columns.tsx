@@ -1,12 +1,16 @@
 'use client';
 
 import { useMemo } from 'react';
+import { Trash2 } from 'lucide-react';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { User } from '@/types/user.ts';
 import { Button } from '@/components/ui/button.tsx';
-import { Trash2 } from 'lucide-react';
 
-export const useColumns = ({ onDelete }: { onDelete: (user: User) => void }) => {
+export const useColumns = ({
+  onDelete,
+}: {
+  onDelete: (user: User) => void;
+}) => {
   const columns = useMemo<ColumnDef<User>[]>(
     () => [
       {
