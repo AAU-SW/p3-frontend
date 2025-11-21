@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
-import type { CreateAsset } from '@/types/asset.ts';
+import type { Asset, CreateAsset } from '@/types/asset.ts';
 import { createAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
@@ -18,7 +18,13 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-export const CreateAssetDialog: FC = () => {
+interface CreateAssetDialogProps {
+  onAssetCreation?: (newAsset: Asset) => void;
+}
+
+export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
+  onAssetCreation,
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -37,8 +43,9 @@ export const CreateAssetDialog: FC = () => {
     const imageFile = formData.get('imageUpload') as File;
 
     try {
-      await createAsset(data, imageFile);
+      const newAsset = await createAsset(data, imageFile);
       form.reset();
+      if (onAssetCreation) onAssetCreation(newAsset);
       setOpen(false);
     } catch (error) {
       console.error(error);
