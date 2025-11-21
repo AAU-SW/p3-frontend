@@ -10,7 +10,11 @@ interface UsersTableProps {
   onDelete: (user: User) => void;
 }
 
-export const UsersTable: FC<UsersTableProps> = ({ data, isLoading, onDelete }) => {
+export const UsersTable: FC<UsersTableProps> = ({
+  data,
+  isLoading,
+  onDelete,
+}) => {
   const navigate = useNavigate({ from: '/users' });
   const columns = useColumns({ onDelete });
 

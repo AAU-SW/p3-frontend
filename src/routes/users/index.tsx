@@ -35,9 +35,7 @@ function RouteComponent() {
   }, []);
 
   const onDeleteSuccess = useCallback(() => {
-    setUserData(prev =>
-      prev.filter(u => u.id !== selectedUser?.id)
-    );
+    setUserData((prev) => prev.filter((u) => u.id !== selectedUser?.id));
 
     setSelectedUser(null);
     setDeleteOpen(false);
@@ -50,7 +48,7 @@ function RouteComponent() {
     setDeleteOpen(true);
   };
 
-  if (!userData) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 

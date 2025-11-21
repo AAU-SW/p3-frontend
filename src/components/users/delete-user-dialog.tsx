@@ -47,9 +47,7 @@ export const DeleteUserDialog: React.FC<DeleteUserDialogProps> = ({
         <DialogTitle>Delete User</DialogTitle>
 
         <form onSubmit={handleDelete}>
-          <p className="mb-4">
-            Are you sure you want to delete this user?
-          </p>
+          <p className="mb-4">Are you sure you want to delete this user?</p>
 
           <DialogFooter className="sm:justify-start md:justify-between pt-6">
             <DialogClose asChild>
