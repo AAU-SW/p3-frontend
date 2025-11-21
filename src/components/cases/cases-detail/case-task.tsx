@@ -19,7 +19,7 @@ export const CaseTask: FC<CaseTaskProps> = ({ data }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl leading-4">{data.title}</CardTitle>
+        <CardTitle className="text-3xl leading-4">{data.title}</CardTitle>
       </CardHeader>
       <CardContent className="leading-0">
         <p className="text-gray-600 mb-4">{data.description}</p>

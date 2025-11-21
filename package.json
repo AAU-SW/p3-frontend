@@ -8,7 +8,7 @@
     "serve": "vite preview",
     "test": "vitest run",
     "format:check": "prettier . --check",
-    "format": "prettier . --write",
+    "format": "eslint --fix && prettier . --write",
     "lint": "eslint ."
   },
   "dependencies": {
