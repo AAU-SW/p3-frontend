@@ -18,15 +18,17 @@ export const DetailHeader: FC<DetailHeaderProps> = ({ assetData }) => {
   };
 
   return (
-    <div className="flex items-center p-4 pb-0 justify-between gap-2">
-      <h1 className="text-4xl font-medium">{assetData.name}</h1>
-      <div className=" flex gap-3">
-        <CreateCasesDialog />
-        <UpdateAssetDialog assetData={assetData} />
-        <DeleteAssetDialog
-          assetId={assetData.id}
-          onDeleteSuccess={onDeleteSuccess}
-        />
+    <div className="p-4">
+      <div className="flex items-center pb-0 justify-between ">
+        <h1 className="text-4xl font-medium">{assetData.name}</h1>
+        <div className=" flex gap-3">
+          <CreateCasesDialog />
+          <UpdateAssetDialog assetData={assetData} />
+          <DeleteAssetDialog
+            assetId={assetData.id}
+            onDeleteSuccess={onDeleteSuccess}
+          />
+        </div>
       </div>
     </div>
   );
