@@ -7,11 +7,12 @@ import { DataTable } from '@/components/ui/data-table/data-table.tsx';
 interface UsersTableProps {
   data: User[];
   isLoading: boolean;
+  onDelete: (user: User) => void;
 }
 
-export const UsersTable: FC<UsersTableProps> = ({ data, isLoading }) => {
+export const UsersTable: FC<UsersTableProps> = ({ data, isLoading, onDelete }) => {
   const navigate = useNavigate({ from: '/users' });
-  const columns = useColumns();
+  const columns = useColumns({ onDelete });
 
   return (
     <DataTable

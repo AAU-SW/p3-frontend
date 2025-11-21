@@ -3,9 +3,9 @@
 import { useMemo } from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { User } from '@/types/user.ts';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button.tsx';
 
-export const useColumns = () => {
+export const useColumns = ({ onDelete }: { onDelete: (user: User) => void }) => {
   const columns = useMemo<ColumnDef<User>[]>(
     () => [
       {
@@ -27,10 +27,23 @@ export const useColumns = () => {
       {
         id: 'deleteUser',
         header: '',
-        cell: () => <Button variant="outline">Delete</Button>,
+        cell: ({ row }) => {
+          const user = row.original;
+          return (
+            <Button
+              variant="destructive"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(user);
+              }}
+            >
+              Delete
+            </Button>
+          );
+        },
       },
     ],
-    [],
+    [onDelete],
   );
 
   return columns;
