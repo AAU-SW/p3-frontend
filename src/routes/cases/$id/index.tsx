@@ -9,6 +9,8 @@ import { CommentSection } from '@/components/cases/cases-detail/case-comments/co
 import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
+import { Button } from '@/components/ui/button';
+import { UpdateCaseDialog } from '@/components/cases/update-cases/update-cases-dialog';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -67,6 +69,12 @@ function RouteComponent() {
         </div>
 
         <div className="col-span-1 flex flex-col gap-6">
+          <Button variant="outline">Edit</Button>
+          <UpdateCaseDialog
+            open={open}
+            onOpenChange={setOpen}
+            caseData={selectedCase}
+          />
           <InformationBox data={caseData} />
           <FileCard image={caseFiles} />
         </div>

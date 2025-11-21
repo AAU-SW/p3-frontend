@@ -1,12 +1,12 @@
 'use client';
 
 import { useMemo } from 'react';
+import { Edit } from 'lucide-react';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { Case } from '@/types/case';
 import { formatDate } from '@/utils/formatDate.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 import { Button } from '@/components/ui/button';
-import { Edit } from 'lucide-react';
 
 export const useColumns = ({
   onEdit,
@@ -54,7 +54,7 @@ export const useColumns = ({
         header: '',
         cell: ({ row }) => {
           const caseItem = row.original;
-          return onEdit!! ? (
+          return onEdit ? (
             <Button
               variant="ghost"
               onClick={(e) => {
