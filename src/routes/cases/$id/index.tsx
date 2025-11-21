@@ -25,6 +25,7 @@ function RouteComponent() {
   const caseId = Route.useParams();
   const [casesLoading, setCasesLoading] = useState(false);
   const [caseData, setCaseData] = useState<Case>();
+  const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
     const fetchCase = async () => {
       try {
@@ -91,7 +92,7 @@ function RouteComponent() {
           <UpdateCaseDialog
             open={open}
             onOpenChange={setOpen}
-            caseData={selectedCase}
+            caseData={caseData}
           />
           <InformationBox data={caseData} />
           <FileCard image={caseFiles} />
