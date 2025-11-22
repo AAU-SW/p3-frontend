@@ -12,10 +12,6 @@ export const useColumns = () => {
         header: 'Name',
       },
       {
-        accessorKey: 'id',
-        header: 'ID',
-      },
-      {
         accessorKey: 'email',
         header: 'Email',
       },
