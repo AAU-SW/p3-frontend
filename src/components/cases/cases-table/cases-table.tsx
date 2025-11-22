@@ -10,7 +10,11 @@ interface CasesTableProps {
   showAsset?: boolean;
 }
 
-export const CasesTable: FC<CasesTableProps> = ({ data, isLoading, showAsset = false }) => {
+export const CasesTable: FC<CasesTableProps> = ({
+  data,
+  isLoading,
+  showAsset = false,
+}) => {
   const columns = useColumns(showAsset);
   const navigate = useNavigate({ from: '/cases/$id' });
 
