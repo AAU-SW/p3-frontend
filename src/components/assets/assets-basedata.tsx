@@ -38,7 +38,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
       <div className="relative">
         <img
           src={url}
-          className="object-cover aspect-square rounded-2xl"
+          className="object-cover w-full h-full rounded-2xl"
           alt={data?.name}
         />
         <Badge className={`absolute top-4 right-4 ${statusColor}`}>
@@ -47,13 +47,21 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
       </div>
 
       <CardContent>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1">
           <div className="col-span-1 flex flex-col">
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Registration number
             </span>
             <span className=" font-medium">
               {data?.registrationNumber ?? 'Unknown'}
+            </span>
+          </div>
+          <div className="col-span-1 flex flex-col pt-4">
+            <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
+              Description
+            </span>
+            <span className=" font-medium">
+              {data?.description ?? 'Unknown'}
             </span>
           </div>
           {Boolean(data?.orderRef) && (
@@ -96,7 +104,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
               Last invoiced
             </span>
             <span className="mb-4 font-medium">
-              {data?.lastInvoiced ?? 'Unknown'}
+              {formatDate(data?.lastInvoiced) ?? 'Unknown'}
             </span>
           </div>
         </div>
