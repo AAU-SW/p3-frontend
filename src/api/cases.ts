@@ -20,7 +20,7 @@ export async function getCasesByAssetId(assetId: string) {
   return res.data;
 }
 
-export async function updateOneCase(caseId: string, data: Partial<Case>) {
+export async function updateCase(caseId: string, data: Partial<CreateCase>) {
   const res = await api.put<Case>(`api/cases/${caseId}`, data);
   return res.data;
 }

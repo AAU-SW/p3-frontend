@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from 'lucide-react';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 import {
   Popover,
@@ -8,14 +8,22 @@ import {
 } from '@/components/ui/popover.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Calendar } from '@/components/ui/calendar.tsx';
+import { formatDate } from '@/utils/formatDate.ts';
 
 interface DatePickerProps {
-  date?: Date;
+  date?: Date | string;
   onDateChange?: (date: Date) => void;
 }
 
 export const DatePicker: FC<DatePickerProps> = ({ date, onDateChange }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    typeof date === 'string' ? new Date(date) : date,
+  );
+
+  useEffect(() => {
+    setSelectedDate(typeof date === 'string' ? new Date(date) : date);
+  }, [date]);
 
   return (
     <div className="flex flex-col gap-3 ">
@@ -26,18 +34,19 @@ export const DatePicker: FC<DatePickerProps> = ({ date, onDateChange }) => {
             id="date"
             className="w-full justify-between font-normal"
           >
-            {date ? date.toLocaleDateString() : 'Select date'}
+            {selectedDate ? formatDate(selectedDate) : 'Select date'}
             <ChevronDownIcon />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto overflow-hidden p-0" align="start">
           <Calendar
             mode="single"
-            selected={date}
+            selected={selectedDate}
             captionLayout="dropdown"
-            onSelect={(selectedDate) => {
-              if (selectedDate) {
-                onDateChange?.(selectedDate);
+            onSelect={(newDate) => {
+              if (newDate) {
+                setSelectedDate(newDate);
+                onDateChange?.(newDate);
                 setOpen(false);
               }
             }}
