@@ -79,6 +79,7 @@ function RouteComponent() {
             caseId={caseData.id}
             onDeleteSuccess={onDeleteSuccess}
           />
+          <Button variant="outline" onClick={()=> setOpen(true)}>Edit</Button>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -88,7 +89,6 @@ function RouteComponent() {
         </div>
 
         <div className="col-span-1 flex flex-col gap-6">
-          <Button variant="outline">Edit</Button>
           <UpdateCaseDialog
             open={open}
             onOpenChange={setOpen}
