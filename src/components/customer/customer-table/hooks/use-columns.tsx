@@ -8,10 +8,6 @@ export const useColumns = () => {
   const columns = useMemo<ColumnDef<Customer>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'ID',
-      },
-      {
         accessorKey: 'name',
         header: 'Name',
       },
