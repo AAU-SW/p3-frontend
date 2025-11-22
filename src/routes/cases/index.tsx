@@ -34,7 +34,7 @@ function RouteComponent() {
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl">Cases</h1>
         </div>
-        <CasesTable data={data} isLoading={isLoading} />
+        <CasesTable data={data} isLoading={isLoading} showAsset={true} />
       </div>
     </>
   );
