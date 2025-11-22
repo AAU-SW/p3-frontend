@@ -79,7 +79,9 @@ function RouteComponent() {
             caseId={caseData.id}
             onDeleteSuccess={onDeleteSuccess}
           />
-          <Button variant="outline" onClick={()=> setOpen(true)}>Edit</Button>
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            Edit
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
