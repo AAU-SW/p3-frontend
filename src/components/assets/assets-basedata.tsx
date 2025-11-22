@@ -47,13 +47,21 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
       </div>
 
       <CardContent>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1">
           <div className="col-span-1 flex flex-col">
             <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
               Registration number
             </span>
             <span className=" font-medium">
               {data?.registrationNumber ?? 'Unknown'}
+            </span>
+          </div>
+          <div className="col-span-1 flex flex-col pt-4">
+            <span className="text-xs font-semibold text-gray-500 uppercase mb-2">
+              Description
+            </span>
+            <span className=" font-medium">
+              {data?.description ?? 'Unknown'}
             </span>
           </div>
           {Boolean(data?.orderRef) && (
