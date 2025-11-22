@@ -6,7 +6,7 @@ import { createAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/textarea.tsx';
 import {
   Dialog,
   DialogClose,
@@ -16,7 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from '@/components/ui/dialog.tsx';
 
 interface CreateAssetDialogProps {
   onAssetCreation?: (newAsset: Asset) => void;
