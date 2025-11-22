@@ -21,6 +21,7 @@ export const Route = createFileRoute('/cases/$id/')({
 
 function RouteComponent() {
   const params = useParams({ from: '/cases/$id/' });
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [caseData, setCaseData] = useState<Case>();
   const [caseFiles, setCaseFiles] = useState<Image[]>([]);
   const navigate = useNavigate();
@@ -36,8 +37,10 @@ function RouteComponent() {
   }, [params.id]);
 
   useEffect(() => {
-    fetchCase();
-  }, [fetchCase]);
+    setIsLoading(true);
+    fetchCase()
+        .finally(() => { setIsLoading(false) });
+  }, [fetchCase])
 
   useEffect(() => {
     const fetchAllCaseFiles = async () => {
@@ -53,7 +56,7 @@ function RouteComponent() {
     fetchAllCaseFiles();
   }, []);
 
-  if (!caseData) {
+  if (isLoading || !caseData) {
     return <div>Loading...</div>;
   }
 
