@@ -13,6 +13,8 @@ import { CommentSection } from '@/components/cases/cases-detail/case-comments/co
 import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
+import { Button } from '@/components/ui/button';
+import { UpdateCaseDialog } from '@/components/cases/update-cases/update-cases-dialog';
 import { DeleteCaseDialog } from '@/components/cases/delete-case/delete-case-dialog.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
@@ -23,6 +25,7 @@ function RouteComponent() {
   const caseId = Route.useParams();
   const [casesLoading, setCasesLoading] = useState(false);
   const [caseData, setCaseData] = useState<Case>();
+  const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
     const fetchCase = async () => {
       try {
@@ -76,6 +79,9 @@ function RouteComponent() {
             caseId={caseData.id}
             onDeleteSuccess={onDeleteSuccess}
           />
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            Edit
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -89,6 +95,11 @@ function RouteComponent() {
           <FileCard image={caseFiles} />
         </div>
       </div>
+      <UpdateCaseDialog
+        open={open}
+        onOpenChange={setOpen}
+        caseData={caseData}
+      />
     </div>
   );
 }
