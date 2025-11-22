@@ -1,14 +1,20 @@
-import {CircleUserIcon, ClockIcon} from 'lucide-react';
-import type {FC} from 'react';
-import {useState} from 'react';
-import {toast} from 'sonner';
-import type {Case} from '@/types/case';
-import type {User} from '@/types/user.ts';
-import {Card, CardContent, CardFooter, CardHeader, CardTitle,} from '@/components/ui/card.tsx';
-import {Separator} from '@/components/ui/separator.tsx';
-import {DatePicker} from '@/components/date-picker.tsx';
-import {updateCase} from '@/api/cases.ts';
-import {EmployeeSelector} from '@/components/employee-selector.tsx';
+import { CircleUserIcon, ClockIcon } from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import type { FC } from 'react';
+import type { Case } from '@/types/case';
+import type { User } from '@/types/user.ts';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
+import { DatePicker } from '@/components/date-picker.tsx';
+import { updateCase } from '@/api/cases.ts';
+import { EmployeeSelector } from '@/components/employee-selector.tsx';
 
 interface CaseTaskProps {
   data: Case;
