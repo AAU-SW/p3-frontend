@@ -91,15 +91,15 @@ function RouteComponent() {
         </div>
 
         <div className="col-span-1 flex flex-col gap-6">
-          <UpdateCaseDialog
-            open={open}
-            onOpenChange={setOpen}
-            caseData={caseData}
-          />
           <InformationBox data={caseData} />
           <FileCard image={caseFiles} />
         </div>
       </div>
+      <UpdateCaseDialog
+        open={open}
+        onOpenChange={setOpen}
+        caseData={caseData}
+      />
     </div>
   );
 }
