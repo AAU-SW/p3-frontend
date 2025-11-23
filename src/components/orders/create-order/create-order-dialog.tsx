@@ -35,7 +35,7 @@ export const CreateOrderDialog: FC = () => {
       notes: formData.get('notes') as string,
       status: 'PENDING',
       orderNumber: formData.get('orderNumber') as string,
-      connectedCustomers: selectedCustomer,
+      connectedCustomer: selectedCustomer,
     };
 
     try {
