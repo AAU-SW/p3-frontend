@@ -9,10 +9,6 @@ export const useColumns = () => {
   const columns = useMemo<ColumnDef<Asset>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'ID',
-      },
-      {
         accessorKey: 'name',
         header: 'Name',
       },
