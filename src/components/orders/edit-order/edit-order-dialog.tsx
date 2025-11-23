@@ -43,7 +43,7 @@ export const EditOrderDialog: FC<EditOrderDialogProps> = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    
+
     if (!orderId) {
       toast.error('Missing order id');
       return;
