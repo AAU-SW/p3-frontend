@@ -23,7 +23,10 @@ import { getOneAsset } from '@/api/assets.ts';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 
-export const CreateCasesDialog: FC = () => {
+interface CreateCasesDialogProps {
+  onCreated: () => void;
+}
+export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
   const [open, setOpen] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
@@ -68,11 +71,12 @@ export const CreateCasesDialog: FC = () => {
       await createCase(data);
 
       setSelectedEmployee(undefined);
-
       setOpen(false);
+      
+      toast.success('Case created successfully');
+      onCreated();
     } catch (error) {
       console.error(error);
-      toast.error('Failed to fetch asset');
     }
   };
 
