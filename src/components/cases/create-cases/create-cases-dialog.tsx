@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import type { FC, FormEvent } from 'react';
-import type { CreateCase } from '@/types/case.ts';
+import type { FormEvent } from 'react';
+import type { Case, CreateCase } from '@/types/case.ts';
 import type { Asset } from '@/types/asset.ts';
 import type { User } from '@/types/user.ts';
 import { createCase } from '@/api/cases.ts';
@@ -23,7 +23,10 @@ import { getOneAsset } from '@/api/assets.ts';
 import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 
-export const CreateCasesDialog: FC = () => {
+interface CreateCasesDialogProps {
+  onCreated: (newCase: Case) => void;
+}
+export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
   const [open, setOpen] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState<User>();
 
@@ -65,14 +68,16 @@ export const CreateCasesDialog: FC = () => {
     };
 
     try {
-      await createCase(data);
+      const newCase = await createCase(data);
 
       setSelectedEmployee(undefined);
-
       setOpen(false);
+
+      toast.success('Case created successfully');
+      onCreated(newCase);
     } catch (error) {
       console.error(error);
-      toast.error('Failed to fetch asset');
+      toast.error('Failed to create case');
     }
   };
 

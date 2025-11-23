@@ -2,6 +2,7 @@ import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
 import type { Asset, CreateAsset } from '@/types/asset.ts';
+import type { Order } from '@/types/order';
 import { createAsset } from '@/api/assets.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
@@ -17,15 +18,66 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog.tsx';
+import { OrderSelector } from '@/components/order-selector';
 
 interface CreateAssetDialogProps {
   onAssetCreation?: (newAsset: Asset) => void;
+}
+
+interface InputField {
+  label: string;
+  required: boolean;
+  id: string;
+  component: FC<any>;
+  props?: Record<string, any>;
 }
 
 export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
   onAssetCreation,
 }) => {
   const [open, setOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<Order>();
+
+  const inputFields: InputField[] = [
+    {
+      label: 'Name',
+      required: true,
+      id: 'name',
+      component: Input,
+    },
+    {
+      label: 'Registration number',
+      required: true,
+      id: 'registrationNumber',
+      component: Input,
+    },
+    {
+      label: 'Order',
+      required: false,
+      id: 'order',
+      component: OrderSelector,
+      props: {
+        selectedOrder,
+        onChange: (order: Order) => setSelectedOrder(order),
+      },
+    },
+    {
+      label: 'Description',
+      required: false,
+      id: 'description',
+      component: Textarea,
+    },
+    {
+      label: 'Upload image',
+      required: false,
+      id: 'imageUpload',
+      component: Input,
+      props: {
+        type: 'file',
+        accept: 'image/*',
+      },
+    },
+  ];
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,10 +88,10 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
       name: formData.get('name') as string,
       registrationNumber: formData.get('registrationNumber') as string,
       description: formData.get('description') as string,
-      status: 'ACTIVE', // default on creation
+      orderRef: selectedOrder,
+      status: 'ACTIVE',
     };
 
-    // Get the image file if it exists
     const imageFile = formData.get('imageUpload') as File;
 
     try {
@@ -49,7 +101,7 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
       setOpen(false);
     } catch (error) {
       console.error(error);
-      toast.error('Failed to create asset:');
+      toast.error('Failed to create asset');
     }
   };
 
@@ -69,34 +121,20 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
           </DialogHeader>
 
           <div className="grid gap-4 pt-4">
-            <div className="grid gap-3">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" name="name" required />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="registrationNumber">Registration number</Label>
-              <Input
-                id="registrationNumber"
-                name="registrationNumber"
-                required
-              />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="description">Description</Label>
-              <Textarea id="description" name="description" />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="imageUpload">Upload image</Label>
-              <Input
-                type="file"
-                id="imageUpload"
-                name="imageUpload"
-                accept="image/*"
-              />
-            </div>
+            {inputFields.map(
+              ({ label, required, id, component: Component, props }) => (
+                <div key={id} className="grid gap-2">
+                  <Label htmlFor={id}>
+                    {label}{' '}
+                    {required && <span className="text-red-500">*</span>}
+                  </Label>
+                  <Component id={id} name={id} required={required} {...props} />
+                </div>
+              ),
+            )}
           </div>
 
-          <DialogFooter className="sm:justify-start md:justify-between pt-2">
+          <DialogFooter className="sm:justify-start md:justify-between pt-4">
             <DialogClose asChild>
               <Button variant="outline" type="button">
                 Cancel

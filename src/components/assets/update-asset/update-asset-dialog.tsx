@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/select.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 import { DatePicker } from '@/components/date-picker.tsx';
+import { OrderSelector } from '@/components/order-selector';
 
 interface UpdateAssetDialogProps {
   assetData: Asset;
@@ -41,6 +42,7 @@ export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
     name: assetData.name || '',
     registrationNumber: assetData.registrationNumber || '',
     description: assetData.description || '',
+    orderRef: assetData.orderRef || undefined,
     status: assetData.status,
     lastInvoiced: date || assetData.lastInvoiced,
   });
@@ -94,6 +96,12 @@ export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
                 onChange={handleChange}
               />
             </div>
+            <OrderSelector
+              value={formData.orderRef}
+              onChange={(val) =>
+                setFormData((prev) => ({ ...prev, orderRef: val }))
+              }
+            />
             <div className="grid gap-2">
               <Label htmlFor="status">Status</Label>
               <Select
