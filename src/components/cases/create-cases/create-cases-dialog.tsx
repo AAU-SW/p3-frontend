@@ -72,12 +72,11 @@ export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
 
       setSelectedEmployee(undefined);
       setOpen(false);
-      
+
       toast.success('Case created successfully');
       onCreated();
     } catch (error) {
       console.error(error);
-
     }
   };
 

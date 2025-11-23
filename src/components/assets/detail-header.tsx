@@ -22,7 +22,7 @@ export const DetailHeader: FC<DetailHeaderProps> = ({ assetData }) => {
       <div className="flex items-center pb-0 justify-between ">
         <h1 className="text-4xl font-medium">{assetData.name}</h1>
         <div className=" flex gap-3">
-          <CreateCasesDialog onCreated={() => {}}/>
+          <CreateCasesDialog onCreated={() => {}} />
           <UpdateAssetDialog assetData={assetData} />
           <DeleteAssetDialog
             assetId={assetData.id}

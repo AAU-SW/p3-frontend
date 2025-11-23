@@ -13,28 +13,27 @@ function RouteComponent() {
   const [data, setData] = useState<Case[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
-    const fetchCases = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const response = await getCases();
-        setData(response);
-      } catch (error) {
-        console.error('Failed to fetch cases:', error);
-        setError('Failed to load cases:');
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
-    useEffect(() => {
+  const fetchCases = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const response = await getCases();
+      setData(response);
+    } catch (error) {
+      console.error('Failed to fetch cases:', error);
+      setError('Failed to load cases:');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchCases();
   }, []);
 
   const handleCaseCreated = () => {
     fetchCases();
-    
   };
 
   return (
