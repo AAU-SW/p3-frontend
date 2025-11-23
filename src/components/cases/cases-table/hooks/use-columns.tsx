@@ -6,9 +6,9 @@ import type { Case } from '@/types/case';
 import { formatDate } from '@/utils/formatDate.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 
-export const useColumns = () => {
-  const columns = useMemo<ColumnDef<Case>[]>(
-    () => [
+export const useColumns = (showAsset: boolean) => {
+  const columns = useMemo<ColumnDef<Case>[]>(() => {
+    const baseColumns: ColumnDef<Case>[] = [
       {
         accessorKey: 'title',
         header: 'Title',
@@ -34,14 +34,19 @@ export const useColumns = () => {
       {
         accessorKey: 'status',
         header: 'Status',
-        cell: ({ row }) => {
-          const status = row.original.status;
-          return <StatusBadge status={status} />;
-        },
+        cell: ({ row }) => <StatusBadge status={row.original.status} />,
       },
-    ],
-    [],
-  );
+    ];
+
+    if (showAsset) {
+      baseColumns.push({
+        accessorKey: 'assetId.name',
+        header: 'Connected Asset',
+      });
+    }
+
+    return baseColumns;
+  }, [showAsset]);
 
   return columns;
 };
