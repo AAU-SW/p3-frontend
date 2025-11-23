@@ -40,7 +40,7 @@ function RouteComponent() {
   }, [orderId.id]);
   return (
     <div className="w-full p-4 container mx-auto">
-      <div className="flex flex-row justify-between items-center mb-">
+      <div className="flex flex-row justify-between items-center m-4">
         <h1 className="text-4xl"> Orders </h1>
         <div className="flex gap-4">
           <EditOrderDialog orderId={orderId.id} />
