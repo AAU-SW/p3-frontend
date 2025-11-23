@@ -47,11 +47,11 @@ export const EditOrderDialog: FC<EditOrderDialogProps> = ({
     const formData = new FormData(form);
 
     const data: CreateOrder = {
-      name: getFormString('name'),
-      product: getFormString('product'),
-      notes: getFormString('notes'),
-      status: initialData?.status ?? (getFormString('status') || 'PENDING'),
-      orderNumber: getFormString('orderNumber'),
+      name: formData.get('name') as string,
+      product: formData.get('product') as string,
+      notes: formData.get('notes') as string,
+      status: 'PENDING',
+      orderNumber: formData.get('orderNumber') as string,
       connectedCustomer: selectedCustomer,
     };
 
