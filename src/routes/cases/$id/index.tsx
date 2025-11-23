@@ -14,6 +14,7 @@ import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
 import { DeleteCaseDialog } from '@/components/cases/delete-case/delete-case-dialog.tsx';
+import { GlobalLoader } from '@/components/GlobalLoader.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -57,8 +58,8 @@ function RouteComponent() {
     fetchAllCaseFiles();
   }, []);
 
-  if (isLoading || !caseData) {
-    return <div>Loading...</div>;
+  if (!caseData || isLoading) {
+    return <GlobalLoader />;
   }
 
   return (
