@@ -3,7 +3,7 @@ export type User = {
   email: string;
   encryptedPassword: string;
   name: string;
-  role: 'USER' | 'ADMIN';
+  role: 'user' | 'admin';
 };
 
 export type CreateUser = Omit<User, 'id' | 'encryptedPassword'> & {
