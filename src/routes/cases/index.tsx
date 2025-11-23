@@ -45,8 +45,8 @@ function RouteComponent() {
         </div>
 
         {error && <div className="text-red-500 mb-4">{error}</div>}
-
-        <CasesTable data={data} isLoading={isLoading} />
+        
+        <CasesTable data={data} isLoading={isLoading} showAsset={true} />
       </div>
     </>
   );
