@@ -14,36 +14,37 @@ import { getAllCaseFilesById, getOneCase } from '@/api/cases.ts';
 import { FileCard } from '@/components/file-upload/file-card.tsx';
 import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
 import { DeleteCaseDialog } from '@/components/cases/delete-case/delete-case-dialog.tsx';
+import { GlobalLoader } from '@/components/GlobalLoader.tsx';
+import { UpdateCaseDialog } from '@/components/cases/update-case/update-case-dialog.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const caseId = Route.useParams();
-  const [casesLoading, setCasesLoading] = useState(false);
-  const [caseData, setCaseData] = useState<Case>();
-  useEffect(() => {
-    const fetchCase = async () => {
-      try {
-        setCasesLoading(true);
-        const response = await getOneCase(caseId.id);
-        setCaseData(response);
-      } catch (error) {
-        setCasesLoading(false);
-        console.error(error);
-        toast.error('Failed to fetch cases');
-      } finally {
-        setCasesLoading(false);
-      }
-    };
-
-    fetchCase();
-  }, []);
-  casesLoading;
-  // This is done above or else buidl error
   const params = useParams({ from: '/cases/$id/' });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [caseData, setCaseData] = useState<Case>();
   const [caseFiles, setCaseFiles] = useState<Image[]>([]);
+  const navigate = useNavigate();
+
+  const fetchCase = useCallback(async () => {
+    try {
+      const response = await getOneCase(params.id);
+      setCaseData(response);
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to fetch cases');
+    }
+  }, [params.id]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchCase().finally(() => {
+      setIsLoading(false);
+    });
+  }, [fetchCase]);
+
   useEffect(() => {
     const fetchAllCaseFiles = async () => {
       try {
@@ -58,13 +59,8 @@ function RouteComponent() {
     fetchAllCaseFiles();
   }, []);
 
-  const navigate = useNavigate();
-  const onDeleteSuccess = useCallback(() => {
-    navigate({ to: '/cases' });
-  }, [navigate]);
-
-  if (!caseData) {
-    return <div>Loading...</div>;
+  if (!caseData || isLoading) {
+    return <GlobalLoader />;
   }
 
   return (
@@ -74,14 +70,18 @@ function RouteComponent() {
         <div>
           <DeleteCaseDialog
             caseId={caseData.id}
-            onDeleteSuccess={onDeleteSuccess}
+            onDeleteSuccess={() => navigate({ to: '/cases' })}
           />
+          <UpdateCaseDialog caseData={caseData} onUpdatedCase={fetchCase} />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 h-fit gap-6 flex flex-col">
           <CaseTask data={caseData} />
-          <CommentSection data={caseData.comments ?? []} />
+          <CommentSection
+            data={caseData.comments ?? []}
+            onCommentCreated={fetchCase}
+          />
         </div>
 
         <div className="col-span-1 flex flex-col gap-6">

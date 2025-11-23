@@ -6,4 +6,6 @@ export type User = {
   role: 'user' | 'admin';
 };
 
-export type CreateUser = Omit<User, 'id'>;
+export type CreateUser = Omit<User, 'id' | 'encryptedPassword'> & {
+  password: string;
+};

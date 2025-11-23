@@ -13,6 +13,10 @@ function RouteComponent() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const handleCustomerCreation = (newCustomer: Customer) => {
+    setCustomers((prevCustomers) => [...prevCustomers, newCustomer]);
+  };
+
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -34,7 +38,7 @@ function RouteComponent() {
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Customers </h1>
-          <CreateCustomerDialog />
+          <CreateCustomerDialog onCustomerCreation={handleCustomerCreation} />
         </div>
         <CustomersTable data={customers} isLoading={loading} />
       </div>

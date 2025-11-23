@@ -17,9 +17,13 @@ export const Route = createFileRoute('/assets/$id/')({
 function RouteComponent() {
   const assetId = Route.useParams();
   const [assetData, setAssetData] = useState<Asset>();
-  const [casesData, setCasesData] = useState<Case[]>();
+  const [casesData, setCasesData] = useState<Case[]>([]);
 
   const [isCasesLoading, setIsCasesLoading] = useState(false);
+
+  const handleCaseCreated = (newCase: Case) => {
+    setCasesData((prevCases) => [newCase, ...prevCases]);
+  };
 
   useEffect(() => {
     const fetchOneAsset = async () => {
@@ -58,11 +62,16 @@ function RouteComponent() {
       <AssetsBreadCrumbs assetTitle={assetData?.name ?? ''} />
 
       <div className="container mx-auto">
-        {assetData && <DetailHeader assetData={assetData} />}
+        {assetData && (
+          <DetailHeader
+            assetData={assetData}
+            onCaseCreated={handleCaseCreated}
+          />
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4">
           <div className="col-span-2">
-            <CasesTable data={casesData ?? []} isLoading={isCasesLoading} />
+            <CasesTable data={casesData} isLoading={isCasesLoading} />
           </div>
           <div className="col-span-1 flex justify-end">
             <AssetsBaseData data={assetData} />
