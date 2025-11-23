@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
-import type { CreateCustomer } from '@/types/customer';
-import type { Customer } from '@/types/customer';
+import type { CreateCustomer, Customer } from '@/types/customer';
 import { createCustomer } from '@/api/customer.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
