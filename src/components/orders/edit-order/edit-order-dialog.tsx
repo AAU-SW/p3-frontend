@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 import type { FC, FormEvent } from 'react';
 import type { Customer } from '@/types/customer';
-import type { Order } from '@/types/order.ts';
+import type { CreateOrder, Order } from '@/types/order.ts';
 import { updateOrder } from '@/api/order.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
@@ -44,6 +44,16 @@ export const EditOrderDialog: FC<EditOrderDialogProps> = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const data: CreateOrder = {
+      name: formData.get('name') as string,
+      product: formData.get('product') as string,
+      notes: formData.get('notes') as string,
+      status: 'PENDING',
+      orderNumber: formData.get('orderNumber') as string,
+      connectedCustomer: selectedCustomer,
+    };
 
     if (!orderId) {
       toast.error('Missing order id');
