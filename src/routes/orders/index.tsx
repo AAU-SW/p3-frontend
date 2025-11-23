@@ -11,8 +11,12 @@ export const Route = createFileRoute('/orders/')({
 });
 
 function RouteComponent() {
-  const [ordersData, setOrdersData] = useState<Order[]>();
+  const [ordersData, setOrdersData] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleOrderCreated = (newOrder: Order) => {
+    setOrdersData((prevOrders) => [newOrder, ...prevOrders]);
+  };
 
   useEffect(() => {
     const fetchAllOrders = async () => {
@@ -36,8 +40,8 @@ function RouteComponent() {
       <div className="flex flex-row justify-between items-center mb-4">
         <h1 className="text-4xl"> Orders </h1>
       </div>
-      <DetailHeader />
-      <OrdersTable data={ordersData ?? []} isLoading={isLoading} />
+      <DetailHeader onOrderCreated={handleOrderCreated} />
+      <OrdersTable data={ordersData} isLoading={isLoading} />
     </div>
   );
 }

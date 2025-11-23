@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
-import type { CreateOrder } from '@/types/order.ts';
+import type { CreateOrder, Order } from '@/types/order.ts';
 import type { Customer } from '@/types/customer';
 import { createOrder } from '@/api/order.ts';
 import { Button } from '@/components/ui/button.tsx';
@@ -20,7 +20,13 @@ import {
 } from '@/components/ui/dialog';
 import { CustomerSelector } from '@/components/customer-selector';
 
-export const CreateOrderDialog: FC = () => {
+interface CreateOrderDialogProps {
+  onOrderCreated: (newOrder: Order) => void;
+}
+
+export const CreateOrderDialog: FC<CreateOrderDialogProps> = ({
+  onOrderCreated,
+}) => {
   const [open, setOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
 
@@ -39,9 +45,10 @@ export const CreateOrderDialog: FC = () => {
     };
 
     try {
-      await createOrder(data);
+      const newOrder = await createOrder(data);
       form.reset();
       setOpen(false);
+      onOrderCreated(newOrder);
       toast.success('Order created successfully!');
     } catch (error) {
       console.error(error);
@@ -78,8 +85,8 @@ export const CreateOrderDialog: FC = () => {
               <Textarea id="notes" name="notes" />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="orderNumber">OrderNumber</Label>
-              <Input type="number" id="orderNumber" name="orderNumber" />
+              <Label htmlFor="orderNumber">Order number</Label>
+              <Input id="orderNumber" name="orderNumber" />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="attachment">Customer</Label>
