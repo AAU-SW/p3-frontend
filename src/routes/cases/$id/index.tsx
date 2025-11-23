@@ -58,12 +58,7 @@ function RouteComponent() {
     fetchAllCaseFiles();
   }, []);
 
-  const navigate = useNavigate();
-  const onDeleteSuccess = useCallback(() => {
-    navigate({ to: '/cases' });
-  }, [navigate]);
-
-  if (!caseData || isLoading) {
+  if (!caseData || isLoading) {
     return <GlobalLoader />;
   }
 
