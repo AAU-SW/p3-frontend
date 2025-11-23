@@ -12,8 +12,16 @@ export const useColumns = () => {
         header: 'Order Number',
       },
       {
-        accessorKey: 'connectedCustomers',
+        accessorKey: 'connectedCustomer.name',
         header: 'Customer',
+      },
+      {
+        accessorKey: 'name',
+        header: 'Name',
+      },
+      {
+        accessorKey: 'product',
+        header: 'Product',
       },
     ],
     [],

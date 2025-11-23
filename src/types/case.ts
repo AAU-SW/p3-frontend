@@ -15,6 +15,7 @@ export type Case = {
   comments?: Comment[];
   description?: string;
   location?: string;
+  dueDate?: string | Date;
 };
 
 export type CreateCase = Omit<Case, 'id' | 'createdAt' | 'createdBy'>;
