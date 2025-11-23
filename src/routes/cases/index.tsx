@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { Case } from '@/types/case';
 import { getCases } from '@/api/cases';
 import { CasesTable } from '@/components/cases/cases-table/cases-table';
-import { CreateCasesDialog } from '@/components/cases/create-cases-dialog';
+import { CreateCasesDialog } from '@/components/cases/create-cases/create-cases-dialog';
 
 export const Route = createFileRoute('/cases/')({
   component: RouteComponent,
@@ -41,7 +41,6 @@ function RouteComponent() {
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl">Cases</h1>
-          <CreateCasesDialog onCreated={handleCaseCreated} />
         </div>
 
         {error && <div className="text-red-500 mb-4">{error}</div>}
