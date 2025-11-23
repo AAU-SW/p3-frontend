@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import type { FC, FormEvent } from 'react';
 import type { CreateCustomer } from '@/types/customer';
+import type { Customer } from '@/types/customer';
 import { createCustomer } from '@/api/customer.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
@@ -17,7 +18,13 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-export const CreateCustomerDialog: FC = () => {
+interface CreateCustomerDialog {
+  onCustomerCreation?: (newCustomer: Customer) => void;
+}
+
+export const CreateCustomerDialog: FC<CreateCustomerDialog> = ({
+  onCustomerCreation,
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -33,8 +40,9 @@ export const CreateCustomerDialog: FC = () => {
     const imageFile = formData.get('imageUpload') as File;
 
     try {
-      await createCustomer(data, imageFile);
+      const newCustomer = await createCustomer(data, imageFile);
       form.reset();
+      if (onCustomerCreation) onCustomerCreation(newCustomer);
       toast.success('Customer created successfully');
       setOpen(false);
     } catch (error) {
