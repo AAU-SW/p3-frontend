@@ -30,9 +30,13 @@ import { Textarea } from '@/components/ui/textarea.tsx';
 
 interface UpdateCaseDialogProps {
   caseData: Case;
+  onUpdatedCase?: () => void;
 }
 
-export const UpdateCaseDialog: FC<UpdateCaseDialogProps> = ({ caseData }) => {
+export const UpdateCaseDialog: FC<UpdateCaseDialogProps> = ({
+  caseData,
+  onUpdatedCase,
+}) => {
   const [open, setOpen] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -56,6 +60,7 @@ export const UpdateCaseDialog: FC<UpdateCaseDialogProps> = ({ caseData }) => {
     try {
       await updateCase(caseData.id, formData);
       setOpen(false);
+      onUpdatedCase?.();
     } catch (error) {
       console.error(error);
       toast.error('Faild to update case: ');

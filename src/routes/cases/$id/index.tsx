@@ -72,7 +72,7 @@ function RouteComponent() {
             caseId={caseData.id}
             onDeleteSuccess={() => navigate({ to: '/cases' })}
           />
-          <UpdateCaseDialog caseData={caseData} />
+          <UpdateCaseDialog caseData={caseData} onUpdatedCase={fetchCase} />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
