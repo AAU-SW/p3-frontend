@@ -39,7 +39,7 @@ export const CreateUserDialog: FC<CreateUserDialogProps> = ({
     username: '',
     email: '',
     password: '',
-    status: 'USER' as 'USER' | 'ADMIN',
+    status: 'user' as CreateUser['role'],
   });
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -53,7 +53,7 @@ export const CreateUserDialog: FC<CreateUserDialogProps> = ({
       name: fd.get('username') as string,
       email: fd.get('email') as string,
       password: fd.get('password') as string,
-      role: fd.get('status') as 'ADMIN' | 'USER',
+      role: fd.get('status') as CreateUser['role'],
     };
 
     try {
@@ -148,7 +148,10 @@ export const CreateUserDialog: FC<CreateUserDialogProps> = ({
               name="status"
               value={formData.status}
               onValueChange={(value) =>
-                setFormData({ ...formData, status: value as 'ADMIN' | 'USER' })
+                setFormData({
+                  ...formData,
+                  status: value as CreateUser['role'],
+                })
               }
             >
               <SelectTrigger className="w-full">
@@ -156,9 +159,9 @@ export const CreateUserDialog: FC<CreateUserDialogProps> = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Status</SelectLabel>
-                  <SelectItem value="ADMIN">ADMIN</SelectItem>
-                  <SelectItem value="USER">USER</SelectItem>
+                  <SelectLabel>Role</SelectLabel>
+                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="user">User</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
