@@ -20,9 +20,9 @@ function RouteComponent() {
       setError(null);
       const response = await getCases();
       setData(response);
-    } catch (error) {
-      console.error('Failed to fetch cases:', error);
-      setError('Failed to load cases:');
+    } catch (e) {
+      console.error('Failed to fetch cases:', e);
+      setError('Failed to load cases');
     } finally {
       setIsLoading(false);
     }
