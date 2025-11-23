@@ -77,6 +77,7 @@ export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
       onCreated(newCase);
     } catch (error) {
       console.error(error);
+      toast.error('Failed to create case');
     }
   };
 
