@@ -15,3 +15,8 @@ export async function updateOrder(orderId: string, data: CreateOrder) {
   const res = await api.put(`/api/orders/${orderId}`, data);
   return res.data;
 }
+
+export async function deleteOrderById(orderId: string) {
+  const res = await api.delete(`/api/orders/${orderId}`);
+  return res.data;
+}
