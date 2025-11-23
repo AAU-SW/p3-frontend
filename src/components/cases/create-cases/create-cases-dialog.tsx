@@ -77,6 +77,7 @@ export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
       onCreated();
     } catch (error) {
       console.error(error);
+
     }
   };
 

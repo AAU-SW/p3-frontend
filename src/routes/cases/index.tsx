@@ -32,8 +32,9 @@ function RouteComponent() {
     fetchCases();
   }, []);
 
-  const handleCaseCreated = (newCase: Case) => {
-    setData((prev) => [newCase, ...prev]);
+  const handleCaseCreated = () => {
+    fetchCases();
+    
   };
 
   return (
@@ -41,6 +42,7 @@ function RouteComponent() {
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl">Cases</h1>
+          <CreateCasesDialog onCreated={handleCaseCreated} />
         </div>
 
         {error && <div className="text-red-500 mb-4">{error}</div>}
