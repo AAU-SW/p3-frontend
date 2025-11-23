@@ -9,11 +9,13 @@ import { DeleteAssetDialog } from '@/components/assets/delete-asset/delete-asset
 interface DetailHeaderProps {
   assetData: Asset;
   onCaseCreated: (newCase: Case) => void;
+  onAssetUpdate?: (updatedAsset: Asset) => void;
 }
 
 export const DetailHeader: FC<DetailHeaderProps> = ({
   assetData,
   onCaseCreated,
+  onAssetUpdate,
 }) => {
   const navigate = useNavigate();
   const onDeleteSuccess = () => {
@@ -28,7 +30,7 @@ export const DetailHeader: FC<DetailHeaderProps> = ({
         <h1 className="text-4xl font-medium">{assetData.name}</h1>
         <div className=" flex gap-3">
           <CreateCasesDialog onCreated={onCaseCreated} />
-          <UpdateAssetDialog assetData={assetData} />
+          <UpdateAssetDialog assetData={assetData} onUpdate={onAssetUpdate} />
           <DeleteAssetDialog
             assetId={assetData.id}
             onDeleteSuccess={onDeleteSuccess}

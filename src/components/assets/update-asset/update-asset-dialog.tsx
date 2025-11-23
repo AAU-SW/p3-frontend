@@ -31,10 +31,12 @@ import { OrderSelector } from '@/components/order-selector';
 
 interface UpdateAssetDialogProps {
   assetData: Asset;
+  onUpdate?: (newAsset: Asset) => void;
 }
 
 export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
   assetData,
+  onUpdate,
 }) => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState<Date>();
@@ -58,7 +60,8 @@ export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
     e.preventDefault();
 
     try {
-      await updateAsset(assetData.id, formData);
+      const newAsset = await updateAsset(assetData.id, formData);
+      onUpdate?.(newAsset);
       setOpen(false);
     } catch (error) {
       console.error(error);
