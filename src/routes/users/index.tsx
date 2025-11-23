@@ -2,9 +2,9 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { User } from '@/types/user';
-import { UsersTable } from '@/components/users/users-table/users-table.tsx';
-import { Button } from '@/components/ui/button';
 import { getUsers } from '@/api/user';
+import { CreateUserDialog } from '@/components/users/create-user/create-user-dialog';
+import { UsersTable } from '@/components/users/users-table/users-table.tsx';
 import { DeleteUserDialog } from '@/components/users/delete-user-dialog.tsx';
 
 export const Route = createFileRoute('/users/')({
@@ -15,6 +15,9 @@ function RouteComponent() {
   const [userData, setUserData] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const handleUserCreation = (newUser: User) => {
+    setUserData((prevUsers) => [...prevUsers, newUser]);
+  };
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
@@ -57,7 +60,7 @@ function RouteComponent() {
       <div className="w-full p-4 container mx-auto">
         <div className="flex flex-row justify-between items-center mb-4">
           <h1 className="text-4xl"> Users </h1>
-          <Button variant="outline">Add User</Button>
+          <CreateUserDialog onUserCreation={handleUserCreation} />
         </div>
 
         <UsersTable

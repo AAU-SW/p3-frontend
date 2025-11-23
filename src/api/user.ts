@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { api } from './axios';
-import type { User } from '@/types/user';
+import type { CreateUser, User } from '@/types/user';
 
 export async function getCurrentUser() {
   try {
@@ -25,8 +25,8 @@ export async function getOneUser(userId: string) {
   return res.data;
 }
 
-export async function createUser(data: User) {
-  const res = await api.post(`/api/users`, data);
+export async function createUser(data: CreateUser) {
+  const res = await api.post(`/api/auth/register`, data);
   return res.data;
 }
 
