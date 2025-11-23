@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import type { Asset } from '@/types/asset';
 import { getAssetsByOrderId } from '@/api/assets';
 import { AssetsTable } from '@/components/assets/assets-table/assets-table';
+import { EditOrderDialog } from '@/components/orders/edit-order/edit-order-dialog.tsx';
 
 export const Route = createFileRoute('/orders/$id/')({
   component: RouteComponent,
@@ -33,6 +34,7 @@ function RouteComponent() {
     <div className="w-full p-4 container mx-auto">
       <div className="flex flex-row justify-between items-center mb-4">
         <h1 className="text-4xl"> Orders </h1>
+        <EditOrderDialog orderId={orderId.id} />
       </div>
       <AssetsTable data={assetsByOrderId ?? []} isLoading={isLoading} />
     </div>
