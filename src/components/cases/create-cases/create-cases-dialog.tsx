@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import type { FormEvent } from 'react';
-import type { CreateCase } from '@/types/case.ts';
+import type { Case, CreateCase } from '@/types/case.ts';
 import type { Asset } from '@/types/asset.ts';
 import type { User } from '@/types/user.ts';
 import { createCase } from '@/api/cases.ts';
@@ -24,7 +24,7 @@ import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 
 interface CreateCasesDialogProps {
-  onCreated: () => void;
+  onCreated: (newCase: Case) => void;
 }
 export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
   const [open, setOpen] = useState(false);
@@ -68,13 +68,13 @@ export const CreateCasesDialog = ({ onCreated }: CreateCasesDialogProps) => {
     };
 
     try {
-      await createCase(data);
+      const newCase = await createCase(data);
 
       setSelectedEmployee(undefined);
       setOpen(false);
 
       toast.success('Case created successfully');
-      onCreated();
+      onCreated(newCase);
     } catch (error) {
       console.error(error);
     }
