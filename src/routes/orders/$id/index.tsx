@@ -40,13 +40,15 @@ function RouteComponent() {
   }, [orderId.id]);
   return (
     <div className="w-full p-4 container mx-auto">
-      <div className="flex flex-row justify-between items-center mb-4">
+      <div className="flex flex-row justify-between items-center mb-">
         <h1 className="text-4xl"> Orders </h1>
-        <EditOrderDialog orderId={orderId.id} />
-        <DeleteOrderDialog
-          orderId={orderId.id}
-          onDeleteSuccess={onDeleteSuccess}
-        />
+        <div className="flex gap-4">
+          <EditOrderDialog orderId={orderId.id} />
+          <DeleteOrderDialog
+            orderId={orderId.id}
+            onDeleteSuccess={onDeleteSuccess}
+          />
+        </div>
       </div>
       <AssetsTable data={assetsByOrderId ?? []} isLoading={isLoading} />
     </div>
