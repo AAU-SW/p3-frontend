@@ -2,6 +2,7 @@ import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 import type { FC, FormEvent } from 'react';
 import type { Customer } from '@/types/customer';
+import type { Order } from '@/types/order.ts';
 import { updateOrder } from '@/api/order.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
