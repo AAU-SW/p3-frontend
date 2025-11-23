@@ -25,6 +25,10 @@ function RouteComponent() {
     setCasesData((prevCases) => [newCase, ...prevCases]);
   };
 
+  const handleAssetUpdate = (updatedAsset: Asset) => {
+    setAssetData(updatedAsset);
+  };
+
   useEffect(() => {
     const fetchOneAsset = async () => {
       try {
@@ -66,6 +70,7 @@ function RouteComponent() {
           <DetailHeader
             assetData={assetData}
             onCaseCreated={handleCaseCreated}
+            onAssetUpdate={handleAssetUpdate}
           />
         )}
 
