@@ -1,12 +1,13 @@
 import { toast } from 'sonner';
 import { useState } from 'react';
 import type { FC, FormEvent } from 'react';
-import type { Asset, CreateAsset } from '@/types/asset.ts';
-import { createAsset } from '@/api/assets.ts';
+import type { CreateOrder } from '@/types/order.ts';
+import type { Customer } from '@/types/customer';
+import { createOrder } from '@/api/order.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
-import { Textarea } from '@/components/ui/textarea.tsx';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Dialog,
   DialogClose,
@@ -16,82 +17,75 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog.tsx';
+} from '@/components/ui/dialog';
+import { CustomerSelector } from '@/components/customer-selector';
 
-interface CreateAssetDialogProps {
-  onAssetCreation?: (newAsset: Asset) => void;
-}
-
-export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
-  onAssetCreation,
-}) => {
+export const CreateOrderDialog: FC = () => {
   const [open, setOpen] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer>();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
 
     const formData = new FormData(form);
-    const data: CreateAsset = {
+    const data: CreateOrder = {
       name: formData.get('name') as string,
-      registrationNumber: formData.get('registrationNumber') as string,
-      description: formData.get('description') as string,
-      status: 'ACTIVE', // default on creation
+      product: formData.get('product') as string,
+      notes: formData.get('notes') as string,
+      status: 'PENDING',
+      orderNumber: formData.get('orderNumber') as string,
+      connectedCustomer: selectedCustomer,
     };
 
-    // Get the image file if it exists
-    const imageFile = formData.get('imageUpload') as File;
-
     try {
-      const newAsset = await createAsset(data, imageFile);
+      await createOrder(data);
       form.reset();
-      if (onAssetCreation) onAssetCreation(newAsset);
       setOpen(false);
+      toast.success('Order created successfully!');
     } catch (error) {
       console.error(error);
-      toast.error('Failed to create asset:');
+      toast.error('Failed to create order.');
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Asset</Button>
+        <Button variant="outline">Add Order</Button>
       </DialogTrigger>
 
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Add Asset</DialogTitle>
+            <DialogTitle>Add Order</DialogTitle>
             <DialogDescription>
-              To create an asset you must fill out the following form.
+              Fill out the form to create a new order.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid gap-4 pt-4">
             <div className="grid gap-3">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Titel</Label>
               <Input id="name" name="name" required />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="registrationNumber">Registration number</Label>
-              <Input
-                id="registrationNumber"
-                name="registrationNumber"
-                required
-              />
+              <Label htmlFor="product">Product</Label>
+              <Input id="product" name="product" required />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="description">Description</Label>
-              <Textarea id="description" name="description" />
+              <Label htmlFor="notes">Notes</Label>
+              <Textarea id="notes" name="notes" />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="imageUpload">Upload image</Label>
-              <Input
-                type="file"
-                id="imageUpload"
-                name="imageUpload"
-                accept="image/*"
+              <Label htmlFor="orderNumber">OrderNumber</Label>
+              <Input type="number" id="orderNumber" name="orderNumber" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="attachment">Customer</Label>
+              <CustomerSelector
+                value={selectedCustomer}
+                onChange={setSelectedCustomer}
               />
             </div>
           </div>
@@ -102,7 +96,7 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Create Asset</Button>
+            <Button type="submit">Create Order</Button>
           </DialogFooter>
         </form>
       </DialogContent>

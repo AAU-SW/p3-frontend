@@ -13,7 +13,7 @@ export type Asset = {
   status: 'ACTIVE' | 'CLOSED';
   description: string;
   deletedAt?: string; // Are we going to implement this?
-  lastInvoiced?: string; // TODO: Implement a simple button that tracks last date of invoice.
+  lastInvoiced?: string | Date;
   orderRef?: Order;
   profilePicture?: Image;
 };

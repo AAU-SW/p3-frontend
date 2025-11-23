@@ -38,7 +38,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
       <div className="relative">
         <img
           src={url}
-          className="object-cover aspect-square rounded-2xl"
+          className="object-cover w-full h-full rounded-2xl"
           alt={data?.name}
         />
         <Badge className={`absolute top-4 right-4 ${statusColor}`}>
@@ -104,7 +104,7 @@ export const AssetsBaseData: FC<AssetsBaseDataProps> = ({ data }) => {
               Last invoiced
             </span>
             <span className="mb-4 font-medium">
-              {data?.lastInvoiced ?? 'Unknown'}
+              {formatDate(data?.lastInvoiced) ?? 'Unknown'}
             </span>
           </div>
         </div>
