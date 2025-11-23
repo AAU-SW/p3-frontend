@@ -15,6 +15,7 @@ import { FileCard } from '@/components/file-upload/file-card.tsx';
 import { CaseTask } from '@/components/cases/cases-detail/case-task.tsx';
 import { DeleteCaseDialog } from '@/components/cases/delete-case/delete-case-dialog.tsx';
 import { GlobalLoader } from '@/components/GlobalLoader.tsx';
+import { UpdateCaseDialog } from '@/components/cases/update-case/update-case-dialog.tsx';
 
 export const Route = createFileRoute('/cases/$id/')({
   component: RouteComponent,
@@ -71,6 +72,7 @@ function RouteComponent() {
             caseId={caseData.id}
             onDeleteSuccess={() => navigate({ to: '/cases' })}
           />
+          <UpdateCaseDialog caseData={caseData} onUpdatedCase={fetchCase} />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

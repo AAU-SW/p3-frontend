@@ -1,8 +1,7 @@
 import { toast } from 'sonner';
 import { useState } from 'react';
 import type { ChangeEvent, FC, FormEvent } from 'react';
-import type { Asset } from '@/types/asset.ts';
-import { updateAsset } from '@/api/assets.ts';
+import type { Case } from '@/types/case.ts';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
@@ -14,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog.tsx';
+} from '@/components/ui/dialog';
 
 import {
   Select,
@@ -24,25 +23,28 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select.tsx';
+} from '@/components/ui/select';
+import { updateCase } from '@/api/cases.ts';
+import { EmployeeSelector } from '@/components/employee-selector.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
-import { DatePicker } from '@/components/date-picker.tsx';
 
-interface UpdateAssetDialogProps {
-  assetData: Asset;
+interface UpdateCaseDialogProps {
+  caseData: Case;
+  onUpdatedCase?: () => void;
 }
 
-export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
-  assetData,
+export const UpdateCaseDialog: FC<UpdateCaseDialogProps> = ({
+  caseData,
+  onUpdatedCase,
 }) => {
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState<Date>();
+
   const [formData, setFormData] = useState({
-    name: assetData.name || '',
-    registrationNumber: assetData.registrationNumber || '',
-    description: assetData.description || '',
-    status: assetData.status,
-    lastInvoiced: date || assetData.lastInvoiced,
+    title: caseData.title || '',
+    assignedTo: caseData.assignedTo,
+    description: caseData.description || '',
+    status: caseData.status,
+    location: caseData.location,
   });
 
   const handleChange = (
@@ -56,41 +58,42 @@ export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
     e.preventDefault();
 
     try {
-      await updateAsset(assetData.id, formData);
+      await updateCase(caseData.id, formData);
       setOpen(false);
+      onUpdatedCase?.();
     } catch (error) {
       console.error(error);
-      toast.error('Faild to update asset: ');
+      toast.error('Faild to update case: ');
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Update Asset</Button>
+        <Button variant="outline">Update case</Button>
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Edit Asset</DialogTitle>
+            <DialogTitle>Edit Case</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 pt-4">
             <div className="grid gap-3">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="title">Title</Label>
               <Input
-                id="name"
-                name="name"
-                value={formData.name}
+                id="title"
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="registrationNumber">Registration number</Label>
-              <Input
-                id="registrationNumber"
-                name="registrationNumber"
-                value={formData.registrationNumber}
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                name="description"
+                value={formData.description}
                 onChange={handleChange}
               />
             </div>
@@ -120,25 +123,21 @@ export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="description">Description</Label>
-              <Textarea
-                id="description"
-                name="description"
-                value={formData.description}
+              <Label htmlFor="location">Location</Label>
+              <Input
+                id="location"
+                name="location"
+                value={formData.location}
                 onChange={handleChange}
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="date">Last Invoiced</Label>
-              <DatePicker
-                date={date}
-                onDateChange={(selectedDate) => {
-                  setDate(selectedDate);
-                  setFormData((prev) => ({
-                    ...prev,
-                    lastInvoiced: selectedDate,
-                  }));
-                }}
+              <Label htmlFor="user">Employee</Label>
+              <EmployeeSelector
+                value={formData.assignedTo}
+                onChange={(user) =>
+                  setFormData((prev) => ({ ...prev, assignedTo: user }))
+                }
               />
             </div>
           </div>
@@ -149,7 +148,7 @@ export const UpdateAssetDialog: FC<UpdateAssetDialogProps> = ({
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit">Update Asset</Button>
+            <Button type="submit">Update case</Button>
           </DialogFooter>
         </form>
       </DialogContent>
