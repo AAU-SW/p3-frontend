@@ -28,7 +28,8 @@ export const DeleteOrderDialog: React.FC<DeleteOrderDialogProps> = ({
       await deleteOrderById(orderId);
       onDeleteSuccess();
       setOpen(false);
-    } catch {
+    } catch (error) {
+      console.error(error);
       toast.error('Failed to delete order');
     }
   };
