@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
-import {cn} from "@/lib/utils.ts";
+import { cn } from '@/lib/utils.ts';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -108,13 +108,11 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   onClick={
-                    rowActions
-                        ? () => onRowClick?.(row.original)
-                        : undefined
+                    rowActions ? () => onRowClick?.(row.original) : undefined
                   }
                   className={cn(
-                      rowActions && "cursor-pointer",
-                      "hover:bg-gray-100 transition-colors h-12"
+                    rowActions && 'cursor-pointer',
+                    'hover:bg-gray-100 transition-colors h-12',
                   )}
                   data-state={row.getIsSelected() && 'selected'}
                 >
