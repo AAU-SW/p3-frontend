@@ -20,6 +20,7 @@ export const CustomersTable: FC<CustomerTableProps> = ({ data, isLoading }) => {
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/customers/${rowData.id}` })}
       isLoading={isLoading}
+      rowActions={false}
     />
   );
 };

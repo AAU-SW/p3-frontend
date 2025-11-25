@@ -11,6 +11,11 @@ export const useColumns = () => {
       {
         accessorKey: 'id',
         header: 'ID',
+          cell: ( {row} ) => {
+            return(
+                row.original.id
+            )
+    }
       },
       {
         accessorKey: 'name',
