@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import {TaskItem} from "@/components/dashboard/task-item.tsx";
+import { TaskDashboard } from '@/components/dashboard/task-item.tsx';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -7,8 +7,8 @@ export const Route = createFileRoute('/')({
 
 function Home() {
   return (
-      <div>
-          <TaskItem/>
-      </div>
+    <>
+      <TaskDashboard />
+    </>
   );
 }

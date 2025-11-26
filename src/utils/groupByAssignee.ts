@@ -1,18 +1,21 @@
-import type {Case} from "@/types/case.ts";
+import type { Case } from '@/types/case.ts';
 
 export const groupByAssignee = (cases: Case[]) => {
-    return cases.reduce((groups, c) => {
-        const id = c.assignedTo?.id ?? "unknown";
+  return cases.reduce(
+    (groups, c) => {
+      const id = c.assignedTo?.id ?? 'unknown';
 
-        if (!groups[id]) {
-            groups[id] = {
-                assignee: c.assignedTo,
-                cases: []
-            };
-        }
+      if (!groups[id]) {
+        groups[id] = {
+          assignee: c.assignedTo,
+          cases: [],
+        };
+      }
 
-        groups[id].cases.push(c);
+      groups[id].cases.push(c);
 
-        return groups;
-    }, {} as Record<string, { assignee: Case["assignedTo"], cases: Case[] }>);
+      return groups;
+    },
+    {} as Record<string, { assignee: Case['assignedTo']; cases: Case[] }>,
+  );
 };
