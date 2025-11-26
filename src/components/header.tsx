@@ -1,12 +1,20 @@
 import * as React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useRouter } from '@tanstack/react-router';
 import { Button } from './ui/button';
 import type { FC } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/stores/auth.ts';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu.tsx';
 
 export const Header: FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const router = useRouter();
   const auth = useAuth();
   const authUser = auth.user;
 
@@ -27,18 +35,31 @@ export const Header: FC = () => {
           </AvatarFallback>
         </Avatar>
         <span className="font-medium">{firstName}</span>
-
-        <Button
-          onClick={() => setIsOpen(!isOpen)}
-          variant="ghost"
-          size="icon-sm"
-        >
-          {isOpen ? (
-            <ChevronUp className="w-4 h-4" />
-          ) : (
-            <ChevronDown className="w-4 h-4" />
-          )}
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              onClick={() => setIsOpen(!isOpen)}
+              variant="ghost"
+              size="icon-sm"
+            >
+              {isOpen ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem
+              onClick={() => {
+                auth.logout();
+                router.navigate({ to: '/login' });
+              }}
+            >
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
