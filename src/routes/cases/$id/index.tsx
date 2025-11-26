@@ -66,13 +66,13 @@ function RouteComponent() {
   return (
     <div className="w-full bg-[#F8FAFC] p-4 container mx-auto">
       <BackLink />
-      <div className="flex items-center justify-between mb-4">
-        <div>
+      <div className="flex items-center justify-end mb-4">
+        <div className="flex gap-2">
+          <UpdateCaseDialog caseData={caseData} onUpdatedCase={fetchCase} />
           <DeleteCaseDialog
             caseId={caseData.id}
             onDeleteSuccess={() => navigate({ to: '/cases' })}
           />
-          <UpdateCaseDialog caseData={caseData} onUpdatedCase={fetchCase} />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
