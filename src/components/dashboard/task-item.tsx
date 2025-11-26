@@ -15,27 +15,35 @@ import { StatusBadge } from '@/components/status-badge.tsx';
 import { formatDate } from '@/utils/formatDate.ts';
 import { DatePicker } from '@/components/date-picker';
 import { Button } from '@/components/ui/button.tsx';
-import { GlobalLoader } from '@/components/GlobalLoader.tsx'; 
+import { GlobalLoader } from '@/components/GlobalLoader.tsx';
 
 export const TaskDashboard: FC = () => {
   const [casesData, setCasesData] = useState<Case[]>([]);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date(),
+  );
+  const [casesLoading, setCasesLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAllCases = async () => {
       try {
+        setCasesLoading(true);
         const response = await getCases();
         setCasesData(response);
       } catch (error) {
         console.error(error);
         toast.error('Failed to fetch cases');
+      } finally {
+        setCasesLoading(false);
       }
     };
 
     fetchAllCases();
   }, []);
+
+  const openCases = casesData.filter((c) => c.status !== 'CLOSED');
 
   const filteredCases = selectedDate
     ? casesData.filter((c) => {
@@ -48,7 +56,7 @@ export const TaskDashboard: FC = () => {
           caseDate.getDate() === selectedDate.getDate()
         );
       })
-    : casesData;
+    : openCases;
 
   const grouped = groupByAssignee(filteredCases);
 
@@ -66,8 +74,10 @@ export const TaskDashboard: FC = () => {
           icon={true}
         />
       </div>
-      {Object.keys(grouped).length === 0 && <GlobalLoader />}
-
+      {casesLoading && <GlobalLoader />}
+      {!casesLoading && Object.keys(grouped).length === 0 && (
+        <div>No tasks for the given day</div>
+      )}
       <div className="grid grid-cols-2 gap-4">
         {Object.values(grouped).map((group) => (
           <Card
