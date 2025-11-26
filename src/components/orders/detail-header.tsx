@@ -8,10 +8,11 @@ interface DetailHeaderProps {
 
 export const DetailHeader: FC<DetailHeaderProps> = ({ onOrderCreated }) => {
   return (
-    <div className="flex items-center p-4 pb-0 justify-between gap-2">
-      <div className="flex gap-3 w-full justify-end">
+    <>
+      <div className="flex gap-3 w-full justify-between">
+        <h1 className="text-4xl"> Orders </h1>
         <CreateOrderDialog onOrderCreated={onOrderCreated} />
       </div>
-    </div>
+    </>
   );
 };

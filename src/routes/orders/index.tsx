@@ -37,9 +37,6 @@ function RouteComponent() {
 
   return (
     <div className="w-full p-4 container mx-auto">
-      <div className="flex flex-row justify-between items-center mb-4">
-        <h1 className="text-4xl"> Orders </h1>
-      </div>
       <DetailHeader onOrderCreated={handleOrderCreated} />
       <OrdersTable data={ordersData} isLoading={isLoading} />
     </div>
