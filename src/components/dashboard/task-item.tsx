@@ -15,7 +15,7 @@ import { StatusBadge } from '@/components/status-badge.tsx';
 import { formatDate } from '@/utils/formatDate.ts';
 import { DatePicker } from '@/components/date-picker';
 import { Button } from '@/components/ui/button.tsx';
-import { GlobalLoader } from '@/components/GlobalLoader.tsx'; // <-- ADDED IMPORT
+import { GlobalLoader } from '@/components/GlobalLoader.tsx'; 
 
 export const TaskDashboard: FC = () => {
   const [casesData, setCasesData] = useState<Case[]>([]);
