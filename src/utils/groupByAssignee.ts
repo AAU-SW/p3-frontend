@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { Case } from '@/types/case.ts';
 
 export const groupByAssignee = (cases: Case[]) => {

@@ -14,7 +14,8 @@ import { groupByAssignee } from '@/utils/groupByAssignee.ts';
 import { StatusBadge } from '@/components/status-badge.tsx';
 import { formatDate } from '@/utils/formatDate.ts';
 import { DatePicker } from '@/components/date-picker';
-import { Button } from '@/components/ui/button.tsx'; // <-- ADDED IMPORT
+import { Button } from '@/components/ui/button.tsx';
+import { GlobalLoader } from '@/components/GlobalLoader.tsx'; // <-- ADDED IMPORT
 
 export const TaskDashboard: FC = () => {
   const [casesData, setCasesData] = useState<Case[]>([]);
@@ -65,9 +66,7 @@ export const TaskDashboard: FC = () => {
           icon={true}
         />
       </div>
-      {Object.keys(grouped).length === 0 && (
-        <div>No data for selected date</div>
-      )}
+      {Object.keys(grouped).length === 0 && <GlobalLoader />}
 
       <div className="grid grid-cols-2 gap-4">
         {Object.values(grouped).map((group) => (
@@ -77,7 +76,7 @@ export const TaskDashboard: FC = () => {
           >
             <CardHeader className="flex flex-row items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-semibold">
-                  {group.assignee?.name?.[0] ?? '?'}
+                {group.assignee?.name[0] ?? '?'}
               </div>
 
               <div className="flex flex-col">
