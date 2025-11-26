@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
+import { cn } from '@/lib/utils.ts';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -29,6 +30,7 @@ interface DataTableProps<TData, TValue> {
   withPagination?: boolean;
   onRowClick?: (rowData: TData) => void;
   isLoading?: boolean;
+  rowActions?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -38,6 +40,7 @@ export function DataTable<TData, TValue>({
   withSearchBar,
   withPagination = true,
   onRowClick,
+  rowActions = true,
 }: DataTableProps<TData, TValue>) {
   const [globalFilter, setGlobalFilter] = useState('');
 
@@ -104,8 +107,13 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  onClick={() => onRowClick?.(row.original)}
-                  className="cursor-pointer hover:bg-gray-100 transition-colors h-12"
+                  onClick={
+                    rowActions ? () => onRowClick?.(row.original) : undefined
+                  }
+                  className={cn(
+                    rowActions && 'cursor-pointer',
+                    'hover:bg-gray-100 transition-colors h-12',
+                  )}
                   data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map((cell) => (

@@ -25,6 +25,7 @@ export const UsersTable: FC<UsersTableProps> = ({
       withSearchBar={true}
       onRowClick={(rowData) => navigate({ to: `/users/${rowData.id}` })}
       isLoading={isLoading}
+      rowActions={false}
     />
   );
 };
