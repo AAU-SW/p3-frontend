@@ -37,6 +37,7 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order>();
+  const [description, setDescription] = useState('');
 
   const inputFields: InputField[] = [
     {
@@ -66,6 +67,10 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
       required: false,
       id: 'description',
       component: Textarea,
+      props: {
+        value: description,
+        onChange: (e: any) => setDescription(e.target.value),
+      },
     },
     {
       label: 'Upload image',
@@ -87,7 +92,7 @@ export const CreateAssetDialog: FC<CreateAssetDialogProps> = ({
     const data: CreateAsset = {
       name: formData.get('name') as string,
       registrationNumber: formData.get('registrationNumber') as string,
-      description: formData.get('description') as string,
+      description: description,
       orderRef: selectedOrder,
       status: 'ACTIVE',
     };
