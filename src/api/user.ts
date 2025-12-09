@@ -4,7 +4,7 @@ import type { CreateUser, User } from '@/types/user';
 
 export async function getCurrentUser() {
   try {
-    const res = await api.get<User>('/api/users/me'); // Or your own endpoint
+    const res = await api.get<User>('/api/users/me');
     return res.data;
   } catch (error) {
     if (error instanceof AxiosError) {
