@@ -1,5 +1,5 @@
-import { api } from './axios';
 import type { CreateAsset } from '@/types/asset.ts';
+import { api } from '@/api/axios';
 
 export async function getAssets() {
   const res = await api.get('/api/assets');
